@@ -39,6 +39,10 @@ if not app.config['DEBUG']:
 def not_found(error):
     return render_template('404.html'), 404
 
+
+
+
+
 from app.users.views import sign_module as usersModule
 app.register_blueprint(usersModule)
 

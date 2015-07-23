@@ -3,5 +3,5 @@ Jinja2==2.7.1
 Werkzeug==0.9.4
 pymongo
 flask-mongoengine
-flask-wtf
+Flask-WTF==0.11.0
 WTForms
