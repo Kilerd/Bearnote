@@ -1,0 +1,9 @@
+<form method="POST">
+    {{ register.csrf_token }}
+    {{ register.email.label(class="reg-l") }} {{ register.email(size=20,class="reg-email") }}
+    {{ register.username.label }} {{ register.username(size=20) }}
+    {{ register.password.label }} {{ register.password(size=20) }}
+    {{ register.confirm_password.label }} {{ register.confirm_password(size=20) }}
+    {{ register.accept_tos() }}{{ register.accept_tos.label }}
+    <button>Register</button>
+</form>
