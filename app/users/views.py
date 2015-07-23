@@ -6,8 +6,12 @@ sign_module = Blueprint('sign_module',__name__)
 @sign_module.route('/signin/', methods=['GET', 'POST'])
 def sign_moudle_signin():
 	login = LoginForm()
-	if login.validate_on_submit():
-		return "success"
+	
+	if request.method=='POST':
+		if login.validate_on_submit():
+			return "success"
+		else:
+			return "error"
 	return render_template("users/signin.html",login=login)
 	"""
 	if request.method == 'GET':
