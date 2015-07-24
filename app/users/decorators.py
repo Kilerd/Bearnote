@@ -16,7 +16,6 @@ def require_signin(f):
 def require_not_signin(f):
 	@wraps(f)
 	def decorated_function(*args,**kwargs):
-		print 'doing require_not_signin'
 		if 'user' in session:
 			flash(u"已经登陆了喔，亲")
 			return redirect(url_for('sign_module.me_function'))

@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 #user role
 ADMIN = 0
 USER = 1
