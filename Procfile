@@ -1,1 +1,1 @@
-web: gunicorn run:app -b $VCAP_APP_HOST:$PORT
+web: gunicorn demo_run:app -b $VCAP_APP_HOST:$PORT
