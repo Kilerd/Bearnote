@@ -1,1 +1,1 @@
-web: gunicorn run:app -b 0.0.0.0:80
+web: gunicorn run:app
