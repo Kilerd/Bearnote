@@ -43,8 +43,8 @@ def not_found(error):
 
 
 
-from app.users.views import sign_module as usersModule
-app.register_blueprint(usersModule)
+from app.users.views import sign_module
+app.register_blueprint(sign_module)
 
 # Later on you'll import the other blueprints the same way:
 #from app.comments.views import mod as commentsModule
