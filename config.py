@@ -7,7 +7,8 @@ _basedir = os.path.abspath(os.path.dirname(__file__))
 DEBUG = True
 
 ADMINS = frozenset(['youremail@yourdomain.com'])
-SECRET_KEY = 'This string will be replaced with a proper key in production.'
+CSRF_ENABLED = True
+SECRET_KEY = '123456'
 
 
 # Mongodb Setting / MongoEngine
@@ -25,13 +26,13 @@ else:
 	MONGODB_PORT = 27017
 	MONGODB_USERNAME = '773085b7-1b05-452f-911b-56ac72f7b7b1'
 	MONGODB_PASSWORD = '0NwMkrE5jWrM3gZ1kZ_yZw'
-	
+
 # Unkown What it is.
 THREADS_PER_PAGE = 8
 
 # CSRF
 CSRF_ENABLED = True
-CSRF_SESSION_KEY = "somethingimpossibletoguess"
+CSRF_SESSION_KEY = "123456"
 
 
 # Unkown What it is.

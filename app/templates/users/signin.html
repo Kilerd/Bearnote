@@ -1,3 +1,10 @@
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      {{ message }}<br />
+    {% endfor %}
+  {% endif %}
+{% endwith %}
 <form method="POST">
     {{ login.csrf_token }}
     {{ login.email.label }} {{ login.email(size=20) }}

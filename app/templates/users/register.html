@@ -1,3 +1,10 @@
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      {{ message }}<br />
+    {% endfor %}
+  {% endif %}
+{% endwith %}
 <form method="POST">
     {{ register.csrf_token }}
     {{ register.email.label(class="reg-l") }} {{ register.email(size=20,class="reg-email") }}
@@ -5,5 +12,7 @@
     {{ register.password.label }} {{ register.password(size=20) }}
     {{ register.confirm_password.label }} {{ register.confirm_password(size=20) }}
     {{ register.accept_tos() }}{{ register.accept_tos.label }}
+    <label>ReCaptcha</label>
+        {{ register.recaptcha }}
     <button>Register</button>
 </form>
