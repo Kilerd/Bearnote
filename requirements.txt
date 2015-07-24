@@ -1,7 +1,8 @@
 Flask==0.10.1
 Jinja2==2.7.1
 Werkzeug==0.9.4
-pymongo
-flask-mongoengine
+pymongo==3.0.3
+flask-mongoengine==0.7.1
 Flask-WTF==0.11.0
-WTForms
+WTForms==2.0.2
+gunicorn==0.17.2
