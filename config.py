@@ -28,6 +28,7 @@ else:
 	MONGODB_USERNAME = '773085b7-1b05-452f-911b-56ac72f7b7b1'
 	MONGODB_PASSWORD = '0NwMkrE5jWrM3gZ1kZ_yZw'
 
+
 # Unkown What it is.
 THREADS_PER_PAGE = 8
 
