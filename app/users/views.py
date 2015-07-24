@@ -13,7 +13,7 @@ def me_function():
 
 
 @sign_module.route('/signin', methods=['GET', 'POST'])
-@require_not_signin
+#@require_not_signin
 def signin_function():
 	login = LoginForm()
 
@@ -47,11 +47,11 @@ def signin_function():
 			flash(u"数据提交失败，请检查输入内容")
 			return redirect(url_for('sign_module.signin_function'))
 
-	return render_template("users/signin.html",login=login)
+	return render_template('users/signin.html',login=login)
 
 
 @sign_module.route('/register', methods=['GET', 'POST'])
-@require_not_signin
+#@require_not_signin
 def register_function():
 	register = RegisterForm()
 	if request.method == 'GET':
