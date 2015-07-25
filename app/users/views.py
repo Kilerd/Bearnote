@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from app.users.models import * 
 from flask import Blueprint, render_template,request,redirect,flash,url_for,session,g
-from app.users.forms import LoginForm,RegisterForm,ForgetPswForm
+from app.users.forms import LoginForm,RegisterForm,ForgetPswForm,FindPswForm
 from app.users.decorators import require_login,require_not_login
-from app.users.lib import PasswordCheck
+from app.users.lib import UserCheck
 from app.lib.mail import mail_send
+import time
 # init sign module
 sign_module = Blueprint('sign_module',__name__)
 
@@ -20,7 +21,7 @@ def me_function():
 @require_not_login
 def login_function():
 	login = LoginForm()
-	login_check = PasswordCheck()
+	login_check = UserCheck()
 	if request.method=='POST':
 	#POST
 		if login.validate_on_submit():
@@ -41,8 +42,6 @@ def login_function():
 					password=login.password.data
 					).first()
 				print 'loginin send mail'
-				mail_send(subject = 'login',recipients = [login.email.data],text_body = 'welcome back')
-
 				next_page = request.args.get('next', '')
 				if next_page == '':
 					# Redirect to /me
@@ -65,7 +64,7 @@ def login_function():
 @require_not_login
 def register_function():
 	register = RegisterForm()
-	register_check = PasswordCheck()
+	register_check = UserCheck()
 	if request.method == 'POST':
 		if register.validate_on_submit():
 			# Count the User of input information
@@ -79,6 +78,9 @@ def register_function():
 						email = register.email.data,
 						password = register.password.data),
 					).save()
+				# Register Email
+				# mail_send(subject = 'login',recipients = [login.email.data],text_body = 'welcome back')
+
 				flash(u"注册成功")
 				return redirect(url_for('sign_module.login_function'))
 			else:
@@ -99,11 +101,68 @@ def logout_function():
 @sign_module.route('/forgetpassword',methods=['GET','POST'])
 @require_not_login
 def forgetpassword_function():
-	forgetpsw = ForgetPswForm()
+	forgetpsw = FindPswForm()
+	forget_check = UserCheck()
 	if request.method == 'POST':
-		if forgetpassword.validate_on_submit():
-			flash(u"密码修改成功")
-			return redirect(url_for('sign_module.login_function'))
+		if forgetpsw.validate_on_submit():
+
+			user_count = User.objects(email=forgetpsw.email.data).count()
+			if user_count == 1:
+				
+				this_user = User.objects(
+					email=forgetpsw.email.data,
+					).first()
+				now_time = int(time.time())
+				
+				if not 'forget' in this_user:
+
+					forgetstring = forget_check.forgetstring_encrypt(
+						email = forgetpsw.email.data)
+					this_user.forget={
+						'string': forgetstring,
+						'time': int(time.time())
+					}
+					this_user.save()
+					flash(u"已发送密码重置邮件，请前往邮箱查收。邮件一小时内有效")
+					return redirect(url_for('sign_module.forgetpassword_function'))
+
+				else:
+					print str(now_time - int(this_user.forget['time']))
+					if now_time - int(this_user.forget['time']) > 3600:
+						# Overtime
+						forgetstring = forget_check.forgetstring_encrypt(
+							email = forgetpsw.email.data)
+						this_user.forget={
+							'string': forgetstring,
+							'time': int(time.time())
+						}
+						this_user.save()
+						# send mail
+						flash(u"原密码重置邮件已失效，已重新生成并发送密码重置邮件，请前往邮箱查收")
+						return redirect(url_for('sign_module.forgetpassword_function'))
+					elif (now_time - int(this_user.forget['time']) < 3600) and (now_time - int(this_user.forget['time']) > 60):
+						#send mail
+						this_user.forget['time'] = now_time
+						this_user.save()
+						flash(u"密码重置邮件已重新发送")
+						return redirect(url_for('sign_module.forgetpassword_function'))
+					elif now_time - int(this_user.forget['time']) < 60:
+						flash(u"密码重置邮件已发送，请勿频繁操作（邮件发送间隔为 1分钟）")
+						return redirect(url_for('sign_module.forgetpassword_function'))
+
+			else:
+				flash(u"邮箱尚未注册，或者邮箱异常")
+				return redirect(url_for('sign_module.forgetpassword_function'))
 		else:
-			pass
+			flash(u"请填写正确的邮箱")
+			return redirect(url_for('sign_module.forgetpassword_function'))
 	return render_template('users/forgetpassword.html',forgetpsw = forgetpsw)
+
+
+
+@sign_module.route('/resetpassword',methods=['GET','POST'])
+@sign_module.route('/resetpassword/<forgetstring>',methods=['GET','POST'])
+@require_not_login
+def resetpassword_function(forgetstring=''):
+
+	return render_template('users/forgetpassword_sec.html',forgetpsw = forgetpsw)
