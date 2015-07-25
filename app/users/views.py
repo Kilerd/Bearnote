@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from app.users.models import * 
 from flask import Blueprint, render_template,request,redirect,flash,url_for,session,g
-from app.users.forms import LoginForm,RegisterForm,ForgetPswForm,FindPswForm
+from app.users.forms import LoginForm,RegisterForm,ResetPswForm,ForgetPswForm
 from app.users.decorators import require_login,require_not_login
 from app.users.lib import UserCheck
 from app.lib.mail import mail_send
@@ -101,7 +101,7 @@ def logout_function():
 @sign_module.route('/forgetpassword',methods=['GET','POST'])
 @require_not_login
 def forgetpassword_function():
-	forgetpsw = FindPswForm()
+	forgetpsw = ForgetPswForm()
 	forget_check = UserCheck()
 	if request.method == 'POST':
 		if forgetpsw.validate_on_submit():
@@ -127,7 +127,6 @@ def forgetpassword_function():
 					return redirect(url_for('sign_module.forgetpassword_function'))
 
 				else:
-					print str(now_time - int(this_user.forget['time']))
 					if now_time - int(this_user.forget['time']) > 3600:
 						# Overtime
 						forgetstring = forget_check.forgetstring_encrypt(
@@ -161,8 +160,35 @@ def forgetpassword_function():
 
 
 @sign_module.route('/resetpassword',methods=['GET','POST'])
-@sign_module.route('/resetpassword/<forgetstring>',methods=['GET','POST'])
 @require_not_login
-def resetpassword_function(forgetstring=''):
-
-	return render_template('users/forgetpassword_sec.html',forgetpsw = forgetpsw)
+def resetpassword_function():
+	resetform = ResetPswForm()
+	reset_check = UserCheck()
+	if request.method == 'POST':
+		if resetform.validate_on_submit():
+			user_count = User.objects(email=resetform.email.data).count()
+			if user_count == 1:
+				this_user = User.objects(
+					email=resetform.email.data,
+					).first()
+				if 'forget' in this_user and \
+				this_user.forget['string'] == resetform.forgetstring.data and \
+				(int((time.time())) - int(this_user.forget['time']) < 3600):
+					this_user.password = reset_check.password_encrypt(
+						email = resetform.email.data,
+						password = resetform.password.data)
+					this_user.forget = None
+					this_user.save()
+					flash(u"密码已经修改成功，去登陆吧")
+					return redirect(url_for('sign_module.login_function'))
+				else:
+					flash(u"数据匹配失败，请核对你的信息")
+					return redirect(url_for('sign_module.resetpassword_function'))
+			else:
+				flash(u"邮件验证失败")
+				return redirect(url_for('sign_module.resetpassword_function'))
+			
+		else:
+			flash(u"信息核对失败，密码修改失败，请重新输入")
+			return redirect(url_for('sign_module.resetpassword_function'))
+	return render_template('users/resetpassword.html',resetform = resetform)
