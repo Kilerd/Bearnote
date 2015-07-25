@@ -4,12 +4,15 @@ from flask import Blueprint, render_template,request,redirect,flash,url_for,sess
 from app.users.forms import LoginForm,RegisterForm,ForgetPswForm
 from app.users.decorators import require_login,require_not_login
 from app.users.lib import PasswordCheck
+from app.lib.mail import mail_send
 # init sign module
 sign_module = Blueprint('sign_module',__name__)
 
 @sign_module.route('/me',methods=['GET'])
 @require_login
 def me_function():
+	print 'me send mail'
+	#mail_send(subject = 'login',recipients = ['544372225@qq.com'],text_body = 'welcome back')
 	return render_template('users/me.html')
 
 
@@ -18,10 +21,7 @@ def me_function():
 def login_function():
 	login = LoginForm()
 	login_check = PasswordCheck()
-	if request.method=='GET':
-	#GET
-		pass
-	elif request.method=='POST':
+	if request.method=='POST':
 	#POST
 		if login.validate_on_submit():
 			# Count the User of input information
@@ -40,6 +40,8 @@ def login_function():
 					email=login.email.data,
 					password=login.password.data
 					).first()
+				print 'loginin send mail'
+				mail_send(subject = 'login',recipients = [login.email.data],text_body = 'welcome back')
 
 				next_page = request.args.get('next', '')
 				if next_page == '':
@@ -64,9 +66,7 @@ def login_function():
 def register_function():
 	register = RegisterForm()
 	register_check = PasswordCheck()
-	if request.method == 'GET':
-		pass
-	elif request.method == 'POST':
+	if request.method == 'POST':
 		if register.validate_on_submit():
 			# Count the User of input information
 			user_count = User.objects(email=register.email.data).count()
@@ -100,9 +100,7 @@ def logout_function():
 @require_not_login
 def forgetpassword_function():
 	forgetpsw = ForgetPswForm()
-	if request.method == 'GET':
-		pass
-	elif request.method == 'POST':
+	if request.method == 'POST':
 		if forgetpassword.validate_on_submit():
 			flash(u"密码修改成功")
 			return redirect(url_for('sign_module.login_function'))

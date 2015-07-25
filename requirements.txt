@@ -6,3 +6,4 @@ flask-mongoengine==0.7.1
 Flask-WTF==0.11.0
 WTForms==2.0.2
 gunicorn==19.3.0
+flask-mail==0.9.1
