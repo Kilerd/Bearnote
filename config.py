@@ -18,7 +18,6 @@ MAIL_PORT = 465
 MAIL_USE_TLS = False
 MAIL_USE_SSL = True
 MAIL_USERNAME = 'notice@bearnote.com'
-MAIL_DEFAULT_SENDER = MAIL_USERNAME
 MAIL_PASSWORD = 'pass4bearnote'
 
 
@@ -26,11 +25,11 @@ MAIL_PASSWORD = 'pass4bearnote'
 try:
 	os.environ['CODING_TEST']
 except:
-	MONGODB_DB = 'flask'
+	MONGODB_DB = 'bearnote'
 	MONGODB_HOST = '127.0.0.1'
 	MONGODB_PORT = 27017
-	MONGODB_USERNAME = 'admin2'
-	MONGODB_PASSWORD = 'admin2'
+	MONGODB_USERNAME = 'bearnote'
+	MONGODB_PASSWORD = '8tz6g0k300XTnCPLjz3z'
 else:
 	MONGODB_DB = '1b814d16-7a94-4d2b-8be4-dd594cb82456'
 	MONGODB_HOST = '10.9.27.25'

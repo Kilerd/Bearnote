@@ -12,7 +12,6 @@ sign_module = Blueprint('sign_module',__name__)
 @sign_module.route('/me',methods=['GET'])
 @require_login
 def me_function():
-	print 'me send mail'
 	#mail_send(subject = 'login',recipients = ['544372225@qq.com'],text_body = 'welcome back')
 	return render_template('users/me.html')
 
@@ -41,7 +40,6 @@ def login_function():
 					email=login.email.data,
 					password=login.password.data
 					).first()
-				print 'loginin send mail'
 				next_page = request.args.get('next', '')
 				if next_page == '':
 					# Redirect to /me
