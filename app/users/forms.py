@@ -17,7 +17,7 @@ class RegisterForm(Form):
 		DataRequired(),
 		EqualTo('password', message='Passwords must match')
 		])
-	accept_tos = BooleanField('I accept the TOS', [DataRequired()])
+	accept_tos = BooleanField(u"我同意网站的用户手册(ToS)", [DataRequired()])
 
 
 class ForgetPswForm(Form):

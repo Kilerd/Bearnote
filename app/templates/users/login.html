@@ -1,13 +1,37 @@
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    {% for message in messages %}
-      {{ message }}<br />
-    {% endfor %}
-  {% endif %}
-{% endwith %}
-<form method="POST">
-    {{ login.csrf_token }}
-    {{ login.email.label }} {{ login.email(size=20) }}
-    {{ login.password.label }} {{ login.password(size=20) }}
-    <button>Signin</button>
-</form>
+{% extends 'base.html' %}
+{% block title %}登录 - 小熊笔记{% endblock %}
+
+{% block content %}
+<div class="content">
+	<div class="row">
+		<div class="col-offset-2 col-l-8 postform">
+			<h2>登录</h2>
+			
+			{% with messages = get_flashed_messages() %}
+			  {% if messages %}
+			    {% for message in messages %}
+			      {{ message }}<br />
+			    {% endfor %}
+			  {% endif %}
+			{% endwith %}
+			<form method="POST">
+			{{ login.csrf_token }}
+				<div class="form-line">
+	    			{{ login.email(placeholder="邮箱") }}
+	    			<p>注册时所填写的邮箱,必须</p>
+				</div>
+				<div class="form-line">
+	    			{{ login.password(placeholder="密码") }}
+	    			<p>6到18个字符,必须</p>
+				</div>
+				<div class="form-line">
+	    			<button>登录</button>
+				</div>
+				<div class="more-action">
+					<a href="{{ url_for('sign_module.register_function') }}">注册</a> , <a href="{{ url_for('sign_module.forgetpassword_function') }}">忘记密码</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

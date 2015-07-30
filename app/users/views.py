@@ -5,6 +5,7 @@ from app.users.forms import LoginForm,RegisterForm,ResetPswForm,ForgetPswForm
 from app.users.decorators import require_login,require_not_login
 from app.users.lib import UserCheck
 from app.lib.mail import mail_send
+from app.lib.common import CommonClass
 import time
 # init sign module
 sign_module = Blueprint('sign_module',__name__)
@@ -21,6 +22,7 @@ def me_function():
 def login_function():
 	login = LoginForm()
 	login_check = UserCheck()
+	user_md5 = CommonClass()
 	if request.method=='POST':
 	#POST
 		if login.validate_on_submit():
@@ -40,6 +42,7 @@ def login_function():
 					email=login.email.data,
 					password=login.password.data
 					).first()
+				session['user']['email_md5'] = user_md5.md5_encrypt(login.email.data)
 				next_page = request.args.get('next', '')
 				if next_page == '':
 					# Redirect to /me
@@ -79,7 +82,7 @@ def register_function():
 				# Register Email
 				# mail_send(subject = 'login',recipients = [login.email.data],text_body = 'welcome back')
 
-				flash(u"注册成功")
+				flash(u"注册成功，请登录吧，亲")
 				return redirect(url_for('sign_module.login_function'))
 			else:
 				flash(u"邮箱已经被使用，请尝试找回密码")
