@@ -1,0 +1,12 @@
+image: daocloud/ci-python:2.7
+
+services:
+  - mongodb
+
+install:
+
+ - sudo pip intall -r requirements.txt
+
+script:
+
+ - python run.py
