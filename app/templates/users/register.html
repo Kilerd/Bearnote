@@ -8,13 +8,15 @@
     <div class="col-offset-2 col-l-8 postform">
       <h2>注册</h2>
       
-      {% with messages = get_flashed_messages() %}
-        {% if messages %}
-          {% for message in messages %}
-            {{ message }}<br />
-          {% endfor %}
-        {% endif %}
-      {% endwith %}
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+    <div class="message">
+      {{ message }}
+     </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
       <form method="POST">
       {{ register.csrf_token }}
         <div class="form-line">
@@ -41,7 +43,7 @@
             <button>注册</button>
         </div>
         <div class="more-action">
-          <a href="{{ url_for('sign_module.login_function') }}">登录</a> , <a href="{{ url_for('sign_module.forgetpassword_function') }}">忘记密码</a>
+          <a href="{{ url_for('sign_module.login_function') }}">登录</a> , <a href="{{ url_for('sign_module.register_function') }}">注册</a> , <a href="{{ url_for('sign_module.forgetpassword_function') }}">忘记密码</a>
         </div>
       </form>
     </div>

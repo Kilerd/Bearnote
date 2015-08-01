@@ -1,21 +1,34 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
 
+<meta charset="utf-8">
+<title>{% block title %}小熊笔记 - 只为更轻松地记录笔记{% endblock %}</title>
 
-{% block title %}个人主页 - 小熊笔记{% endblock %}
+<meta name="google" value="notranslate">
+<link rel="shortcut icon" type="image/ico" href="" />
+<link rel="stylesheet" type="text/css" href="../static/css/style.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="HandheldFriendly" content="true">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+</head>
+<body>
+<div class="header">
+	<a href="/" class="logo"></a>
 
-
-
-
-
-{% block content %}
+	<div class="right-nav">
+		<a href="{{ url_for('sign_module.login_function') }}">登录</a>
+		<a href="{{ url_for('sign_module.register_function') }}">注册</a>
+	</div>
+</div>
 
 <div class="content">
 	<div class="row">
 		<div class="account">
 			<div class="gravater">
-				<img class="account-gravater" src="https://cdn.v2ex.com/gravatar/{{ session['email_md5' ]}}?s=256&d=retro">
-				<h1 class="account-name">{{ session['user']['username'] }}</h1>
-				<p>Email : {{ session['user']['email'] }}</p>
+				<img class="account-gravater" src="https://cdn.v2ex.com/gravatar/0ef2d17d4b179f70e13b35ec11a185bb?s=256&d=retro">
+				<h1 class="account-name">Kilerd</h1>
+				<p>Email : blove694@gmail.com</p>
 				<p class="account-description">总有那么一天，我会让那些只会嘲笑我的人，只能仰慕我</p>
 			</div>
 			<div class="mood-line">
@@ -65,4 +78,12 @@
 		
 	</div>
 </div>
-{% endblock %}
+
+<div class="footer">
+	<p style="font-weight: 700;"><a href="{{ url_for('common_module.index_function') }}">首页</a><a href="{{ url_for('common_module.feature_function') }}">功能</a><a href="{{ url_for('common_module.pricing_function') }}">价格</a><a href="{{ url_for('common_module.tos_function') }}">用户协议(ToS)</a><a href="{{ url_for('common_module.about_function') }}">关于我们</a></p>
+	<p>只为更轻松地记笔记</p>
+	<p>Copyright BearNote 2015-2016.</p>
+
+</div>
+</body>
+</html>

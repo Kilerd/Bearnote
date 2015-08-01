@@ -38,10 +38,10 @@ def login_function():
 				# Login successful
 				
 				# Add Session
-				session['user'] = User.objects(
+				this_user = User.objects(
 					email=login.email.data,
-					password=login.password.data
 					).first()
+				session['user'] = this_user
 				session['email_md5'] = user_md5.md5_encrypt(login.email.data)
 				next_page = request.args.get('next', '')
 				if next_page == '':

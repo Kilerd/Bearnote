@@ -10,7 +10,9 @@
 			{% with messages = get_flashed_messages() %}
 			  {% if messages %}
 			    {% for message in messages %}
-			      {{ message }}<br />
+			    <div class="message">
+			      {{ message }}
+			     </div>
 			    {% endfor %}
 			  {% endif %}
 			{% endwith %}
@@ -28,7 +30,7 @@
 	    			<button>登录</button>
 				</div>
 				<div class="more-action">
-					<a href="{{ url_for('sign_module.register_function') }}">注册</a> , <a href="{{ url_for('sign_module.forgetpassword_function') }}">忘记密码</a>
+					<a href="{{ url_for('sign_module.login_function') }}">登录</a> , <a href="{{ url_for('sign_module.register_function') }}">注册</a> , <a href="{{ url_for('sign_module.forgetpassword_function') }}">忘记密码</a>
 				</div>
 			</form>
 		</div>

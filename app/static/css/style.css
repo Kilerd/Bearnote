@@ -27,7 +27,7 @@ a:hover{
 	padding: 0 5px;
 	position: fixed;
 	top:0;
-	
+	z-index:999;
 	box-shadow:0px 1px 1px 0 rgba(0,0,0,0.25);
 }
 .header .logo{
@@ -102,6 +102,31 @@ a:hover{
 	max-width: 1080px;
 	min-height: 70%;
 	height: 100%;
+	overflow: hidden;
+}
+.content-full{
+	margin-top: 60px; 
+	width: 100%;
+	min-height: 70%;
+	height: 100%;
+}
+
+
+.content .content-header{
+	display: block;
+	width: 100%;
+	margin: 30px 0;
+}
+.content .content-header h1{
+	padding: 0 0 15px 0;
+	font-weight: 300;
+	border-bottom: 1px dashed rgba(225,59,47,0.25);
+
+}
+.content .content-header h1 span{
+	margin-left: 15px;
+	font-size: 0.5em;
+	font-weight: 300;
 }
 
 
@@ -284,9 +309,103 @@ a:hover{
 
 
 
+.account{
+	overflow: hidden;
+	margin: 30px;
+	background-color: #2e6da4;
+}
+.account .gravater{
+	float: left;
+	width: 100%;
+	height: 128px;
+	padding-left: 100px;
+	background-color: #F9F9F9;
+	
+}
+.account .gravater .account-gravater{
+	float: left;
+	margin-right: 15px;
+	width: 256px;
+	height: 256px;
+	border-radius: 999px;
+	border: 3px solid #fff;
+}
+.account .gravater .account-name{
+	font-weight: 300;
+	font-size: 35px;
+	margin: 57px 0 0 0;
+}
+
+.account .gravater .account-description{
+	margin: 10px 15px 0 0;
+	color: #fff;
+}
 
 
 
+.account .mood-line{
+	float: left;
+	margin: 128px 0 0 0;
+	padding: 15px 100px;
+}
+.account .mood-line .one-mood{
+	border-left: 2px solid #fff;
+	padding: 10px 25px;
+	width: 100%;
+}
+.account .mood-line .one-mood .mood-content{
+	background-color: #fff;
+	padding: 15px 20px;
+	border-radius: 3px;
+}
+.account .mood-line .one-mood .point{
+	float: left;
+	width: 0px;
+	height: 0px;
+	position: relative;
+	left: -15px;
+	top: 16px;
+	border-top: 10px solid transparent;
+    border-right: 15px solid #fff;
+    border-bottom: 10px solid transparent;
+}
+
+
+
+
+
+.box{
+	background-color: #fff;
+	border: 1px solid #e2e2e2;
+	padding: 15px;
+}
+.box .box-header{
+	font-size: 18px;
+	font-weight: 300;
+	padding: 3px 0;
+	border-bottom: 1px solid #e2e2e2;
+}
+
+.box .box-header span{
+	font-size: 15px;
+	float: right;
+	margin-top: 4px;
+}
+
+
+.account-box{
+	margin: 10px 30px;
+}
+
+
+.message{
+	min-height: 1em;
+	border-radius: 3px;
+	border: 1px solid rgba(225,59,47,0.25);
+	background-color: #F9F9F9;
+	width: 100%;
+	padding: 8px 15px;
+}
 
 
 
