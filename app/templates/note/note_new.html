@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}新笔记 - 小熊笔记{% endblock %}
+
+{% block content %}
+<div class="content">
+	<div class="content-header">
+		<h1>新笔记</h1>
+	</div>
+	<div class="note-editor">
+		<form method="POST" class="note-editor">
+		{% with messages = get_flashed_messages() %}
+			  {% if messages %}
+			    {% for message in messages %}
+			    <div class="message">
+			      {{ message }}
+			     </div>
+			    {% endfor %}
+			  {% endif %}
+		{% endwith %}
+		{{ note_new_form.csrf_token }}
+			<div class="row">
+				{{ note_new_form.title(placeholder="标题",required='required') }}
+
+			</div>
+			<div class="row">
+				{{ note_new_form.subtitle(style="text-align:right;",placeholder="副标题") }}
+			</div>
+			<div class="row">
+				{{ note_new_form.content(placeholder="笔记正文",required='required') }}
+			</div>
+			<div class="row">
+				<div class="col-l-6">
+					{{ note_new_form.public.label }}
+					{{ note_new_form.public() }}
+				</div>
+				<div class="col-l-6">
+					{{ note_new_form.blog.label }}
+					{{ note_new_form.blog() }}
+				</div>
+			</div>
+			<div class="row">
+			{{ note_new_form.tag(placeholder="标签 , 用半角 , 分割") }}
+			</div>
+			<div class="row">
+			<button>提交</button>
+			</div>
+			
+		</form>
+
+	</div>
+</div>
+{% endblock %}

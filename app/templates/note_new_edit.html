@@ -24,14 +24,41 @@
 
 <div class="content">
 	<div class="content-header">
-		<h1>笔记<span>description</span></h1>
+		<h1>新笔记</h1>
 	</div>
-	<div class="note-list">
-		<div class="note-cate"></div>
-		<div class="note-cate-list"></div>
-	</div>
-	<div class="note-content">
-		fdsf
+	<div class="note-editor">
+		<form method="POST" class="note-editor">
+			<div class="row">
+				<input type="text" placeholder="标题">
+			</div>
+			<div class="row">
+				<input type="text" style="text-align:right;" placeholder="副标题">
+			</div>
+			<div class="row">
+				<textarea placeholder="笔记正文"></textarea>
+			</div>
+			<div class="row">
+				<div class="col-l-6">
+					<label>公开:</label>
+					<select>
+       					<option>Here is the first option</option>
+       					<option>The second option</option>
+					</select>
+					</div>
+				<div class="col-l-6">
+					<label>博客:</label>
+					<select>
+       					<option>Here is the first option</option>
+       					<option>The second option</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<input type="text" placeholder="标签 , 用半角 , 分割">
+			</div>
+			
+		</form>
+
 	</div>
 </div>
 

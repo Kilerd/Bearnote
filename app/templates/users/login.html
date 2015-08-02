@@ -19,11 +19,11 @@
 			<form method="POST">
 			{{ login.csrf_token }}
 				<div class="form-line">
-	    			{{ login.email(placeholder="邮箱") }}
+	    			{{ login.email(placeholder="邮箱",required='required') }}
 	    			<p>注册时所填写的邮箱,必须</p>
 				</div>
 				<div class="form-line">
-	    			{{ login.password(placeholder="密码") }}
+	    			{{ login.password(placeholder="密码",required='required') }}
 	    			<p>6到18个字符,必须</p>
 				</div>
 				<div class="form-line">

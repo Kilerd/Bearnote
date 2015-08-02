@@ -13,7 +13,7 @@
 	<div class="row">
 		<div class="account">
 			<div class="gravater">
-				<img class="account-gravater" src="https://cdn.v2ex.com/gravatar/{{ session['email_md5' ]}}?s=256&d=retro">
+				<img class="account-gravater" src="https://cdn.v2ex.com/gravatar/{{ session['user']['email_md5'] }}?s=256&d=retro">
 				<h1 class="account-name">{{ session['user']['username'] }}</h1>
 				<p>Email : {{ session['user']['email'] }}</p>
 				<p class="account-description">总有那么一天，我会让那些只会嘲笑我的人，只能仰慕我</p>
@@ -52,7 +52,7 @@
 	<div class="row">
 		<div class="col-l-6">
 			<div class="box account-box">
-			<div class="box-header">Box-Header 功能<span><a href="">More</a></span></div>
+			<div class="box-header">我的笔记<span><a href="{{ url_for('note_module.note_new_function') }}">撰写新笔记</a></span></div>
 			<div class="box-content">aaa<br />ssssssssssssaaa<br />ssssssssssssaaa<br />ssssssssssssaaa<br />ssssssssssss</div>
 			</div>
 		</div>

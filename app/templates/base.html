@@ -18,13 +18,13 @@
 	<a href="/" class="logo"></a>
 	{% if 'user' in session %}
 	<ul class="nav">
-		<li><a href="#">笔记</a></li>
+		<li><a href="#">笔记墙</a></li>
 		<li><a href="#">心情墙</a></li>
-		<li><a href="#">博客</a></li>
+		<li><a href="#">博客墙</a></li>
 
 	</ul>
 	<div class="right-pic">
-		<a href="{{ url_for('sign_module.me_function') }}"><img src="https://cdn.v2ex.com/gravatar/{{ session['email_md5'] }}?s=48&d=retro"></a>
+		<a href="{{ url_for('sign_module.me_function') }}"><img src="https://cdn.v2ex.com/gravatar/{{ session['user']['email_md5'] }}?s=48&d=retro"></a>
 	</div>
 	{% else %}
 	<div class="right-nav">

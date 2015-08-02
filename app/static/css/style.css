@@ -213,7 +213,7 @@ a:hover{
 
 
 
-
+/* Form for Login Register ForgetPassword ResetPassword */
 .postform{
 	margin: 20px 0;
 	padding: 30px 50px;
@@ -308,6 +308,7 @@ a:hover{
 
 
 
+/* account page */
 
 .account{
 	overflow: hidden;
@@ -404,7 +405,7 @@ a:hover{
 	border: 1px solid rgba(225,59,47,0.25);
 	background-color: #F9F9F9;
 	width: 100%;
-	padding: 8px 15px;
+	padding: 15px;
 }
 
 
@@ -412,6 +413,105 @@ a:hover{
 
 
 
+/* Note Editor */
+.note-editor{
+	margin: 20px 50px;
+}
+.note-editor input[type="text"]{
+	width: 100%;
+	outline: none;
+	padding: 10px;
+	margin: 10px 0;
+	border: none;
+	border-bottom: 1px solid #bfbfbf;
+	background-color: transparent;
+	-webkit-transition: border .15s linear,padding-bottom .15s linear;
+	-m-transition: border .15s linear,padding-bottom .15s linear;
+	-o-transition: border .15s linear,padding-bottom .15s linear;
+	transition: border .15s linear,padding-bottom .15s linear;
+}
+.note-editor input[type="text"]:focus{
+	outline: none;
+	border-bottom: 2px solid #e13b2f;
+	padding-bottom: 9px;
+	-webkit-transition: border .15s linea,padding-bottom .15s linear;
+	-m-transition: border .15s linear,padding-bottom .15s linear;
+	-o-transition: border .15s linear,padding-bottom .15s linear;
+	transition: border .15s linear,padding-bottom .15s linear;
+}
+
+.note-editor textarea{
+	width: 100%;
+	outline: none;
+	resize:none;
+	min-height: 400px;
+	height: auto;
+	padding: 10px 20px;
+	margin: 10px 0;
+	border: none;
+	border-left: 1px solid #bfbfbf;
+	background-color: transparent;
+	-webkit-transition: border .15s linear,padding-bottom .15s linear;
+	-m-transition: border .15s linear,padding-bottom .15s linear;
+	-o-transition: border .15s linear,padding-bottom .15s linear;
+	transition: border .15s linear,padding-bottom .15s linear;
+}
+.note-editor textarea:focus{
+	outline: none;
+	border-left: 2px solid #e13b2f;
+	padding-left: 19px;
+	-webkit-transition: border .15s linea,padding-bottom .15s linear;
+	-m-transition: border .15s linear,padding-bottom .15s linear;
+	-o-transition: border .15s linear,padding-bottom .15s linear;
+	transition: border .15s linear,padding-bottom .15s linear;
+}
+
+.note-editor select{
+	-webkit-appearance: none;
+	-o-appearance: none;
+	-m-appearance: none;
+	appearance: none;
+	outline: none;
+	padding: 10px;
+	border: 1px solid #bfbfbf;
+	background-color: transparent;
+	-webkit-transition: border .15s linear,padding .15s linear;
+	-m-transition: border .15s linear,padding .15s linear;
+	-o-transition: border .15s linear,padding .15s linear;
+	transition: border .15s linear,padding .15s linear;
+
+}
+.note-editor select:focus{
+	padding: 10px;
+	border: 1px solid #e13b2f;
+	-webkit-transition: border .15s linea,padding .15s linear;
+	-m-transition: border .15s linear,padding .15s linear;
+	-o-transition: border .15s linear,padding .15s linear;
+	transition: border .15s linear,padding .15s linear;
+
+}
+.note-editor button{
+	outline: none;
+	width: 100%;
+	font-size: 20px;
+	padding: 10px 0;
+	margin-top: 25px;
+	border:0px;
+	border-radius: 1px;
+	background-color: #337ab7;
+	color:#fff;
+	-webkit-transition: background-color .15s linear;
+	-m-transition: background-color .15s linear;
+	-o-transition: background-color .15s linear;
+	transition: background-color .15s linear;
+}
+.note-editor button:hover{
+	background-color: #2e6da4;
+	-webkit-transition: background-color .15s linear;
+	-m-transition: background-color .15s linear;
+	-o-transition: background-color .15s linear;
+	transition: background-color .15s linear;
+}
 
 
 

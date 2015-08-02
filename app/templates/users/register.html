@@ -20,20 +20,20 @@
       <form method="POST">
       {{ register.csrf_token }}
         <div class="form-line">
-            {{ register.email(placeholder="邮箱") }}
+            {{ register.email(placeholder="邮箱",required='required') }}
             <p>用于登录的邮箱,必须</p>
         </div>
         <div class="form-line">
 
-            {{ register.username(placeholder="用户名") }}
+            {{ register.username(placeholder="用户名",required='required') }}
             <p>长度必须为3到12位,必须</p>
         </div>
         <div class="form-line">
-            {{ register.password(placeholder="密码") }}
+            {{ register.password(placeholder="密码",required='required') }}
             <p>6到18个字符,必须</p>
         </div>
         <div class="form-line">
-            {{ register.confirm_password(placeholder="重复密码") }}
+            {{ register.confirm_password(placeholder="重复密码",required='required') }}
             <p>务必于密码相同,必须</p>
         </div>
         <div class="form-line">

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from app.users.models import * 
-from flask import Blueprint, render_template,request,redirect,flash,url_for,session,g
+from flask import Blueprint, render_template,request,redirect,flash,url_for,session
 from app.users.forms import LoginForm,RegisterForm,ResetPswForm,ForgetPswForm
 from app.users.decorators import require_login,require_not_login
 from app.users.lib import UserCheck
@@ -41,8 +41,12 @@ def login_function():
 				this_user = User.objects(
 					email=login.email.data,
 					).first()
-				session['user'] = this_user
-				session['email_md5'] = user_md5.md5_encrypt(login.email.data)
+				session['user'] = {
+					"username" : this_user.username,
+					"email" : this_user.email,
+					"email_md5" : user_md5.md5_encrypt(login.email.data),
+					"role" : this_user.role
+				}
 				next_page = request.args.get('next', '')
 				if next_page == '':
 					# Redirect to /me
