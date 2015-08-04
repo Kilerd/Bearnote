@@ -14,6 +14,7 @@ class Note(db.DynamicDocument):
 	blog_status = db.IntField(default=NOTECONSTANTS.IS_NOT_BLOG)
 	blog_cate = db.StringField()
 	tag = db.ListField()
+	time = db.DateTimeField(default=datetime.now(),required=True)
 	belong = db.ReferenceField(User)
 
 

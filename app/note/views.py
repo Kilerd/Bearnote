@@ -4,6 +4,7 @@ from app.note.models import *
 from app.users.decorators import require_login
 from app.users.models import User
 from app.note.forms import NoteForm
+from app.note import constants as NOTECONSTANTS
 
 note_module = Blueprint('note_module',__name__)
 
@@ -17,6 +18,18 @@ def note_new_function():
 			subtitle=note_new_form.subtitle.data,
 			content = note_new_form.content.data,
 			tag = note_new_form.tag.data.split(","),
-			belong = User.objects(email=session['user']['email']).first()
+			belong = (User.objects(email=session['user']['email']).first())
 			).save()
 	return render_template('note/note_new.html',note_new_form = note_new_form)
+
+
+@note_module.route('/mynote',methods=['GET'])
+@require_login
+def mynote_function():
+	# Page Control
+	note_count = Note.objects(belong=User.objects(email=session['user']['email']).first()).count()
+	page_count = note_count / NOTECONSTANTS.PER_PAGE_COUNT + 1 if note_count % NOTECONSTANTS.PER_PAGE_COUNT else note_count / NOTECONSTANTS.PER_PAGE_COUNT
+	now_page = request.args.get('page',1)
+	now_page = now_page if now_page >=1 or now_page <= page_count else page_count
+	now_page_note = Note.objects(belong=User.objects(email=session['user']['email']).first()).skip(NOTECONSTANTS.PER_PAGE_COUNT*(now_page-1)).limit(NOTECONSTANTS.PER_PAGE_COUNT)
+	return render_template('note/mynote.html',notes = now_page_note)

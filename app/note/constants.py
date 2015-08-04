@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+# Note Page
+PER_PAGE_COUNT = 20
+
 # Note Status
 PRIVATE = 0
 PUBLIC = 1

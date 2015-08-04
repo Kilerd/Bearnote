@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}我的笔记 - 小熊笔记{% endblock %}
+
+{% block content %}
+<div class="content">
+	<div class="content-header">
+		<h1>我的笔记<span><a href="{{ url_for('note_module.note_new_function') }}">撰写新笔记</a></span></h1>
+	</div>
+	<div class="my-note-list">
+		{% for one_note in notes %}
+		<ul class="one_note">
+			<li>
+			<a href="#">{{ one_note.title }}</a>
+			<span>{{ one_note.time.strftime('%Y-%m-%d') }}</span>
+			<span>{{ one_note.subtitle }}</span>
+			</li>
+		</ul>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}
