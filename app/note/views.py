@@ -14,6 +14,7 @@ note_module = Blueprint('note_module',__name__)
 @require_login
 def note_new_function():
 	note_new_form = NoteForm()
+	#note_new_form.title.data = 'test title'
 	if note_new_form.validate_on_submit():
 		Note(
 			noteid=getnextseq(),
@@ -39,12 +40,22 @@ def mynote_function():
 	return render_template('note/mynote.html',notes = now_page_note)
 
 
+@note_module.route('/note/',methods=['GET'])
+def note_wall_function():
+	return 'note wall function'
 
-@note_module.route("/testid")
-def getnextseqsssss():
-	if NoteID.objects(name="noteid").count() == 0:
-		NoteID(name="noteid",seq=0).save()
 
-	now_seq = NoteID.objects(name="noteid").first()
+@note_module.route("/note/<int:noteid>",methods=['GET'])
+def one_note_function(noteid):
+	if noteid=='':
+		return redirect(url_for('note_module.note_wall_function'))
+	else:
+		return 'one note page'
 
-	return str(now_seq.seq)
+@note_module.route('/mood',methods=['GET'])
+def mood_wall_function():
+	return 'Mood Wall Page'
+
+@note_module.route('/blog',methods=['GET'])
+def blog_wall_function():
+	return 'Blog Wall Page'

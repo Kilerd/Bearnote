@@ -18,9 +18,9 @@
 	<a href="/" class="logo"></a>
 	{% if 'user' in session %}
 	<ul class="nav">
-		<li><a href="#">笔记墙</a></li>
-		<li><a href="#">心情墙</a></li>
-		<li><a href="#">博客墙</a></li>
+		<li><a href="{{ url_for('note_module.note_wall_function') }}">笔记墙</a></li>
+		<li><a href="{{ url_for('note_module.mood_wall_function') }}">心情墙</a></li>
+		<li><a href="{{ url_for('note_module.blog_wall_function') }}">博客墙</a></li>
 
 	</ul>
 	<div class="right-pic">

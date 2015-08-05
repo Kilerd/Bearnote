@@ -5,7 +5,7 @@
 {% block content %}
 <div class="content">
 	<div class="content-header">
-		<h1>新笔记</h1>
+		<h1>新笔记<span><a href="{{ url_for('note_module.mynote_function') }}">返回 我的笔记</a></span></h1>
 	</div>
 	<div class="note-editor">
 		<form method="POST" class="note-editor">
