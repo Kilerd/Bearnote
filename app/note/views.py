@@ -42,15 +42,19 @@ def mynote_function():
 
 @note_module.route('/note/',methods=['GET'])
 def note_wall_function():
+	return redirect(url_for('note_module.mynote_function'))
 	return 'note wall function'
 
 
 @note_module.route("/note/<int:noteid>",methods=['GET'])
 def one_note_function(noteid):
-	if noteid=='':
+	if Note.objects(noteid=noteid).count() == 0:
+		flash(u"找不到这篇文章，不要乱来了。")
 		return redirect(url_for('note_module.note_wall_function'))
 	else:
-		return 'one note page'
+		this_note = Note.objects(noteid=noteid).first()
+
+		return render_template('/note/one_note.html',this_note=this_note)
 
 @note_module.route('/mood',methods=['GET'])
 def mood_wall_function():

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}新笔记 - 小熊笔记{% endblock %}
+
+{% block content %}
+<div class="content">
+	<div class="article">
+		<div class="article-header">
+			<div class="title">{{ this_note.title }}</div>
+			<div class="subtitle">{{ this_note.subtitle }}</div>
+			<div class="information">
+				{{ this_note.time.strftime('%Y-%m-%d') }}
+				{% if this_note.belong.email == session.user.email %}
+				<span class="action"><a href="#">修改</a> <a href="#">删除</a></span>
+				{% endif %}
+			</div>
+		</div>
+		<div class="article-content">
+			{{ this_note.content }}
+		</div>
+		<div class="article-author">
+			<img src="https://cdn.v2ex.com/gravatar/{{ session['user']['email_md5'] }}?s=128&d=retro" class="article-author-gravator">
+			<div class="article-author-information">
+				<div class="article-author-author">{{ this_note.belong.username }}</div>
+				<div class="article-author-email">{{ this_note.belong.email }}</div>
+				{% if this_note.belong.description %}
+				<div class="article-author-description">{{ this_note.belong.description }}</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

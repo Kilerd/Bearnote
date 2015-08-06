@@ -99,7 +99,7 @@ a:hover{
 
 .content{
 	margin-top: 60px; 
-	max-width: 1080px;
+	max-width: 960px;
 	min-height: 70%;
 	height: 100%;
 	overflow: hidden;
@@ -545,7 +545,7 @@ a:hover{
 	margin: 10px 0;
 }
 .my-note-list .one-note li .inf .public{
-	font-size: 12px;
+	font-size: 11px;
 	color:#fff;
 	background-color: #2e6da4;
 	padding: 5px;
@@ -553,7 +553,7 @@ a:hover{
 	border-radius: 3px;
 }
 .my-note-list .one-note li .inf .blog{
-	font-size: 12px;
+	font-size: 11px;
 	color:#fff;
 	background-color: rgba(225,59,47,0.7);
 	padding: 5px;
@@ -569,7 +569,44 @@ a:hover{
 
 
 
+/* Article */
+.article{
+	width: 90%;
+}
+.article .article-header{
+	padding-bottom: 5px;
+	border-bottom: 1px solid #eee;
+}
+.article .article-header .title{
+	font-size: 30px;
+	margin: 15px 0 0 0;
+	width: 100%;
+}
+.article .article-header .subtitle:before{
+	padding-right: 5px;
+	content:"——";
+}
+.article .article-header .subtitle{
+	font-size: 20px;
+	margin: 0;
+	color:#777;
+	text-align: right;
+	width: 100%;
+}
+.article .article-header .information{
+	color:#999;
+}
+.article .article-header .information .action{
+	color:#999;
+	margin: 0 15px;
+}
 
+.article .article-content{
+	margin: 20px 0;
+}
+.article .article-author{
+	margin: 20px 0;
+}
 
 
 
