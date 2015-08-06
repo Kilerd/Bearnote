@@ -23,7 +23,7 @@ a:hover{
 .header{
 	height: 60px;
 	width: 100%;
-	background-color: #fff;
+	background-color: rgba(255,255,255,0.9);
 	padding: 0 5px;
 	position: fixed;
 	top:0;
@@ -511,6 +511,57 @@ a:hover{
 	-m-transition: background-color .15s linear;
 	-o-transition: background-color .15s linear;
 	transition: background-color .15s linear;
+}
+
+
+
+
+
+
+.my-note-list .one-note{
+	margin-bottom: 30px;
+}
+.my-note-list .one-note li{
+	margin: 3px 0;
+	border-bottom: 1px dashed rgba(225,59,47,0.15);
+}
+.my-note-list .one-note li .title{
+	font-size: 22px;
+	font-weight: 300;
+}
+.my-note-list .one-note li .subtitle:before{
+	content:"——";
+	padding-right: 5px;
+}
+.my-note-list .one-note li .subtitle{
+	color: #999;
+	font-size: 18px;
+	font-weight: 300;
+	padding-left: 50px;
+}
+.my-note-list .one-note li .inf{
+	color: #999;
+	font-weight: 300;
+	margin: 10px 0;
+}
+.my-note-list .one-note li .inf .public{
+	font-size: 12px;
+	color:#fff;
+	background-color: #2e6da4;
+	padding: 5px;
+	margin: 5px;
+	border-radius: 3px;
+}
+.my-note-list .one-note li .inf .blog{
+	font-size: 12px;
+	color:#fff;
+	background-color: rgba(225,59,47,0.7);
+	padding: 5px;
+	margin: 5px;
+	border-radius: 3px;
+}
+.my-note-list .one-note li .inf .action{
+	font-size: 13px;
 }
 
 
