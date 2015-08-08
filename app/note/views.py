@@ -59,10 +59,11 @@ def one_note_function(noteid):
 
 		if this_note.public_status == NOTECONSTANTS.PRIVATE:
 			if 'user' in session:
-				return redirect(url_for('note_module.mynote_function'))
+				if not this_note.belong.email == session['user']['email']:
+					return redirect(url_for('note_module.mynote_function'))
 			else:
 				return redirect(url_for('note_module.note_wall_function'))
-		
+
 		return render_template('/note/one_note.html',this_note=this_note)
 
 @note_module.route('/mood',methods=['GET'])

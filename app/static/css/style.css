@@ -98,7 +98,7 @@ a:hover{
     display:none;
     position:absolute;
     right: 0;
-    top:55px;
+    top:57px;
     list-style: none;
     text-align: center;
 }
@@ -648,6 +648,27 @@ a:hover{
 }
 .article .article-author .article-author-information .article-author-author{
 	font-size: 20px;
+}
+
+
+
+/* slider */
+.slider{
+
+}
+.slider ul{
+	list-style: none;
+}
+.slider ul li a{
+	text-align: right;
+	display: block;
+	padding: 20px;
+}
+.slider ul hr{
+	height: 1px;
+	border: 0;
+	border-bottom: 1px dashed rgba(0,0,0,0.25);
+
 }
 
 

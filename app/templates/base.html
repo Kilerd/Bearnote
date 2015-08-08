@@ -29,7 +29,7 @@
 			<li><a href="{{ url_for('note_module.mynote_function') }}">笔记</a></li>
 			<li><a href="{{ url_for('sign_module.setting_function',setcate='account') }}">设置</a></li>
 			<hr />
-			<li><a href="">登出</a></li>
+			<li><a href="{{ url_for('sign_module.logout_function') }}">登出</a></li>
 		</ul>
 	</div>
 	{% else %}

@@ -209,14 +209,14 @@ def setting_redirect_function():
 @require_login
 def setting_function(setcate):
 	def account():
-		return 'account'
+		return render_template('users/setting_account.html')
 
 	def password():
 		return 'password'
 
 	def publicsetting():
 		return 'publicsetting'
-	
+
 	SETCATE = {
 		'account' : account,
 		'password' : password,
