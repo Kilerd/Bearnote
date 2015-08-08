@@ -23,7 +23,7 @@ a:hover{
 .header{
 	height: 60px;
 	width: 100%;
-	background-color: rgba(255,255,255,0.9);
+	background-color: rgba(255,255,255,0.85);
 	padding: 0 5px;
 	position: fixed;
 	top:0;
@@ -92,6 +92,33 @@ a:hover{
 	float: right;
 	margin: 6px 10px 0 0;
 }
+
+.header .right-pic .droplist{
+	background-color: #fff;
+    display:none;
+    position:absolute;
+    right: 0;
+    top:55px;
+    list-style: none;
+    text-align: center;
+}
+
+.header .right-pic:hover .droplist{
+	padding: 10px;
+    display:block;
+}
+.header .right-pic:hover .droplist li a {
+	padding: 5px 15px;
+    display:block;
+}
+.header .right-pic:hover .droplist hr {
+	border: 0;
+	height: 1px;
+	padding: 0;
+	width: 80%;
+	border-bottom: 1px dashed rgba(0,0,0,0.25);
+}
+
 .header .right-pic img{
 	border-radius: 999px;
     box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 0.7), 0px 0px 3px 2px rgba(225,59,47,0.75);
@@ -415,7 +442,7 @@ a:hover{
 
 /* Note Editor */
 .note-editor{
-	margin: 20px 50px;
+	margin: 20px 20px;
 }
 .note-editor input[type="text"]{
 	width: 100%;
@@ -605,7 +632,22 @@ a:hover{
 	margin: 20px 0;
 }
 .article .article-author{
+	border-top: 1px solid #eee;
 	margin: 20px 0;
+	padding-top: 20px;
+	overflow: hidden;
+}
+.article .article-author img{
+	float: left;
+	border-radius: 5px;
+	border: 2px solid #fff;
+}
+.article .article-author .article-author-information{
+	float: left;
+	margin-left: 10px;
+}
+.article .article-author .article-author-information .article-author-author{
+	font-size: 20px;
 }
 
 

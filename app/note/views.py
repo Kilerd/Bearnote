@@ -6,6 +6,7 @@ from app.users.models import User
 from app.note.forms import NoteForm
 from app.note import constants as NOTECONSTANTS
 from app.note.lib import getnextseq
+from app.lib.common import CommonClass
 
 note_module = Blueprint('note_module',__name__)
 
@@ -52,8 +53,16 @@ def one_note_function(noteid):
 		flash(u"找不到这篇文章，不要乱来了。")
 		return redirect(url_for('note_module.note_wall_function'))
 	else:
+		common = CommonClass()
 		this_note = Note.objects(noteid=noteid).first()
+		this_note.belong.email_md5 = common.md5_encrypt(this_note.belong.email)
 
+		if this_note.public_status == NOTECONSTANTS.PRIVATE:
+			if 'user' in session:
+				return redirect(url_for('note_module.mynote_function'))
+			else:
+				return redirect(url_for('note_module.note_wall_function'))
+		
 		return render_template('/note/one_note.html',this_note=this_note)
 
 @note_module.route('/mood',methods=['GET'])

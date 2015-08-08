@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from app.users.models import * 
-from flask import Blueprint, render_template,request,redirect,flash,url_for,session
+from flask import Blueprint, render_template,request,redirect,flash,url_for,session,abort
 from app.users.forms import LoginForm,RegisterForm,ResetPswForm,ForgetPswForm
 from app.users.decorators import require_login,require_not_login
 from app.users.lib import UserCheck
@@ -197,3 +197,33 @@ def resetpassword_function():
 			flash(u"信息核对失败，密码修改失败，请重新输入")
 			return redirect(url_for('sign_module.resetpassword_function'))
 	return render_template('users/resetpassword.html',resetform = resetform)
+
+
+@sign_module.route('/setting/',methods=['GET'])
+@require_login
+def setting_redirect_function():
+	return redirect(url_for('sign_module.setting_function'))
+
+
+@sign_module.route('/setting/<string:setcate>',methods=['GET','POST'])
+@require_login
+def setting_function(setcate):
+	def account():
+		return 'account'
+
+	def password():
+		return 'password'
+
+	def publicsetting():
+		return 'publicsetting'
+	
+	SETCATE = {
+		'account' : account,
+		'password' : password,
+		'publicsetting' : publicsetting
+	}
+
+	if setcate in SETCATE:
+		return SETCATE.get(setcate)()
+	else:
+		abort(404)

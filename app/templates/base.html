@@ -25,6 +25,12 @@
 	</ul>
 	<div class="right-pic">
 		<a href="{{ url_for('sign_module.me_function') }}"><img src="https://cdn.v2ex.com/gravatar/{{ session['user']['email_md5'] }}?s=48&d=retro"></a>
+		<ul class="droplist">
+			<li><a href="{{ url_for('note_module.mynote_function') }}">笔记</a></li>
+			<li><a href="{{ url_for('sign_module.setting_function',setcate='account') }}">设置</a></li>
+			<hr />
+			<li><a href="">登出</a></li>
+		</ul>
 	</div>
 	{% else %}
 	<div class="right-nav">

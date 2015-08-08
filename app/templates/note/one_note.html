@@ -7,11 +7,15 @@
 	<div class="article">
 		<div class="article-header">
 			<div class="title">{{ this_note.title }}</div>
+			{% if this_note.subtitle %}
 			<div class="subtitle">{{ this_note.subtitle }}</div>
+			{% endif %}
 			<div class="information">
 				{{ this_note.time.strftime('%Y-%m-%d') }}
+				{% if 'user' in session %}
 				{% if this_note.belong.email == session.user.email %}
 				<span class="action"><a href="#">修改</a> <a href="#">删除</a></span>
+				{% endif %}
 				{% endif %}
 			</div>
 		</div>
@@ -19,7 +23,7 @@
 			{{ this_note.content }}
 		</div>
 		<div class="article-author">
-			<img src="https://cdn.v2ex.com/gravatar/{{ session['user']['email_md5'] }}?s=128&d=retro" class="article-author-gravator">
+			<img src="https://cdn.v2ex.com/gravatar/{{ this_note.belong.email_md5 }}?s=64&d=retro" class="article-author-gravator">
 			<div class="article-author-information">
 				<div class="article-author-author">{{ this_note.belong.username }}</div>
 				<div class="article-author-email">{{ this_note.belong.email }}</div>
