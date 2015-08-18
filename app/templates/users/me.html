@@ -49,6 +49,17 @@
 		
 		</div>
 	</div>
+	{% with messages = get_flashed_messages() %}
+	{% if messages %}
+	<div class="row">
+		{% for message in messages %}
+		<div class="me-page-message">
+			{{ message }}
+		</div>
+		{% endfor %}
+	</div>
+	{% endif %}
+	{% endwith %}
 	<div class="row">
 		<div class="col-l-6">
 			<div class="box account-box">

@@ -339,7 +339,7 @@ a:hover{
 
 .account{
 	overflow: hidden;
-	margin: 30px;
+	margin: 30px 30px 0 30px;
 	background-color: #2e6da4;
 }
 .account .gravater{
@@ -429,10 +429,17 @@ a:hover{
 .message{
 	min-height: 1em;
 	border-radius: 3px;
-	border: 1px solid rgba(225,59,47,0.25);
+	margin: 0 30px;
 	background-color: #F9F9F9;
 	width: 100%;
-	padding: 15px;
+}
+
+.me-page-message{
+	min-height: 1em;
+	margin: 15px 30px;
+	background-color: #2e6da4;
+	padding: 15px 30px;
+	color: #fff;
 }
 
 
