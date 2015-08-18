@@ -594,6 +594,15 @@ a:hover{
 
 
 
+/* Page Info */
+
+.page-info{
+	margin: 10px 0;
+	text-align: center;
+}
+.page-info{
+	color: #555;
+}
 
 
 /* Article */

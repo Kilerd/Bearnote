@@ -28,5 +28,8 @@
 			{% endfor %}
 		</ul>
 	</div>
+	<div class="row">
+		<p class="page-info">{% if not page_info.now_page == 1 %}<a href="{{ url_for('note_module.mynote_function',page = page_info.now_page-1) }}">上一页</a> {% endif %}共 {{ page_info.page_count }} 页 , 当前第 {{ page_info.now_page }} 页{% if not page_info.now_page == page_info.page_count %} <a href="{{ url_for('note_module.mynote_function',page = page_info.now_page+1) }}">下一页</a>{% endif %}</p>
+	</div>
 </div>
 {% endblock %}

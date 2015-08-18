@@ -36,9 +36,16 @@ def mynote_function():
 	note_count = Note.objects(belong=User.objects(email=session['user']['email']).first()).count()
 	page_count = note_count / NOTECONSTANTS.PER_PAGE_COUNT + 1 if note_count % NOTECONSTANTS.PER_PAGE_COUNT else note_count / NOTECONSTANTS.PER_PAGE_COUNT
 	now_page = request.args.get('page',1)
-	now_page = now_page if now_page >=1 or now_page <= page_count else page_count
+	try:
+		now_page = int(now_page)
+	except:
+		return redirect(url_for('note_module.mynote_function'))
+	if now_page >=1 and now_page <= page_count:
+		now_page = now_page
+	else:
+		return redirect(url_for('note_module.mynote_function',page=page_count))
 	now_page_note = Note.objects(belong=User.objects(email=session['user']['email']).first()).skip(NOTECONSTANTS.PER_PAGE_COUNT*(now_page-1)).limit(NOTECONSTANTS.PER_PAGE_COUNT)
-	return render_template('note/mynote.html',notes = now_page_note)
+	return render_template('note/mynote.html',notes = now_page_note,page_info = {'page_count':page_count,'now_page':now_page})
 
 
 @note_module.route('/note/',methods=['GET'])
