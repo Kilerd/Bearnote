@@ -8,7 +8,7 @@
 }
 
 body{
-	background-color: #F9F9F9;
+	background-color: #F7F6F2;
 }
 
 a{
@@ -42,7 +42,7 @@ a:hover{
 .header .nav{
 	float: left;
 	overflow: hidden;
-	font-size: 17px;
+	font-size: 15px;
 	margin: 15px 0 0 15px;
 }
 .header .nav li{
@@ -60,14 +60,15 @@ a:hover{
 }
 
 .header .right-nav{
-	margin: 5px 0 0 0;
+	padding-top: 12px;
+
 	float: right;
-	height: 50px;
+	height: 60px;
 	overflow: hidden;
 
 }
 .header .right-nav a{
-	font-size: 18px;
+	font-size: 15px;
 	line-height: 2.5em;
 	padding: 10px 20px !important;
 	color: #000;
@@ -94,6 +95,7 @@ a:hover{
 }
 
 .header .right-pic .droplist{
+	font-size: 15px;
 	background-color: #fff;
     display:none;
     position:absolute;
@@ -670,23 +672,41 @@ a:hover{
 
 /* slider */
 .slider{
-
+	background-color: #fff;
+	margin: 20px 0;
+	padding: 20px 30px;
 }
 .slider ul{
 	list-style: none;
 }
 .slider ul li a{
+	font-size: 15px;
 	text-align: right;
 	display: block;
-	padding: 20px;
+	padding: 7px 0;
 }
 .slider ul hr{
-	height: 1px;
 	border: 0;
+	padding: 1px 0;
 	border-bottom: 1px dashed rgba(0,0,0,0.25);
 
 }
 
+.slider-content{
+	margin: 20px 0 20px 10px;
+	padding: 25px;
+	background-color: #fff;
+}
+.slider-content .setting-header{
+	font-size: 20px;
+	font-weight: 300;
+	margin-bottom: 15px;
+}
+.slider-content .setting-header-description{
+	font-size: 15px;
+	color: #777;
+
+}
 
 
 /* Grid */

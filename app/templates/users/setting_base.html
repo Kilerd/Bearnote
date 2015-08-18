@@ -3,18 +3,22 @@
 
 {% block content %}
 <div class="content">
-	<div class="slider col-l-2">
-		<ul>
-			<li><a href="#">个人设置</a></li>
-			<li><a href="#">个人设置</a></li>
-			<li><a href="#">个人设置</a></li>
-			<hr />
-			<li><a href="#">个人设置</a></li>
-		</ul>
+	<div class="col-l-2">
+		<div class="slider">
+			<ul>
+				<li><a href="#">个人设置</a></li>
+				<li><a href="#">个人设置</a></li>
+				<li><a href="#">个人设置</a></li>
+				<hr />
+				<li><a href="#">个人设置</a></li>
+			</ul>
+		</div>
 	</div>
-	<div class="silder-content">
-		{% block slidercontent %}
-		{% endblock %}
+	<div class="col-l-10">
+		<div class="slider-content">
+			{% block slidercontent %}
+			{% endblock %}
+		</div>
 	</div>
 </div>
 {% endblock %}
