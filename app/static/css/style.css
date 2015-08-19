@@ -129,7 +129,7 @@ a:hover{
 .content{
 	margin-top: 60px; 
 	max-width: 960px;
-	min-height: 70%;
+	min-height: 470px;
 	height: 100%;
 	overflow: hidden;
 }
