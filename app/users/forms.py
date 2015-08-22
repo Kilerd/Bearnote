@@ -33,3 +33,20 @@ class ResetPswForm(Form):
 		InputRequired(),
 		EqualTo('password', message='Passwords must match')
 		])
+
+
+
+
+# Form For Setting
+
+class SettingAccountForm(Form):
+	description = StringField(u'个人介绍',validators=[Length(0,160)])
+
+class SettingResetPasswordForm(Form):
+	beforepassword = PasswordField(u'原密码',validators=[DataRequired(),Length(6,18),InputRequired()])
+	newpassword = PasswordField(u'新密码',validators=[DataRequired(),Length(6,18),InputRequired()])
+	confirm_newpassword = PasswordField(u'重复新密码',validators=[
+		DataRequired(),
+		InputRequired(),
+		EqualTo('newpassword', message='Passwords must match')
+		])

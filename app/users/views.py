@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from app.users.models import * 
 from flask import Blueprint, render_template,request,redirect,flash,url_for,session,abort
-from app.users.forms import LoginForm,RegisterForm,ResetPswForm,ForgetPswForm
+from app.users.forms import *
 from app.users.decorators import require_login,require_not_login
 from app.users.lib import UserCheck
 from app.lib.mail import mail_send
@@ -45,7 +45,9 @@ def login_function():
 					"username" : this_user.username,
 					"email" : this_user.email,
 					"email_md5" : user_md5.md5_encrypt(login.email.data),
-					"role" : this_user.role
+					"status" : this_user.status,
+					"role" : this_user.role,
+					"description" : this_user.description
 				}
 				next_page = request.args.get('next', '')
 				if next_page == '':
@@ -209,10 +211,41 @@ def setting_redirect_function():
 @require_login
 def setting_function(setcate):
 	def account():
-		return render_template('users/setting_account.html')
+		description_form = SettingAccountForm(description = session['user']['description'])
+		if request.method == 'POST':
+			if description_form.validate_on_submit():
+				this_user = User.objects(email=session['user']['email']).first()
+				this_user.description = description_form.description.data
+				this_user.save()
+				flash(u"个人介绍修改成功。")
+				session['user']['description'] = description_form.description.data
+				return redirect(url_for('sign_module.setting_function',setcate="account"))
+		return render_template('users/setting_account.html',description_form = description_form)
 
 	def password():
-		return 'password'
+		password_form = SettingResetPasswordForm()
+		if request.method == 'POST':
+			if password_form.validate_on_submit():
+				usercheck_d = UserCheck()
+				post_password_encrypt = usercheck_d.password_encrypt(
+					email = session['user']['email'],
+					password = password_form.beforepassword.data)
+				this_user = User.objects(email=session['user']['email']).first()
+				if this_user.password == post_password_encrypt:
+					new_password_encrypt = usercheck_d.password_encrypt(
+					email = session['user']['email'],
+					password = password_form.newpassword.data)
+					this_user.password = new_password_encrypt
+					this_user.save()
+					flash(u"密码修改成功")
+					return redirect(url_for('sign_module.setting_function',setcate = "password"))
+				else:
+					flash(u"原密码错误，请重试")
+					return redirect(url_for('sign_module.setting_function',setcate = "password"))
+			else:
+				flash(u"数据提交失败，请检查输入内容")
+				return redirect(url_for('sign_module.setting_function',setcate = "password"))
+		return render_template('users/setting_password.html',password_form=password_form)
 
 	def publicsetting():
 		return 'publicsetting'

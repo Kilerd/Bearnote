@@ -3,8 +3,87 @@
 
 {% block slidercontent %}
 <div class="setting-header">
-	Setting Header
-	<p class="setting-header-description">here is the description for the Setting Header, and its color should be grey, and small than the Header, Just typing it for testing</p>
+	个人设置
+	<p class="setting-header-description">
+	这里可以查看到你账号的基本信息
+	</p>
 </div>
-fdsfsd
+<form method="POST">
+{{ description_form.csrf_token }}
+<div class="form">
+	{% with messages = get_flashed_messages() %}
+	{% if messages %}
+	<div class="row">
+		{% for message in messages %}
+		<div class="message">
+			{{ message }}
+		</div>
+		{% endfor %}
+	</div>
+	{% endif %}
+	{% endwith %}
+	<div class="row">
+		<div class="col-l-2">
+			<label class="label">
+				头像
+			</label>
+		</div>
+		<div class="col-l-10">
+			<div class="label-value">
+				<img class="" src="https://cdn.v2ex.com/gravatar/{{ session['user']['email_md5'] }}?s=64&d=retro">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-l-2">
+			<label class="label">
+				用户名
+			</label>
+		</div>
+		<div class="col-l-10">
+			<div class="label-value">
+				{{ session.user.username }}
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-l-2">
+			<label class="label">
+				邮箱
+			</label>
+		</div>
+		<div class="col-l-10">
+			<div class="label-value">
+				{{ session.user.email }}
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-l-2">
+			<label class="label">
+				邮箱认证情况
+			</label>
+		</div>
+		<div class="col-l-10">
+			<div class="label-value">
+				{{ session.user.status }}
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-l-2">
+			{{ description_form.description.label(class="label") }}
+		</div>
+		<div class="col-l-10">
+			{{ description_form.description(class="input") }}
+		</div>
+	</div>
+	<div class="row">
+		<div class="">
+			<button class="button">修改</button>
+		</div>
+	</div>
+</div>
+</form>
+
 {% endblock %}

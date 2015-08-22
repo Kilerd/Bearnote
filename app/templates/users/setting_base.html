@@ -6,11 +6,12 @@
 	<div class="col-l-2">
 		<div class="slider">
 			<ul>
-				<li><a href="#">个人设置</a></li>
-				<li><a href="#">个人设置</a></li>
-				<li><a href="#">个人设置</a></li>
+				<li><a href="{{ url_for('sign_module.setting_function',setcate="account") }}">个人设置</a></li>
+				<li><a href="{{ url_for('sign_module.setting_function',setcate="password") }}">密码修改</a></li>
+				<li><a href="{{ url_for('sign_module.setting_function',setcate="publicsetting") }}">笔记公开分类</a></li>
+				<li><a href="{{ url_for('sign_module.setting_function',setcate="blog") }}">独立博客</a></li>
 				<hr />
-				<li><a href="#">个人设置</a></li>
+				<li><a href="{{ url_for('sign_module.logout_function') }}">登出</a></li>
 			</ul>
 		</div>
 	</div>

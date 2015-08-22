@@ -1,7 +1,8 @@
 *{
     padding:0 0;
     margin: 0 auto;
-    font-family: 'Helvetica Neue', 'STHeiti', 'Microsoft YaHei', Helvetica,Arial,sans-serif;
+    /*font-family: 'Helvetica Neue', 'STHeiti', 'Microsoft YaHei', Helvetica,Arial,sans-serif;*/
+    font-family: "Open Sans", "Helvetica Neue", "Microsoft Jhenghei", Helvetica,'STHeiti', "Hiragino Sans GB", SimHei, STHeiti, sans-serif;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -429,11 +430,11 @@ a:hover{
 
 
 .message{
+	padding: 15px;
 	min-height: 1em;
 	border-radius: 3px;
-	margin: 0 30px;
+	margin: 0 0 20px 0;
 	background-color: #F9F9F9;
-	width: 100%;
 }
 
 .me-page-message{
@@ -617,6 +618,7 @@ a:hover{
 /* Article */
 .article{
 	width: 90%;
+	margin-top: 50px;
 }
 .article .article-header{
 	padding-bottom: 5px;
@@ -624,7 +626,6 @@ a:hover{
 }
 .article .article-header .title{
 	font-size: 30px;
-	margin: 15px 0 0 0;
 	width: 100%;
 }
 .article .article-header .subtitle:before{
@@ -647,7 +648,7 @@ a:hover{
 }
 
 .article .article-content{
-	margin: 20px 0;
+	margin: 30px 0;
 }
 .article .article-author{
 	border-top: 1px solid #eee;
@@ -700,12 +701,77 @@ a:hover{
 .slider-content .setting-header{
 	font-size: 20px;
 	font-weight: 300;
-	margin-bottom: 15px;
+	margin-bottom: 25px;
 }
 .slider-content .setting-header-description{
 	font-size: 15px;
 	color: #777;
 
+}
+
+
+/* Form */
+
+.input{
+	outline: none;
+	width: 100%;
+	font-size: 15px;
+	padding: 8px 15px;
+	margin: 5px 0;
+	border: 1px solid #bfbfbf;
+	border-radius: 1px;
+	background-color: rgba(255,255,255,0.25);
+	-webkit-transition: border .15s linear;
+	-m-transition: border .15s linear;
+	-o-transition: border .15s linear;
+	transition: border .15s linear;
+}
+
+.input:focus{
+	border-left: 3px solid rgba(225,59,47,1);
+	border-top: 1px solid #dfdfdf;
+	border-right: 1px solid #dfdfdf;
+	border-bottom: 1px solid #dfdfdf;
+	-webkit-transition: border .15s linear;
+	-m-transition: border .15s linear;
+	-o-transition: border .15s linear;
+	transition: border .15s linear;
+}
+
+.label{
+	font-size: 15px;
+	line-height: 38px;
+	float: right;
+	margin: 5px 0;
+	margin-right: 20px;
+}
+.label-value{
+	font-size: 15px;
+	margin: 5px 0;
+	line-height: 38px;
+}
+
+.button{
+	border: 0;
+	font-size: 15px;
+	margin: 5px 0;
+	padding: 7px 20px !important;
+	color: #000;
+	text-decoration: none;
+	border-radius: 3px;
+	-webkit-transition: color .25s linear, background-color .25s linear .1s;
+	-m-transition: color .25s linear, background-color .25s linear .1s;
+	-o-transition: color .25s linear, background-color .25s linear .1s;
+	transition: color .25s linear, background-color .25s linear .1s;
+
+}
+.button:hover{
+	color: #fff;
+	background-color: #e13b2f;
+	-webkit-transition: color .25s linear, background-color .25s linear .1s;
+	-m-transition: color .25s linear, background-color .25s linear .1s;
+	-o-transition: color .25s linear, background-color .25s linear .1s;
+	transition: color .25s linear, background-color .25s linear .1s;
 }
 
 
