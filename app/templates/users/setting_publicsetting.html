@@ -1,0 +1,42 @@
+{% extends 'users/setting_base.html' %}
+{% block title %}笔记公开分类 - 小熊笔记{% endblock %}
+
+{% block slidercontent %}
+<div class="setting-header">
+	笔记公开分类
+	<p class="setting-header-description">
+	用于管理笔记公开分类
+	</p>
+</div>
+	{% with messages = get_flashed_messages() %}
+	{% if messages %}
+	<div class="row">
+		{% for message in messages %}
+		<div class="message">
+			{{ message }}
+		</div>
+		{% endfor %}
+	</div>
+	{% endif %}
+	{% endwith %}
+
+<div class="row">
+	<table>
+		<thead>
+			<tr>
+				<th>名称</th>
+				<th>缩略名</th>
+				<th>文章数</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>aa</td>
+				<td>aa</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+{% endblock %}

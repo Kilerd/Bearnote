@@ -248,12 +248,16 @@ def setting_function(setcate):
 		return render_template('users/setting_password.html',password_form=password_form)
 
 	def publicsetting():
-		return 'publicsetting'
+		return render_template('users/setting_publicsetting.html')
+
+	def blog():
+		return 'blog'
 
 	SETCATE = {
 		'account' : account,
 		'password' : password,
-		'publicsetting' : publicsetting
+		'publicsetting' : publicsetting,
+		'blog':blog
 	}
 
 	if setcate in SETCATE:
