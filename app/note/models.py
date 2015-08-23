@@ -39,3 +39,7 @@ class Mood(db.DynamicDocument):
 	belong = db.StringField(required=True)
 
 
+class NoteCate(db.Document):
+	name = db.StringField(required=True)
+	abbname = db.StringField(required=True)
+	belong = db.ReferenceField(User)

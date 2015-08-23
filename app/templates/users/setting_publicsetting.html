@@ -19,24 +19,33 @@
 	</div>
 	{% endif %}
 	{% endwith %}
-
 <div class="row">
-	<table>
+	<form method="POST">
+		<div class="col-l-3"><input class="input" type="text"></div>
+		<div class="col-l-3 col-offset-1"><input class="input" type="text"></div>
+		<div class="col-l-3 col-offset-1"><button class="button">添加分类</button></div>
+	</form>
+</div>
+<div class="row">
+	<table style="width:100%;text-align:left;font-size:15px;">
 		<thead>
 			<tr>
-				<th>名称</th>
-				<th>缩略名</th>
-				<th>文章数</th>
-				<th>操作</th>
+				<th style="width:25%">名称</th>
+				<th style="width:25%">缩略名</th>
+				<th style="width:25%">文章数</th>
+				<th style="width:25%">操作</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td>aa</td>
 				<td>aa</td>
+				<td>5</td>
+				<td><a href="">删除</a> <a href="">修改</a></td>
 			</tr>
 		</tbody>
 	</table>
 </div>
+
 
 {% endblock %}

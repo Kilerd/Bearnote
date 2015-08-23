@@ -9,7 +9,7 @@
 }
 
 body{
-	background-color: #F7F6F2;
+	background-color: #F9F9F9;
 }
 
 a{
@@ -668,6 +668,9 @@ a:hover{
 .article .article-author .article-author-information .article-author-author{
 	font-size: 20px;
 }
+.article .article-author .article-author-information .article-author-email,.article .article-author .article-author-information .article-author-description{
+	font-size: 15px;
+}
 
 
 
@@ -675,7 +678,7 @@ a:hover{
 .slider{
 	background-color: #fff;
 	margin: 20px 0;
-	padding: 20px 30px;
+	padding: 20px 30px 20px 0;
 }
 .slider ul{
 	list-style: none;
@@ -689,6 +692,7 @@ a:hover{
 .slider ul hr{
 	border: 0;
 	padding: 1px 0;
+	margin-left: 20px;
 	border-bottom: 1px dashed rgba(0,0,0,0.25);
 
 }
