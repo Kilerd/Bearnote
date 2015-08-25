@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask_wtf import Form
 from wtforms.fields.html5 import EmailField
-from wtforms import StringField,PasswordField,BooleanField
+from wtforms import StringField,PasswordField,BooleanField,HiddenField
 from wtforms.validators import DataRequired,Email,EqualTo,Length,InputRequired
 
 class LoginForm(Form):
@@ -50,3 +50,15 @@ class SettingResetPasswordForm(Form):
 		InputRequired(),
 		EqualTo('newpassword', message='Passwords must match')
 		])
+
+
+
+class PublicSettingAddCateForm(Form):
+	name = StringField(u"分类名称",validators=[DataRequired(),Length(1,10),InputRequired()])
+	abbname = StringField(u"分类缩略名",validators=[DataRequired(),Length(1,16),InputRequired()])
+
+
+class PublicSettingDeleteCateForm(Form):
+	hideabbname = HiddenField()
+	name = StringField(u"分类名称",validators=[DataRequired(),Length(1,10),InputRequired()])
+	abbname = StringField(u"分类缩略名",validators=[DataRequired(),Length(1,16),InputRequired()])

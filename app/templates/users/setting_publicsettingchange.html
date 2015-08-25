@@ -1,0 +1,52 @@
+{% extends 'users/setting_base.html' %}
+{% block title %}密码修改 - 小熊笔记{% endblock %}
+
+{% block slidercontent %}
+<div class="setting-header">
+	笔记公开分类修改
+	<p class="setting-header-description">
+	用于修改笔记公开分类<br />
+	修改后，原分类的笔记会转至新分类中
+	</p>
+</div>
+<form method="POST">
+<div class="form">
+	{% with messages = get_flashed_messages() %}
+	{% if messages %}
+	<div class="row">
+		{% for message in messages %}
+		<div class="message">
+			{{ message }}
+		</div>
+		{% endfor %}
+	</div>
+	{% endif %}
+	{% endwith %}
+
+	{{ CateChangeForm.csrf_token }}
+	{{ CateChangeForm.hideabbname() }}
+	<div class="row">
+		<div class="col-l-2">
+			{{ CateChangeForm.name.label(class="label") }}
+		</div>
+		<div class="col-l-10">
+			{{ CateChangeForm.name(class="input") }}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-l-2">
+			{{ CateChangeForm.abbname.label(class="label") }}
+		</div>
+		<div class="col-l-10">
+			{{ CateChangeForm.abbname(class="input") }}
+		</div>
+	</div>
+	<div class="row">
+		<div class="">
+			<button class="button">修改</button>
+		</div>
+	</div>
+</div>
+</form>
+
+{% endblock %}

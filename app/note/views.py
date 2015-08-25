@@ -15,6 +15,9 @@ note_module = Blueprint('note_module',__name__)
 @require_login
 def note_new_function():
 	note_new_form = NoteForm()
+	note_new_form.public.choices = [('0',u"私有笔记,不公开")]
+	for c in NoteCate.objects(belong = User.objects(email = session['user']['email']).first()):
+		note_new_form.public.choices.append((c.abbname,c.name))
 	#note_new_form.title.data = 'test title'
 	if note_new_form.validate_on_submit():
 		Note(

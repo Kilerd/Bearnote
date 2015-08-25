@@ -6,6 +6,7 @@ from app.users.decorators import require_login,require_not_login
 from app.users.lib import UserCheck
 from app.lib.mail import mail_send
 from app.lib.common import CommonClass
+from app.note.models import NoteCate
 import time
 # init sign module
 sign_module = Blueprint('sign_module',__name__)
@@ -248,8 +249,71 @@ def setting_function(setcate):
 		return render_template('users/setting_password.html',password_form=password_form)
 
 	def publicsetting():
-		return render_template('users/setting_publicsetting.html')
+		CateAddForm = PublicSettingAddCateForm()
+		all_cate = NoteCate.objects(belong = User.objects(email = session['user']['email']).first())
+		if request.method == 'POST':
+			if CateAddForm.validate_on_submit():
+				if NoteCate.objects(abbname = CateAddForm.abbname.data).count() == 0:
+					NoteCate(
+						name = CateAddForm.name.data,
+						abbname = CateAddForm.abbname.data,
+						belong  = User.objects(email = session['user']['email']).first()
+						).save()
+					flash(u"分类添加成功")
+					return redirect(url_for('sign_module.setting_function',setcate="publicsetting"))
+				else:
+					flash(u"分类添加失败，分类缩略名已存在，请更换后再重试")
+					return redirect(url_for('sign_module.setting_function',setcate="publicsetting"))
+			else:
+				flash(u"数据添加失败")
+				return redirect(url_for('sign_module.setting_function',setcate="publicsetting"))
+		return render_template('users/setting_publicsetting.html',all_cate = all_cate,CateAddForm = CateAddForm)
 
+	def publicsettingchange():
+		change_cate = request.args.get('abbname', '')
+		if change_cate =='':
+			flash(u"未输入分类缩略名，请正确操作")
+			return redirect(url_for('sign_module.setting_function',setcate="publicsetting"))
+		if not NoteCate.objects(
+			abbname = change_cate,
+			belong = User.objects(email = session['user']['email']).first()
+			).count() == 1:
+			flash(u"分类缩略名有误，请正确操作")
+			return redirect(url_for('sign_module.setting_function',setcate="publicsetting"))
+		this_user_cate = NoteCate.objects(
+			abbname = change_cate,
+			belong = User.objects(email = session['user']['email']).first()
+			).first()
+		CateChangeForm = PublicSettingDeleteCateForm(
+			hideabbname=change_cate,
+			name = this_user_cate.name,
+			abbname = this_user_cate.abbname)
+		if request.method == 'POST':
+			if CateChangeForm.validate_on_submit():
+				if CateChangeForm.hideabbname.data == change_cate:
+					if CateChangeForm.abbname.data == CateChangeForm.hideabbname.data:
+						this_user_cate.name = CateChangeForm.name.data
+						this_user_cate.save()
+						flash(u"分类信息更新成功")
+						return redirect(url_for('sign_module.setting_function',setcate="publicsetting"))
+					else:
+						if not NoteCate.objects(
+							abbname = CateChangeForm.abbname.data,
+							belong = User.objects(email = session['user']['email']).first()
+							).count() == 0:
+							flash(u"新的分类缩略名已存在，请使用新的缩略名")
+						else:
+							this_user_cate.name = CateChangeForm.name.data
+							this_user_cate.abbname = CateChangeForm.abbname.data
+							this_user_cate.save()
+							flash(u"分类信息更新成功")
+							return redirect(url_for('sign_module.setting_function',setcate="publicsetting"))
+				else:
+					flash(u"非法操作。")
+					return redirect(url_for('sign_module.setting_function',setcate="publicsetting"))
+			else:
+				flash(u"数据提交失败，请检查输入")
+		return render_template('users/setting_publicsettingchange.html',CateChangeForm = CateChangeForm)
 	def blog():
 		return 'blog'
 
@@ -257,6 +321,7 @@ def setting_function(setcate):
 		'account' : account,
 		'password' : password,
 		'publicsetting' : publicsetting,
+		'publicsettingchange' : publicsettingchange,
 		'blog':blog
 	}
 
