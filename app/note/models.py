@@ -12,6 +12,11 @@ class NoteID(db.DynamicDocument):
 		'collection': 'note'
 	}
 
+class NoteCate(db.Document):
+	name = db.StringField(required=True)
+	abbname = db.StringField(required=True)
+	belong = db.ReferenceField(User)
+
 class Note(db.DynamicDocument):
 	
 	noteid = db.IntField(required=True)
@@ -19,7 +24,7 @@ class Note(db.DynamicDocument):
 	subtitle = db.StringField(max_length=60)
 	content = db.StringField(required=True)
 	public_status = db.IntField(default=NOTECONSTANTS.PRIVATE)
-	public_cate = db.StringField()
+	public_cate = db.ReferenceField(NoteCate)
 	blog_status = db.IntField(default=NOTECONSTANTS.IS_NOT_BLOG)
 	blog_cate = db.StringField()
 	tag = db.ListField()
@@ -39,7 +44,3 @@ class Mood(db.DynamicDocument):
 	belong = db.StringField(required=True)
 
 
-class NoteCate(db.Document):
-	name = db.StringField(required=True)
-	abbname = db.StringField(required=True)
-	belong = db.ReferenceField(User)

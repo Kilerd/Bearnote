@@ -6,7 +6,8 @@ from app.users.decorators import require_login,require_not_login
 from app.users.lib import UserCheck
 from app.lib.mail import mail_send
 from app.lib.common import CommonClass
-from app.note.models import NoteCate
+from app.note.models import NoteCate,Note
+from app.note import constants as NOTECONSTANTS
 import time
 # init sign module
 sign_module = Blueprint('sign_module',__name__)
@@ -314,6 +315,43 @@ def setting_function(setcate):
 			else:
 				flash(u"数据提交失败，请检查输入")
 		return render_template('users/setting_publicsettingchange.html',CateChangeForm = CateChangeForm)
+	
+	def publicsettingdelete():
+		if request.method == 'GET':
+			change_cate = request.args.get('abbname', '')
+			if change_cate =='':
+				flash(u"未输入分类缩略名，请正确操作")
+				return redirect(url_for('sign_module.setting_function',setcate="publicsetting"))
+
+			if not NoteCate.objects(
+				abbname = change_cate,
+				belong = User.objects(email = session['user']['email']).first()
+				).count() == 1:
+
+				flash(u"分类缩略名有误，请正确操作")
+				return redirect(url_for('sign_module.setting_function',setcate="publicsetting"))
+			
+			this_user_cate = NoteCate.objects(
+				abbname = change_cate,
+				belong = User.objects(email = session['user']['email']).first()
+				).first()
+
+			other_user_cate = NoteCate.objects(
+				abbname__ne = change_cate,
+				belong = User.objects(email = session['user']['email']).first()
+				).first()
+			all_this_cate_note = Note.objects(public_status=NOTECONSTANTS.PUBLIC,public_cate=this_user_cate,belong=User.objects(email=session['user']['email']).first())
+
+			for one_note in all_this_cate_note:
+				one_note.public_cate = other_user_cate
+				one_note.save()
+
+			NoteCate.delete(this_user_cate)
+			flash(u"分类已删除，原分类笔记已迁移至 "+other_user_cate.name)
+			return redirect(url_for('sign_module.setting_function',setcate="publicsetting"))
+		else:
+			flash(u"非法操作。")
+			return redirect(url_for('sign_module.setting_function',setcate="publicsetting"))
 	def blog():
 		return 'blog'
 
@@ -322,6 +360,7 @@ def setting_function(setcate):
 		'password' : password,
 		'publicsetting' : publicsetting,
 		'publicsettingchange' : publicsettingchange,
+		'publicsettingdelete' : publicsettingdelete,
 		'blog':blog
 	}
 
