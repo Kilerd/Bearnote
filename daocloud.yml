@@ -3,8 +3,6 @@ image: daocloud/ci-python:2.7
 services:
     - mongodb
 
-env:
-    - CODING_TEST = 1
 script:
 
     - pip install -r requirements.txt
