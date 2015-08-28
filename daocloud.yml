@@ -3,10 +3,7 @@ image: daocloud/ci-python:2.7
 services:
   - mongodb
 
-install:
-
- - pip install -r requirements.txt
-
 script:
 
+ - pip install -r requirements.txt
  - python run.py
