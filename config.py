@@ -25,8 +25,8 @@ MAIL_PASSWORD = 'pass4bearnote'
 MONGODB_HOST = '127.0.0.1'
 MONGODB_PORT = 27017
 MONGODB_DB = 'bearnote'
-MONGODB_USERNAME = 'bearnote'
-MONGODB_PASSWORD = '8tz6g0k300XTnCPLjz3z'
+#MONGODB_USERNAME = 'bearnote'
+#MONGODB_PASSWORD = '8tz6g0k300XTnCPLjz3z'
 
 
 # Unkown What it is.
