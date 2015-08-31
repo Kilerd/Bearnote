@@ -38,6 +38,8 @@ def mynote_function():
 	# Page Control
 	note_count = Note.objects(belong=User.objects(email=session['user']['email']).first()).count()
 	page_count = note_count / NOTECONSTANTS.PER_PAGE_COUNT + 1 if note_count % NOTECONSTANTS.PER_PAGE_COUNT else note_count / NOTECONSTANTS.PER_PAGE_COUNT
+	if note_count == 0:
+		page_count += 1;
 	now_page = request.args.get('page',1)
 	try:
 		now_page = int(now_page)
