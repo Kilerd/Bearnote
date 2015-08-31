@@ -4,7 +4,7 @@
 {% block content %}
 <div class="content">
 	<div class="content-header">
-		<h1>我的笔记<span><a href="{{ url_for('note_module.note_new_function') }}">撰写新笔记</a></span></h1>
+		<h1>我的笔记<span><a href="{{ url_for('note_module.note_new_function') }}">撰写 新笔记</a></span></h1>
 	</div>
 	<div class="my-note-list">
 		<ul class="one-note">
@@ -22,7 +22,7 @@
 			{% if one_note.blog_status %}
 			<a class="blog" href="/aaa/df" title="/aaa/df">BLOG</a>
 			{% endif %}
-			<span class="action" style="float:right;"><a href="#">修改</a> <a href="#">删除</a></span></div>
+			<span class="action" style="float:right;"><a href="{{ url_for('note_module.note_edit_function',noteid=one_note.noteid) }}">修改</a> <a href="#">删除</a></span></div>
 			</li>
 		
 			{% endfor %}

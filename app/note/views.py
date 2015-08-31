@@ -18,7 +18,6 @@ def note_new_function():
 	note_new_form.public.choices = [('0',u"私有笔记,不公开")]
 	for c in NoteCate.objects(belong = User.objects(email = session['user']['email']).first()):
 		note_new_form.public.choices.append((c.abbname,c.name))
-	#note_new_form.title.data = 'test title'
 	if note_new_form.validate_on_submit():
 		if note_new_form.public.data != '0':
 			public_status = '1'
@@ -65,7 +64,6 @@ def mynote_function():
 
 @note_module.route('/note/',methods=['GET'])
 def note_wall_function():
-	return redirect(url_for('note_module.mynote_function'))
 	return 'note wall function'
 
 
@@ -80,6 +78,7 @@ def one_note_function(noteid):
 		this_note.belong.email_md5 = common.md5_encrypt(this_note.belong.email)
 
 		if this_note.public_status == NOTECONSTANTS.PRIVATE:
+			flash(u"你想查看的笔记为私有笔记，无权限查看。")
 			if 'user' in session:
 				if not this_note.belong.email == session['user']['email']:
 					return redirect(url_for('note_module.mynote_function'))
@@ -88,9 +87,62 @@ def one_note_function(noteid):
 
 		return render_template('/note/one_note.html',this_note=this_note)
 
+
+@note_module.route("/note/edit/<int:noteid>",methods=['GET','POST'])
+@require_login
+def note_edit_function(noteid):
+	if Note.objects(noteid=noteid,belong=User.objects(email=session['user']['email']).first()).count() == 0:
+		flash(u"找不到这篇文章，不要乱来了。")
+		return redirect(url_for('note_module.mynote_function'))
+	else:
+		this_note = Note.objects(noteid=noteid).first()
+		note_edit_form = NoteForm(
+			title = this_note.title,
+			subtitle = this_note.subtitle,
+			content = this_note.content,
+			tag = ",".join(this_note.tag)
+			)
+		note_edit_form.public.choices = [('0',u"私有笔记,不公开")]
+		for c in NoteCate.objects(belong = User.objects(email = session['user']['email']).first()):
+			note_edit_form.public.choices.append((c.abbname,c.name))
+
+		if request.method == 'GET' and this_note.public_status == NOTECONSTANTS.PUBLIC:
+			note_edit_form.public.data = this_note.public_cate.abbname
+
+		if request.method == 'POST':
+			if note_edit_form.validate_on_submit():
+				this_note.title = note_edit_form.title.data
+				this_note.subtitle = note_edit_form.subtitle.data
+				this_note.subtitle = note_edit_form.subtitle.data
+				this_note.content = note_edit_form.content.data
+				this_note.tag = note_edit_form.tag.data.split(',')
+				print note_edit_form.public.data
+				if note_edit_form.public.data != '0':
+					print 'this for public'
+					public_status = '1'
+					public_cate = NoteCate.objects(abbname = note_edit_form.public.data,belong = User.objects(email = session['user']['email']).first()).first()
+				else:
+					print 'this for private'
+					public_status = '0'
+					public_cate = None
+
+				print public_status
+				this_note.public_status = public_status
+				this_note.public_cate = public_cate
+				this_note.save()
+				flash(u"笔记修改成功")
+				return redirect(url_for('note_module.one_note_function',noteid=this_note.noteid))
+			else:
+				flash(u"笔记内容不完整")
+
+		return render_template('/note/note_edit.html',note_edit_form=note_edit_form,this_note=this_note)
+
+
+
 @note_module.route('/mood',methods=['GET'])
 def mood_wall_function():
 	return 'Mood Wall Page'
+
 
 @note_module.route('/blog',methods=['GET'])
 def blog_wall_function():
