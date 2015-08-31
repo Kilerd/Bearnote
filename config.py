@@ -22,11 +22,22 @@ MAIL_PASSWORD = 'pass4bearnote'
 
 
 # Mongodb Setting / MongoEngine
-MONGODB_HOST = '127.0.0.1'
-MONGODB_PORT = 27017
-MONGODB_DB = 'bearnote'
-#MONGODB_USERNAME = 'bearnote'
-#MONGODB_PASSWORD = '8tz6g0k300XTnCPLjz3z'
+try:
+	os.environ['CODING_TEST']
+except:
+
+	MONGODB_HOST = '127.0.0.1'
+	MONGODB_PORT = 27017
+	MONGODB_DB = 'bearnote'
+	#MONGODB_USERNAME = 'bearnote'
+	#MONGODB_PASSWORD = '8tz6g0k300XTnCPLjz3z'
+	
+else:
+	MONGODB_DB = os.environ['MONGODB_INSTANCE_NAME']
+	MONGODB_HOST = os.environ['MONGODB_PORT_27017_TCP_ADDR']
+	MONGODB_PORT = os.environ['MONGODB_PORT_27017_TCP_PORT']
+	MONGODB_USERNAME = os.environ['MONGODB_USERNAME']
+	MONGODB_PASSWORD = os.environ['MONGODB_PASSWORD']
 
 
 # Unkown What it is.
