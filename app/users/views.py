@@ -254,7 +254,7 @@ def setting_function(setcate):
 		all_cate = NoteCate.objects(belong = User.objects(email = session['user']['email']).first())
 		if request.method == 'POST':
 			if CateAddForm.validate_on_submit():
-				if NoteCate.objects(abbname = CateAddForm.abbname.data).count() == 0:
+				if NoteCate.objects(abbname = CateAddForm.abbname.data).count() == 0 and CateAddForm.abbname.data != '0':
 					NoteCate(
 						name = CateAddForm.name.data,
 						abbname = CateAddForm.abbname.data,
@@ -271,7 +271,7 @@ def setting_function(setcate):
 		return render_template('users/setting_publicsetting.html',all_cate = all_cate,CateAddForm = CateAddForm)
 
 	def publicsettingchange():
-		change_cate = request.args.get('abbname', '')
+		change_cate = str(request.args.get('abbname', ''))
 		if change_cate =='':
 			flash(u"未输入分类缩略名，请正确操作")
 			return redirect(url_for('sign_module.setting_function',setcate="publicsetting"))
@@ -301,7 +301,7 @@ def setting_function(setcate):
 						if not NoteCate.objects(
 							abbname = CateChangeForm.abbname.data,
 							belong = User.objects(email = session['user']['email']).first()
-							).count() == 0:
+							).count() == 0 and CateChangeForm.abbname.data != '0':
 							flash(u"新的分类缩略名已存在，请使用新的缩略名")
 						else:
 							this_user_cate.name = CateChangeForm.name.data
@@ -318,7 +318,7 @@ def setting_function(setcate):
 	
 	def publicsettingdelete():
 		if request.method == 'GET':
-			change_cate = request.args.get('abbname', '')
+			change_cate = str(request.args.get('abbname', ''))
 			if change_cate =='':
 				flash(u"未输入分类缩略名，请正确操作")
 				return redirect(url_for('sign_module.setting_function',setcate="publicsetting"))
@@ -342,12 +342,23 @@ def setting_function(setcate):
 				).first()
 			all_this_cate_note = Note.objects(public_status=NOTECONSTANTS.PUBLIC,public_cate=this_user_cate,belong=User.objects(email=session['user']['email']).first())
 
-			for one_note in all_this_cate_note:
-				one_note.public_cate = other_user_cate
-				one_note.save()
+			if other_user_cate == None:
+
+				for one_note in all_this_cate_note:
+					one_note.public_status = NOTECONSTANTS.PRIVATE
+					one_note.public_cate = None
+					one_note.save()
+				flash(u"分类已删除，因无其他公开分类，该分类下的笔记全部迁移为私有笔记")	
+			else:
+
+				for one_note in all_this_cate_note:
+					one_note.public_cate = other_user_cate
+					one_note.save()
+				flash(u"分类已删除，原分类笔记已迁移至 "+other_user_cate.name)
 
 			NoteCate.delete(this_user_cate)
-			flash(u"分类已删除，原分类笔记已迁移至 "+other_user_cate.name)
+
+			
 			return redirect(url_for('sign_module.setting_function',setcate="publicsetting"))
 		else:
 			flash(u"非法操作。")

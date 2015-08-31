@@ -31,7 +31,7 @@ class Note(db.DynamicDocument):
 	time = db.DateTimeField(default=datetime.now(),required=True)
 	belong = db.ReferenceField(User)
 	meta = {  
-    	'ordering': ['-time']  
+    	'ordering': ['-_id']  
     }
 
 

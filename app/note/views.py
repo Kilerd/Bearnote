@@ -20,14 +20,24 @@ def note_new_function():
 		note_new_form.public.choices.append((c.abbname,c.name))
 	#note_new_form.title.data = 'test title'
 	if note_new_form.validate_on_submit():
+		if note_new_form.public.data != '0':
+			public_status = '1'
+			public_cate = NoteCate.objects(abbname = note_new_form.public.data,belong = User.objects(email = session['user']['email']).first()).first()
+		else:
+			public_status = '0'
+			public_cate = None
+
 		Note(
 			noteid=getnextseq(),
 			title=note_new_form.title.data,
 			subtitle=note_new_form.subtitle.data,
 			content = note_new_form.content.data,
+			public_status = public_status,
+			public_cate = public_cate,
 			tag = note_new_form.tag.data.split(","),
 			belong = (User.objects(email=session['user']['email']).first())
 			).save()
+
 		return redirect(url_for('note_module.note_new_function'))
 	return render_template('note/note_new.html',note_new_form = note_new_form)
 
@@ -39,7 +49,7 @@ def mynote_function():
 	note_count = Note.objects(belong=User.objects(email=session['user']['email']).first()).count()
 	page_count = note_count / NOTECONSTANTS.PER_PAGE_COUNT + 1 if note_count % NOTECONSTANTS.PER_PAGE_COUNT else note_count / NOTECONSTANTS.PER_PAGE_COUNT
 	if note_count == 0:
-		page_count += 1;
+		page_count += 1
 	now_page = request.args.get('page',1)
 	try:
 		now_page = int(now_page)
