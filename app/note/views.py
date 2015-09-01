@@ -137,6 +137,17 @@ def note_edit_function(noteid):
 
 		return render_template('/note/note_edit.html',note_edit_form=note_edit_form,this_note=this_note)
 
+@note_module.route('/note/delete/<int:noteid>',methods=['GET'])
+@require_login
+def note_delete_function(noteid):
+	if Note.objects(noteid=noteid,belong=User.objects(email=session['user']['email']).first()).count() == 0:
+		flash(u"找不到这篇文章，不要乱来了。")
+		return redirect(url_for('note_module.mynote_function'))
+	this_note = Note.objects(noteid=noteid,belong=User.objects(email=session['user']['email']).first()).first()
+	Note.delete(this_note)
+	#Delete Commit
+	flash(u"笔记删除成功")
+	return redirect(url_for('note_module.mynote_function'))
 
 
 @note_module.route('/mood',methods=['GET'])

@@ -14,7 +14,7 @@
 				{{ this_note.time.strftime('%Y-%m-%d') }}
 				{% if 'user' in session %}
 				{% if this_note.belong.email == session.user.email %}
-				<span class="action"><a href="{{ url_for('note_module.note_edit_function',noteid=this_note.noteid) }}">修改</a> <a href="#">删除</a></span>
+				<span class="action"><a href="{{ url_for('note_module.note_edit_function',noteid=this_note.noteid) }}">修改</a> <a href="{{ url_for('note_module.note_delete_function',noteid=this_note.noteid) }}">删除</a></span>
 				{% endif %}
 				{% endif %}
 			</div>
