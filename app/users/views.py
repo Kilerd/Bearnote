@@ -206,7 +206,7 @@ def resetpassword_function():
 @sign_module.route('/setting/',methods=['GET'])
 @require_login
 def setting_redirect_function():
-	return redirect(url_for('sign_module.setting_function'))
+	return redirect(url_for('sign_module.setting_function',setcate='account'))
 
 
 @sign_module.route('/setting/<string:setcate>',methods=['GET','POST'])

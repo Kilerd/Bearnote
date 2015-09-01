@@ -59,7 +59,7 @@ def mynote_function():
 	else:
 		return redirect(url_for('note_module.mynote_function',page=page_count))
 	now_page_note = Note.objects(belong=User.objects(email=session['user']['email']).first()).skip(NOTECONSTANTS.PER_PAGE_COUNT*(now_page-1)).limit(NOTECONSTANTS.PER_PAGE_COUNT)
-	return render_template('note/mynote.html',notes = now_page_note,page_info = {'page_count':page_count,'now_page':now_page})
+	return render_template('note/my-note.html',notes = now_page_note,page_info = {'page_count':page_count,'now_page':now_page})
 
 
 @note_module.route('/note/',methods=['GET'])
@@ -77,12 +77,14 @@ def one_note_function(noteid):
 		this_note = Note.objects(noteid=noteid).first()
 		this_note.belong.email_md5 = common.md5_encrypt(this_note.belong.email)
 
+		print type(this_note.public_status)
 		if this_note.public_status == NOTECONSTANTS.PRIVATE:
-			flash(u"你想查看的笔记为私有笔记，无权限查看。")
+			
 			if 'user' in session:
-				if not this_note.belong.email == session['user']['email']:
+				if this_note.belong.email != session['user']['email']:
 					return redirect(url_for('note_module.mynote_function'))
 			else:
+				flash(u"你想查看的笔记为私有笔记，无权限查看。")
 				return redirect(url_for('note_module.note_wall_function'))
 
 		return render_template('/note/one_note.html',this_note=this_note)

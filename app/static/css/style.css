@@ -128,7 +128,8 @@ a:hover{
 }
 
 .content{
-	margin-top: 60px; 
+	margin-top: 60px;
+	padding: 0 5px;
 	max-width: 960px;
 	min-height: 470px;
 	height: 100%;
@@ -146,11 +147,12 @@ a:hover{
 	display: block;
 	width: 100%;
 	margin: 30px 0;
+	padding: 20px;
+	background-color: #fff;
+	/*box-shadow:3px 3px 3px 0 rgba(0,0,0,0.25);*/
 }
 .content .content-header h1{
-	padding: 0 0 15px 0;
 	font-weight: 300;
-	border-bottom: 1px dashed rgba(225,59,47,0.25);
 
 }
 .content .content-header h1 span{
@@ -221,7 +223,8 @@ a:hover{
 
 .footer{
 	width: 100%;
-	border-top: 1px solid #aaaaaa !important;
+
+	margin-top: 5px;
 	padding: 30px 0;
 	text-align: center;
 }
@@ -452,7 +455,8 @@ a:hover{
 
 /* Note Editor */
 .note-editor{
-	margin: 20px 20px;
+	padding: 20px;
+	background-color: #fff;
 }
 .note-editor input[type="text"]{
 	width: 100%;
@@ -555,33 +559,35 @@ a:hover{
 
 
 
-.my-note-list .one-note{
+.note-list .one-note{
 	margin-bottom: 30px;
 }
-.my-note-list .one-note li{
-	margin: 3px 0;
-	border-bottom: 1px dashed rgba(225,59,47,0.15);
+.note-list .one-note li{
+	margin: 5px 0;
+	padding: 10px 20px;
+	background-color: #fff;
+	list-style: none;
 }
-.my-note-list .one-note li .title{
+.note-list .one-note li .title{
 	font-size: 22px;
 	font-weight: 300;
+	float: left;
 }
-.my-note-list .one-note li .subtitle:before{
-	content:"——";
-	padding-right: 5px;
-}
-.my-note-list .one-note li .subtitle{
+
+.note-list .one-note li .subtitle{
 	color: #999;
-	font-size: 18px;
+	font-size: 15px;
+	margin: 8px 0 0 10px;
 	font-weight: 300;
-	padding-left: 50px;
+	float: left;
 }
-.my-note-list .one-note li .inf{
+.note-list .one-note li .inf{
+	clear: both;
 	color: #999;
 	font-weight: 300;
-	margin: 10px 0;
+	margin: 12px 0 0 0;
 }
-.my-note-list .one-note li .inf .public{
+.note-list .one-note li .inf .public{
 	font-size: 0.7em;
 	color:#fff;
 	background-color: #2e6da4;
@@ -589,7 +595,7 @@ a:hover{
 	margin: 5px;
 	border-radius: 3px;
 }
-.my-note-list .one-note li .inf .blog{
+.note-list .one-note li .inf .blog{
 	font-size: 11px;
 	color:#fff;
 	background-color: rgba(225,59,47,0.7);
@@ -597,7 +603,7 @@ a:hover{
 	margin: 5px;
 	border-radius: 3px;
 }
-.my-note-list .one-note li .inf .action{
+.note-list .one-note li .inf .action{
 	font-size: 13px;
 }
 
@@ -677,8 +683,9 @@ a:hover{
 /* slider */
 .slider{
 	background-color: #fff;
-	margin: 20px 0;
+	margin: 20px 3px 20px 0;
 	padding: 20px 30px 20px 0;
+	box-shadow:3px 3px 3px 0 rgba(0,0,0,0.25);
 }
 .slider ul{
 	list-style: none;
@@ -698,9 +705,10 @@ a:hover{
 }
 
 .slider-content{
-	margin: 20px 0 20px 10px;
+	margin: 20px 3px 20px 10px;
 	padding: 25px;
 	background-color: #fff;
+	box-shadow:3px 3px 3px 0 rgba(0,0,0,0.25);
 }
 .slider-content .setting-header{
 	font-size: 20px;

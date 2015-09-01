@@ -22,6 +22,7 @@
 		<div class="article-content">
 			{{ this_note.content }}
 		</div>
+		{% if this_note.public_status == 1 %}
 		<div class="article-author">
 			<img src="https://cdn.v2ex.com/gravatar/{{ this_note.belong.email_md5 }}?s=64&d=retro" class="article-author-gravator">
 			<div class="article-author-information">
@@ -32,6 +33,7 @@
 				{% endif %}
 			</div>
 		</div>
+		{% endif %}
 	</div>
 </div>
 {% endblock %}
