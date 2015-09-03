@@ -149,7 +149,9 @@ a:hover{
 	margin: 30px 0;
 	padding: 20px;
 	background-color: #fff;
-	/*box-shadow:3px 3px 3px 0 rgba(0,0,0,0.25);*/
+	/*box-shadow:1px 1px 1px 0 rgba(0,0,0,0.25);*/
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
 }
 .content .content-header h1{
 	font-weight: 300;
@@ -251,7 +253,9 @@ a:hover{
 	margin: 20px 0;
 	padding: 30px 50px;
 	background-color: #fff;
-	box-shadow:3px 3px 3px 0 rgba(0,0,0,0.25);
+	/*box-shadow:3px 3px 3px 0 rgba(0,0,0,0.25);*/
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
 }
 .postform h2{
 	font-weight: 300;
@@ -411,7 +415,9 @@ a:hover{
 .box{
 	background-color: #fff;
 	border: 1px solid #e2e2e2;
-	padding: 15px;
+	border-radius: 3px;
+	padding: 15px 10px;
+
 }
 .box .box-header{
 	font-size: 18px;
@@ -455,8 +461,10 @@ a:hover{
 
 /* Note Editor */
 .note-editor{
-	padding: 20px;
+	padding: 30px 20px;
 	background-color: #fff;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
 }
 .note-editor input[type="text"]{
 	width: 100%;
@@ -564,8 +572,11 @@ a:hover{
 }
 .note-list .one-note li{
 	margin: 5px 0;
-	padding: 10px 20px;
+	padding: 10px 20px 5px 20px;
 	background-color: #fff;
+	/*box-shadow:1px 1px 1px 0 rgba(0,0,0,0.25);*/
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
 	list-style: none;
 }
 .note-list .one-note li .title{
@@ -585,7 +596,8 @@ a:hover{
 	clear: both;
 	color: #999;
 	font-weight: 300;
-	margin: 12px 0 0 0;
+	font-size: 14px;
+	margin: 35px 0 0 0;
 }
 .note-list .one-note li .inf .public{
 	font-size: 0.7em;
@@ -604,7 +616,7 @@ a:hover{
 	border-radius: 3px;
 }
 .note-list .one-note li .inf .action{
-	font-size: 13px;
+	font-size: 14px;
 }
 
 
@@ -685,7 +697,10 @@ a:hover{
 	background-color: #fff;
 	margin: 20px 3px 20px 0;
 	padding: 20px 30px 20px 0;
-	box-shadow:3px 3px 3px 0 rgba(0,0,0,0.25);
+
+	/*box-shadow:3px 3px 3px 0 rgba(0,0,0,0.25);*/
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
 }
 .slider ul{
 	list-style: none;
@@ -708,7 +723,10 @@ a:hover{
 	margin: 20px 3px 20px 10px;
 	padding: 25px;
 	background-color: #fff;
-	box-shadow:3px 3px 3px 0 rgba(0,0,0,0.25);
+
+	/*box-shadow:3px 3px 3px 0 rgba(0,0,0,0.25);*/
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
 }
 .slider-content .setting-header{
 	font-size: 20px;
