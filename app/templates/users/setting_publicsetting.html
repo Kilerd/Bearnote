@@ -3,52 +3,52 @@
 
 {% block slidercontent %}
 <div class="setting-header">
-	笔记公开分类
-	<p class="setting-header-description">
-	用于管理笔记公开分类<br />
-	分类缩略名 0 为私有笔记缩略名，故设为保留字<br />
-	删除一个分类后，原分类中的笔记会自动迁移至分类列表中的第一个分类
-	</p>
+    笔记公开分类
+    <p class="setting-header-description">
+    用于管理笔记公开分类<br />
+    分类缩略名 0 为私有笔记缩略名，故设为保留字<br />
+    删除一个分类后，原分类中的笔记会自动迁移至分类列表中的第一个分类
+    </p>
 </div>
-	{% with messages = get_flashed_messages() %}
-	{% if messages %}
-	<div class="row">
-		{% for message in messages %}
-		<div class="message">
-			{{ message }}
-		</div>
-		{% endfor %}
-	</div>
-	{% endif %}
-	{% endwith %}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="row">
+        {% for message in messages %}
+        <div class="message">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
 <div class="row">
-	<form method="POST">
-	{{ CateAddForm.csrf_token }}
-		<div class="col-l-4">{{ CateAddForm.name(class="input",placeholder="分类名称,长度为1-10位,必选") }}</div>
-		<div class="col-l-4 col-offset-1">{{ CateAddForm.abbname(class="input",placeholder="分类缩略名,长度为1-16位,必选") }}</div>
-		<div class="col-l-2 col-offset-1"><button class="button">添加分类</button></div>
-	</form>
+    <form method="POST">
+    {{ CateAddForm.csrf_token }}
+        <div class="col-l-4">{{ CateAddForm.name(class="input",placeholder="分类名称,长度为1-10位,必选") }}</div>
+        <div class="col-l-4 col-offset-1">{{ CateAddForm.abbname(class="input",placeholder="分类缩略名,长度为1-16位,必选") }}</div>
+        <div class="col-l-2 col-offset-1"><button class="button">添加分类</button></div>
+    </form>
 </div>
 <div class="row">
-	<table style="width:100%;text-align:left;font-size:15px;">
-		<thead>
-			<tr>
-				<th style="width:33.3%">名称</th>
-				<th style="width:33.3%">缩略名</th>
+    <table style="width:100%;text-align:left;font-size:15px;">
+        <thead>
+            <tr>
+                <th style="width:33.3%">名称</th>
+                <th style="width:33.3%">缩略名</th>
 
-				<th style="width:33.3%">操作</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for one_cate in all_cate %}
-			<tr>
-				<td>{{ one_cate.name }}</td>
-				<td>{{ one_cate.abbname }}</td>
-				<td><a href="{{ url_for('sign_module.setting_function',setcate="publicsettingchange",abbname=one_cate.abbname) }}">修改</a> <a href="{{ url_for('sign_module.setting_function',setcate="publicsettingdelete",abbname=one_cate.abbname) }}">删除</a></td>
-			</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+                <th style="width:33.3%">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for one_cate in all_cate %}
+            <tr>
+                <td>{{ one_cate.name }}</td>
+                <td>{{ one_cate.abbname }}</td>
+                <td><a href="{{ url_for('sign_module.setting_function',setcate="publicsettingchange",abbname=one_cate.abbname) }}">修改</a> <a href="{{ url_for('sign_module.setting_function',setcate="publicsettingdelete",abbname=one_cate.abbname) }}">删除</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 
 

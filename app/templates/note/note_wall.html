@@ -4,7 +4,7 @@
 {% block content %}
 <div class="content">
     <div class="content-header">
-        <h1>我的笔记<span><a href="{{ url_for('note_module.note_new_function') }}">撰写 新笔记</a></span></h1>
+        <h1>笔记墙<span>这里可以查看到所有公开的笔记</span></h1>
     </div>
     <div class="note-list">
         {% with messages = get_flashed_messages() %}
@@ -24,14 +24,9 @@
             {% if one_note.subtitle %}
             <div class="subtitle">{{ one_note.subtitle }}</div>
             {% endif %}
-            <div class="inf">{{ one_note.time.strftime('%Y-%m-%d') }}
-            {% if one_note.public_status %}
-            <span class="public">PUBILC</span>
-            {% endif %}
-            {% if one_note.blog_status %}
-            <a class="blog" href="/aaa/df" title="/aaa/df">BLOG</a>
-            {% endif %}
-            <span class="action" style="float:right;"><a href="{{ url_for('note_module.note_edit_function',noteid=one_note.noteid) }}">修改</a> <a href="{{ url_for('note_module.note_delete_function',noteid=one_note.noteid) }}">删除</a></span></div>
+            <div class="inf">
+                {{ one_note.time.strftime('%Y-%m-%d') }} {{ one_note.belong.username }}
+            </div>
             </li>
         
             {% endfor %}

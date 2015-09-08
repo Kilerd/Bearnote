@@ -4,50 +4,50 @@
 
 {% block content %}
 <div class="content">
-	<div class="content-header">
-		<h1>笔记笔记<span>{{ this_note.title }}</span></h1>
-	</div>
-	<div class="note-editor">
-		<form method="POST" class="note-editor">
-		{% with messages = get_flashed_messages() %}
-			  {% if messages %}
-			    {% for message in messages %}
-			    <div class="message">
-			      {{ message }}
-			     </div>
-			    {% endfor %}
-			  {% endif %}
-		{% endwith %}
-		{{ note_edit_form.csrf_token }}
-			<div class="row">
-				{{ note_edit_form.title(placeholder="标题",required='required') }}
+    <div class="content-header">
+        <h1>笔记笔记<span>{{ this_note.title }}</span></h1>
+    </div>
+    <div class="note-editor">
+        <form method="POST" class="note-editor">
+        {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="message">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+        {% endwith %}
+        {{ note_edit_form.csrf_token }}
+            <div class="row">
+                {{ note_edit_form.title(placeholder="标题",required='required') }}
 
-			</div>
-			<div class="row">
-				{{ note_edit_form.subtitle(style="text-align:right;",placeholder="副标题") }}
-			</div>
-			<div class="row">
-				{{ note_edit_form.content(placeholder="笔记正文",required='required') }}
-			</div>
-			<div class="row">
-				<div class="col-l-6">
-					{{ note_edit_form.public.label }}
-					{{ note_edit_form.public() }} <a href="{{ url_for('sign_module.setting_function',setcate="publicsetting") }}">设置分类</a>
-				</div>
-				<div class="col-l-6">
-					{{ note_edit_form.blog.label }}
-					{{ note_edit_form.blog() }} <a href="#">设置分类</a>
-				</div>
-			</div>
-			<div class="row">
-			{{ note_edit_form.tag(placeholder="标签 , 用半角 , 分割") }}
-			</div>
-			<div class="row">
-			<button>提交</button>
-			</div>
-			
-		</form>
+            </div>
+            <div class="row">
+                {{ note_edit_form.subtitle(style="text-align:right;",placeholder="副标题") }}
+            </div>
+            <div class="row">
+                {{ note_edit_form.content(placeholder="笔记正文",required='required') }}
+            </div>
+            <div class="row">
+                <div class="col-l-6">
+                    {{ note_edit_form.public.label }}
+                    {{ note_edit_form.public() }} <a href="{{ url_for('sign_module.setting_function',setcate="publicsetting") }}">设置分类</a>
+                </div>
+                <div class="col-l-6">
+                    {{ note_edit_form.blog.label }}
+                    {{ note_edit_form.blog() }} <a href="#">设置分类</a>
+                </div>
+            </div>
+            <div class="row">
+            {{ note_edit_form.tag(placeholder="标签 , 用半角 , 分割") }}
+            </div>
+            <div class="row">
+            <button>提交</button>
+            </div>
+            
+        </form>
 
-	</div>
+    </div>
 </div>
 {% endblock %}

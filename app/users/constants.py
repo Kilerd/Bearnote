@@ -4,8 +4,8 @@ ADMIN = 0
 USER = 1
 
 ROLE = {
-	ADMIN : 'admin',
-	USER : 'user'
+    ADMIN : 'admin',
+    USER : 'user'
 }
 
 #user status
@@ -16,8 +16,8 @@ ACTIVE = 2
 VIP = 3
 
 STATUS = {
-	INACTIVE : 'inactive',
-	NEW : 'new',
-	ACTIVE : 'active',
-	VIP : 'vip'
+    INACTIVE : 'inactive',
+    NEW : 'new',
+    ACTIVE : 'active',
+    VIP : 'vip'
 }

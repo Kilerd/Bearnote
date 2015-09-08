@@ -10,70 +10,55 @@
 {% block content %}
 
 <div class="content">
-	<div class="row">
-		<div class="account">
-			<div class="gravater">
-				<img class="account-gravater" src="https://cdn.v2ex.com/gravatar/{{ session['user']['email_md5'] }}?s=256&d=retro">
-				<h1 class="account-name">{{ session['user']['username'] }}</h1>
-				<p>Email : {{ session['user']['email'] }}</p>
-				<p class="account-description">{{ session['user']['description'] }}</p>
-			</div>
-			<div class="mood-line">
-				<div class="one-mood">
-					<div class="point"></div>
-					<div class="mood-content">
-						总有那么一天，我会让那些只会嘲笑我的人，只能仰慕我
-					</div>
-				</div>
-				<div class="one-mood">
-					<div class="point"></div>
-					<div class="mood-content">
-						啦啦啦啦。
-					</div>
-				</div>
-				<div class="one-mood">
-					<div class="point"></div>
-					<div class="mood-content">
-						I don't kown why I can't type Chinese on my computer, but I need to type a long words to test the CSS, So it is very hard for me to type it, so I just only say some shit to make it longer and longer and longer and longer and longer.
-					</div>
-				</div>
-				<div class="one-mood">
-					<div class="point"></div>
-					<div class="mood-content">
-						
-						啦啦啦啦。
-					</div>
-				</div>
+    <div class="row">
+        <div class="account">
+            <div class="gravater">
+                <img class="account-gravater" src="https://cdn.v2ex.com/gravatar/{{ session['user']['email_md5'] }}?s=256&d=retro">
+                <h1 class="account-name">{{ session['user']['username'] }}</h1>
+                <p>Email : {{ session['user']['email'] }}</p>
+                <p class="account-description">{{ session['user']['description'] }}</p>
+            </div>
+            <div class="mood-line">
+                <div class="one-mood">
+                    <div class="point"></div>
+                    <div class="mood-content">
+                        <a href="">总有那么一天，我会让那些只会嘲笑我的人，只能仰慕我</a>
+                    </div>
+                </div>
+                <div class="one-mood">
+                    <div class="point"></div>
+                    <div class="mood-content">
+                        啦啦啦啦。
+                    </div>
+                </div>
+                <div class="one-mood">
+                    <div class="point"></div>
+                    <div class="mood-content">
+                        I don't kown why I can't type Chinese on my computer, but I need to type a long words to test the CSS, So it is very hard for me to type it, so I just only say some shit to make it longer and longer and longer and longer and longer.
+                    </div>
+                </div>
+                <div class="one-mood">
+                    <div class="point"></div>
+                    <div class="mood-content">
+                        
+                        啦啦啦啦。
+                    </div>
+                </div>
 
-			</div>
-		
-		</div>
-	</div>
-	{% with messages = get_flashed_messages() %}
-	{% if messages %}
-	<div class="row">
-		{% for message in messages %}
-		<div class="me-page-message">
-			{{ message }}
-		</div>
-		{% endfor %}
-	</div>
-	{% endif %}
-	{% endwith %}
-	<div class="row">
-		<div class="col-l-6">
-			<div class="box account-box">
-			<div class="box-header">我的笔记<span><a href="{{ url_for('note_module.note_new_function') }}">撰写新笔记</a></span></div>
-			<div class="box-content">aaa<br />ssssssssssssaaa<br />ssssssssssssaaa<br />ssssssssssssaaa<br />ssssssssssss</div>
-			</div>
-		</div>
-		<div class="col-l-6">
-			<div class="box account-box">
-			<div class="box-header">Box-Header 功能<span><a href="">More</a></span></div>
-			<div class="box-content">aaa<br />ssss</div>
-			</div>
-		</div>
-		
-	</div>
+            </div>
+        
+        </div>
+    </div>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="row">
+        {% for message in messages %}
+        <div class="me-page-message">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
 </div>
 {% endblock %}

@@ -8,8 +8,8 @@ PRIVATE = 0
 PUBLIC = 1
 
 STATUS = {
-	PRIVATE : "private",
-	PUBLIC : "public"
+    PRIVATE : "private",
+    PUBLIC : "public"
 }
 
 

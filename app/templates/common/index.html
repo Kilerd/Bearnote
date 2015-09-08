@@ -2,29 +2,29 @@
 
 {% block content %}
 <div class="content">
-	<div class="row banner">
-		<div class="col-l-6">
-			<div class="banner-pic">
-				<img src="{{ url_for('static', filename='images/beargirl.png') }}" class="beargirl">
-			</div>
-		</div>
-		<div class="col-l-6">
-			<div class="banner-dsp">
-				<h1>小熊笔记</h1>
-				<p>嗯,只为更轻松地记录笔记</p>
+    <div class="row banner">
+        <div class="col-l-6">
+            <div class="banner-pic">
+                <img src="{{ url_for('static', filename='images/beargirl.png') }}" class="beargirl">
+            </div>
+        </div>
+        <div class="col-l-6">
+            <div class="banner-dsp">
+                <h1>小熊笔记</h1>
+                <p>嗯,只为更轻松地记录笔记</p>
 
-				<h2>知识</h2>
-				<p>知识的乐趣，在于可以记录，用于以后的细细品味</p>
-				<h2>心情</h2>
-				<p>心情不容许别人知道，但是却宽容自己可以回忆</p>
-				<h2>博客</h2>
-				<p>或许有一刻，你想让别人知道你在做什么</p>
-				<p>或许有一刻，你想告诉世界你的一些想法</p>
-			</div>
-		</div>
-	</div>
-	<div class="row banner-log">
-		<p>心动不如行动赶快加入我们吧。 <a class="banner-login" href="{{ url_for('sign_module.login_function') }}">登录</a> or <a class="banner-register" href="{{ url_for('sign_module.register_function') }}">注册</a></p>
-	</div>
+                <h2>知识</h2>
+                <p>知识的乐趣，在于可以记录，用于以后的细细品味</p>
+                <h2>心情</h2>
+                <p>心情不容许别人知道，但是却宽容自己可以回忆</p>
+                <h2>博客</h2>
+                <p>或许有一刻，你想让别人知道你在做什么</p>
+                <p>或许有一刻，你想告诉世界你的一些想法</p>
+            </div>
+        </div>
+    </div>
+    <div class="row banner-log">
+        <p>心动不如行动赶快加入我们吧。 <a class="banner-login" href="{{ url_for('sign_module.login_function') }}">登录</a> or <a class="banner-register" href="{{ url_for('sign_module.register_function') }}">注册</a></p>
+    </div>
 </div>
 {% endblock %}
