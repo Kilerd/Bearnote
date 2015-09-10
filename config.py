@@ -23,7 +23,7 @@ MAIL_PASSWORD = 'pass4bearnote'
 
 # Mongodb Setting / MongoEngine
 try:
-    os.environ['CODING_TEST']
+    os.environ['MODE']
 except:
 
     MONGODB_HOST = '127.0.0.1'
