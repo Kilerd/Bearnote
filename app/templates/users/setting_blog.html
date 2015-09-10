@@ -1,0 +1,65 @@
+{% extends 'users/setting_base.html' %}
+{% block title %}密码修改 - 小熊笔记{% endblock %}
+
+{% block slidercontent %}
+<div class="setting-header">
+    博客
+    <p class="setting-header-description">
+    绑定独立域名
+    </p>
+</div>
+<form method="POST">
+<div class="form">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="row">
+        {% for message in messages %}
+        <div class="message">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+    {{ blogform.csrf_token }}
+    <div class="row">
+        <div class="col-l-2">
+            {{ blogform.name.label(class="label") }}
+        </div>
+        <div class="col-l-10">
+            {{ blogform.name(class="input",placeholder="长度为1-20位") }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-l-2">
+            {{ blogform.description.label(class="label") }}
+        </div>
+        <div class="col-l-10">
+            {{ blogform.description(class="input",placeholder="长度为1-80位") }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-l-2">
+            {{ blogform.key.label(class="label") }}
+        </div>
+        <div class="col-l-10">
+            {{ blogform.key(class="input",placeholder="博客关键字，用,分割 e.g. 小熊笔记,Bearnote,Note") }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-l-2">
+            {{ blogform.domain.label(class="label") }}
+        </div>
+        <div class="col-l-10">
+            {{ blogform.domain(class="input",placeholder="博客域名，用,分割 e.g. www.bearnote.com,bearnote.com") }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="">
+            <button class="button">更新</button>
+        </div>
+    </div>
+</div>
+</form>
+
+{% endblock %}

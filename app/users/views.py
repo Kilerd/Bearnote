@@ -8,6 +8,7 @@ from app.lib.mail import mail_send
 from app.lib.common import CommonClass
 from app.note.models import NoteCate,Note
 from app.note import constants as NOTECONSTANTS
+from app.common.decorators import *
 import time
 # init sign module
 sign_module = Blueprint('sign_module',__name__)
@@ -30,9 +31,9 @@ def login_function():
         if login.validate_on_submit():
             # Count the User of input information
             user_count = User.objects(
-                email = login.email.data,
+                email = login.email.data.lower(),
                 password = login_check.password_encrypt(
-                    email = login.email.data,
+                    email = login.email.data.lower(),
                     password = login.password.data)
                 ).count()
             
@@ -43,6 +44,7 @@ def login_function():
                 this_user = User.objects(
                     email=login.email.data,
                     ).first()
+                
                 session['user'] = {
                     "username" : this_user.username,
                     "email" : this_user.email,
@@ -77,21 +79,26 @@ def register_function():
     if request.method == 'POST':
         if register.validate_on_submit():
             # Count the User of input information
-            user_count = User.objects(email=register.email.data).count()
+            user_count = User.objects(email=register.email.data.lower()).count()
             if user_count == 0:
-                # 注销入库
-                User(
-                    email = register.email.data,
-                    username = register.username.data,
-                    password = register_check.password_encrypt(
-                        email = register.email.data,
-                        password = register.password.data),
-                    ).save()
-                # Register Email
-                # mail_send(subject = 'login',recipients = [login.email.data],text_body = 'welcome back')
+                if User.objects(_username=register.username.data.lower()).count == 0:
+                    # 注销入库
+                    User(
+                        email = register.email.data.lower(),
+                        username = register.username.data,
+                        password = register_check.password_encrypt(
+                            email = register.email.data.lower(),
+                            password = register.password.data),
+                        ).save()
+                    # Register Email
+                    # mail_send(subject = 'login',recipients = [login.email.data],text_body = 'welcome back')
 
-                flash(u"注册成功，请登录吧，亲")
-                return redirect(url_for('sign_module.login_function'))
+                    flash(u"注册成功，请登录吧，亲")
+                    return redirect(url_for('sign_module.login_function'))
+                else:
+                    flash(u"用户名已经被使用，请更换")
+                    return redirect(url_for('sign_module.register_function'))
+
             else:
                 flash(u"邮箱已经被使用，请尝试找回密码")
                 return redirect(url_for('sign_module.register_function'))
@@ -115,18 +122,18 @@ def forgetpassword_function():
     if request.method == 'POST':
         if forgetpsw.validate_on_submit():
 
-            user_count = User.objects(email=forgetpsw.email.data).count()
+            user_count = User.objects(email=forgetpsw.email.data.lower()).count()
             if user_count == 1:
                 
                 this_user = User.objects(
-                    email=forgetpsw.email.data,
+                    email=forgetpsw.email.data.lower(),
                     ).first()
                 now_time = int(time.time())
                 
                 if not 'forget' in this_user:
 
                     forgetstring = forget_check.forgetstring_encrypt(
-                        email = forgetpsw.email.data)
+                        email = forgetpsw.email.data.lower())
                     this_user.forget={
                         'string': forgetstring,
                         'time': int(time.time())
@@ -139,7 +146,7 @@ def forgetpassword_function():
                     if now_time - int(this_user.forget['time']) > 3600:
                         # Overtime
                         forgetstring = forget_check.forgetstring_encrypt(
-                            email = forgetpsw.email.data)
+                            email = forgetpsw.email.data.lower())
                         this_user.forget={
                             'string': forgetstring,
                             'time': int(time.time())
@@ -175,16 +182,16 @@ def resetpassword_function():
     reset_check = UserCheck()
     if request.method == 'POST':
         if resetform.validate_on_submit():
-            user_count = User.objects(email=resetform.email.data).count()
+            user_count = User.objects(email=resetform.email.data.lower()).count()
             if user_count == 1:
                 this_user = User.objects(
-                    email=resetform.email.data,
+                    email=resetform.email.data.lower(),
                     ).first()
                 if 'forget' in this_user and \
                 this_user.forget['string'] == resetform.forgetstring.data and \
                 (int((time.time())) - int(this_user.forget['time']) < 3600):
                     this_user.password = reset_check.password_encrypt(
-                        email = resetform.email.data,
+                        email = resetform.email.data.lower(),
                         password = resetform.password.data)
                     this_user.forget = None
                     this_user.save()
@@ -364,6 +371,48 @@ def setting_function(setcate):
             flash(u"非法操作。")
             return redirect(url_for('sign_module.setting_function',setcate="publicsetting"))
     def blog():
+        blogform = BlogSettingForm()
+        if request.method == 'GET':
+            this_user_blog = Blog.objects(belong = User.objects(email=session['user']['email']).first()).first()
+
+            blogform.name.data = this_user_blog.name
+            blogform.description.data = this_user_blog.description
+            blogform.key.data = this_user_blog.keyword
+            blogform.domain.data = ','.join(this_user_blog.domain)
+        elif request.method == 'POST':
+            if blogform.validate_on_submit():
+                all_domain = blogform.domain.data.lower().split(',')
+                domain_error_msg = u''
+                for one_domain in all_domain:
+                    if Blog.objects(domain = one_domain,belong__ne = User.objects(email=session['user']['email']).first()).count() != 0 or one_domain in ['www.bearnote.com','bearnote.com']:
+                        domain_error_msg = domain_error_msg + str(one_domain) + u"已经存在，请更换; "
+                if domain_error_msg == '':
+                    print 'success'
+                    if Blog.objects(belong = User.objects(email=session['user']['email']).first()).count() == 1:
+                        this_user_blog = Blog.objects(belong = User.objects(email=session['user']['email']).first()).first()
+                        this_user_blog.name = blogform.name.data
+                        this_user_blog.description = blogform.description.data
+                        this_user_blog.keyword = blogform.key.data
+                        this_user_blog.domain = blogform.domain.data.lower().split(',')
+                        this_user_blog.save()
+                    else:
+                        Blog(name = blogform.name.data,
+                            description = blogform.description.data,
+                            keyword = blogform.key.data,
+                            domain = all_domain,
+                            belong = User.objects(email=session['user']['email']).first()
+                            ).save()
+                    #send mail
+
+                    flash(u"博客信息更新成功。")
+                    return redirect(url_for('sign_module.setting_function',setcate="blog"))
+                else:
+                    flash(domain_error_msg)
+                    return redirect(url_for('sign_module.setting_function',setcate="blog"))
+            else:
+                flash(u"信息填写不正确，请检查后重新提交")
+                return redirect(url_for('sign_module.setting_function',setcate="blog"))
+        return render_template('users/setting_blog.html',blogform = blogform)
         return 'blog'
 
     SETCATE = {

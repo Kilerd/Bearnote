@@ -62,3 +62,12 @@ class PublicSettingDeleteCateForm(Form):
     hideabbname = HiddenField()
     name = StringField(u"分类名称",validators=[DataRequired(),Length(1,10),InputRequired()])
     abbname = StringField(u"分类缩略名",validators=[DataRequired(),Length(1,16),InputRequired()])
+
+
+# Blog Form in Setting
+
+class BlogSettingForm(Form):
+    name = StringField(u"博客名称",validators=[DataRequired(),Length(1,20),InputRequired()])
+    description = StringField(u"博客描述",validators=[DataRequired(),Length(1,80),InputRequired()])
+    key = StringField(u"博客关键字",validators=[DataRequired(),InputRequired()])
+    domain = StringField(u"博客域名",validators=[DataRequired(),InputRequired()])
