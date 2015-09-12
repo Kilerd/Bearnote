@@ -14,6 +14,7 @@ import time
 sign_module = Blueprint('sign_module',__name__)
 
 @sign_module.route('/me',methods=['GET'])
+@require_base_domain
 @require_login
 def me_function():
     #mail_send(subject = 'login',recipients = ['544372225@qq.com'],text_body = 'welcome back')
@@ -21,6 +22,7 @@ def me_function():
 
 
 @sign_module.route('/login', methods=['GET', 'POST'])
+@require_base_domain
 @require_not_login
 def login_function():
     login = LoginForm()
@@ -72,6 +74,7 @@ def login_function():
 
 
 @sign_module.route('/register', methods=['GET', 'POST'])
+@require_base_domain
 @require_not_login
 def register_function():
     register = RegisterForm()
@@ -81,7 +84,8 @@ def register_function():
             # Count the User of input information
             user_count = User.objects(email=register.email.data.lower()).count()
             if user_count == 0:
-                if User.objects(_username=register.username.data.lower()).count == 0:
+                print register.username.data.lower()
+                if User.objects(_username=register.username.data.lower()).count() == 0:
                     # 注销入库
                     User(
                         email = register.email.data.lower(),
@@ -89,6 +93,7 @@ def register_function():
                         password = register_check.password_encrypt(
                             email = register.email.data.lower(),
                             password = register.password.data),
+                        _username = register.username.data.lower()
                         ).save()
                     # Register Email
                     # mail_send(subject = 'login',recipients = [login.email.data],text_body = 'welcome back')
@@ -109,12 +114,14 @@ def register_function():
 
 
 @sign_module.route('/logout',methods=['GET'])
+@require_base_domain
 def logout_function():
     if 'user' in session:
         session.pop('user')
     return redirect('/')
 
 @sign_module.route('/forgetpassword',methods=['GET','POST'])
+@require_base_domain
 @require_not_login
 def forgetpassword_function():
     forgetpsw = ForgetPswForm()
@@ -176,6 +183,7 @@ def forgetpassword_function():
 
 
 @sign_module.route('/resetpassword',methods=['GET','POST'])
+@require_base_domain
 @require_not_login
 def resetpassword_function():
     resetform = ResetPswForm()
@@ -211,6 +219,7 @@ def resetpassword_function():
 
 
 @sign_module.route('/setting/',methods=['GET'])
+@require_base_domain
 @require_login
 def setting_redirect_function():
     return redirect(url_for('sign_module.setting_function',setcate='account'))
@@ -374,11 +383,11 @@ def setting_function(setcate):
         blogform = BlogSettingForm()
         if request.method == 'GET':
             this_user_blog = Blog.objects(belong = User.objects(email=session['user']['email']).first()).first()
-
-            blogform.name.data = this_user_blog.name
-            blogform.description.data = this_user_blog.description
-            blogform.key.data = this_user_blog.keyword
-            blogform.domain.data = ','.join(this_user_blog.domain)
+            if this_user_blog != None:
+                blogform.name.data = this_user_blog.name
+                blogform.description.data = this_user_blog.description
+                blogform.key.data = this_user_blog.keyword
+                blogform.domain.data = ','.join(this_user_blog.domain)
         elif request.method == 'POST':
             if blogform.validate_on_submit():
                 all_domain = blogform.domain.data.lower().split(',')

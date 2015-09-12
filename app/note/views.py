@@ -7,11 +7,13 @@ from app.note.forms import NoteForm
 from app.note import constants as NOTECONSTANTS
 from app.note.lib import getnextseq
 from app.lib.common import CommonClass
+from app.common.decorators import require_base_domain
 
 note_module = Blueprint('note_module',__name__)
 
 
 @note_module.route('/new',methods=['GET','POST'])
+@require_base_domain
 @require_login
 def note_new_function():
     note_new_form = NoteForm()
@@ -42,6 +44,7 @@ def note_new_function():
 
 
 @note_module.route('/mynote',methods=['GET'])
+@require_base_domain
 @require_login
 def mynote_function():
     # Page Control
@@ -63,6 +66,7 @@ def mynote_function():
 
 
 @note_module.route('/note/',methods=['GET'])
+@require_base_domain
 def note_wall_function():
     note_count = Note.objects(public_status=NOTECONSTANTS.PUBLIC).count()
     page_count = note_count / NOTECONSTANTS.PER_PAGE_COUNT + 1 if note_count % NOTECONSTANTS.PER_PAGE_COUNT else note_count / NOTECONSTANTS.PER_PAGE_COUNT
@@ -108,6 +112,7 @@ def one_note_function(noteid):
 
 
 @note_module.route("/note/edit/<int:noteid>",methods=['GET','POST'])
+@require_base_domain
 @require_login
 def note_edit_function(noteid):
     if Note.objects(noteid=noteid,belong=User.objects(email=session['user']['email']).first()).count() == 0:
@@ -157,6 +162,7 @@ def note_edit_function(noteid):
         return render_template('/note/note_edit.html',note_edit_form=note_edit_form,this_note=this_note)
 
 @note_module.route('/note/delete/<int:noteid>',methods=['GET'])
+@require_base_domain
 @require_login
 def note_delete_function(noteid):
     if Note.objects(noteid=noteid,belong=User.objects(email=session['user']['email']).first()).count() == 0:
@@ -167,7 +173,3 @@ def note_delete_function(noteid):
     #Delete Commit
     flash(u"笔记删除成功")
     return redirect(url_for('note_module.mynote_function'))
-
-@note_module.route('/blog',methods=['GET'])
-def blog_wall_function():
-    return 'Blog Wall Page'
