@@ -2,6 +2,12 @@
 
 {% block title %}新笔记 - 小熊笔记{% endblock %}
 
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/typo.css') }}" />
+<script src="{{ url_for('static', filename='js/commonmark.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/marked.js') }}"></script>
+{% endblock %}
+
 {% block content %}
 <div class="content">
     <div class="article">
@@ -19,9 +25,7 @@
                 {% endif %}
             </div>
         </div>
-        <div class="article-content">
-            {{ this_note.content }}
-        </div>
+        <div class="article-content typo" id="article-content">{{ this_note.content }}</div>
         {% if this_note.public_status == 1 %}
         <div class="article-author">
             <img src="https://cdn.v2ex.com/gravatar/{{ this_note.belong.email_md5 }}?s=64&d=retro" class="article-author-gravator">
@@ -36,4 +40,32 @@
         {% endif %}
     </div>
 </div>
+{% endblock %}
+
+{% block jsruner %}
+
+<script>
+
+function html_decode(str)  
+{  
+  if (str.length == 0) return "";  
+  str = str.replace(/&lt;/g, "<");  
+  str = str.replace(/&gt;/g, ">");  
+  str = str.replace(/&nbsp;/g, " ");  
+  str = str.replace(/&#39;/g, "\'");  
+  str = str.replace(/&quot;/g, "\"");  
+  str = str.replace(/<br>/g, "\n");  
+  return str;  
+}
+var article_content = document.getElementById("article-content");
+var reader = new commonmark.Parser({sourcepos: true,safe:true});
+var writer = new commonmark.HtmlRenderer({sourcepos: true,safe:true});
+writer.softbreak = "<br />";
+var parsed = reader.parse(html_decode(article_content.innerHTML)); // parsed is a 'Node' tree
+
+var result = writer.render(parsed);
+article_content.innerHTML = result;
+
+
+</script>
 {% endblock %}

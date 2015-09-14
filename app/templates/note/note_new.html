@@ -2,6 +2,11 @@
 
 {% block title %}新笔记 - 小熊笔记{% endblock %}
 
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-style.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/simplemde.min.css') }}" />
+<script src="{{ url_for('static', filename='js/simplemde.min.js') }}"></script>
+{% endblock %}
 {% block content %}
 <div class="content">
     <div class="content-header">
@@ -27,7 +32,7 @@
                 {{ note_new_form.subtitle(style="text-align:right;",placeholder="副标题") }}
             </div>
             <div class="row">
-                {{ note_new_form.content(placeholder="笔记正文",required='required') }}
+                {{ note_new_form.content(placeholder="笔记正文",id="note") }}
             </div>
             <div class="row">
                 <div class="col-l-6">
@@ -50,4 +55,17 @@
 
     </div>
 </div>
+
+{% endblock %}
+
+{% block jsruner %}
+
+<script>
+var simplemde = new SimpleMDE({
+    element: document.getElementById("note"),
+    spellChecker:false,
+    tabsize:4,
+});
+
+</script>
 {% endblock %}

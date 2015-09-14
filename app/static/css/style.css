@@ -1,17 +1,27 @@
 *{
     padding:0 0;
-    margin: 0 auto;
     /*font-family: 'Helvetica Neue', 'STHeiti', 'Microsoft YaHei', Helvetica,Arial,sans-serif;*/
-    font-family: "Open Sans", "Helvetica Neue", "Microsoft Jhenghei", Helvetica,'STHeiti', "Hiragino Sans GB", SimHei, STHeiti, sans-serif;
+    font-family:PingFang SC, Verdana, Helvetica Neue, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+::selection {
+    background:#d7d4f0;
+}
+
+::-moz-selection {
+    background:#d7d4f0;
+}
 
 body{
     background-color: #F9F9F9;
+    margin: 0 auto;
 }
 
+html{
+    margin: 0 auto;
+}
 a{
     color: #000;
     text-decoration: none;
@@ -22,13 +32,14 @@ a:hover{
 }
 
 .header{
+    margin: 0 auto;
     height: 60px;
     width: 100%;
     background-color: rgba(255,255,255,0.85);
     padding: 0 5px;
-    position: fixed;
+    /*position: fixed;
     top:0;
-    z-index:999;
+    z-index:999;*/
     box-shadow:0px 1px 1px 0 rgba(0,0,0,0.25);
 }
 .header .logo{
@@ -101,7 +112,7 @@ a:hover{
     display:none;
     position:absolute;
     right: 0;
-    top:57px;
+    top:43px;
     list-style: none;
     text-align: center;
 }
@@ -109,6 +120,8 @@ a:hover{
 .header .right-pic:hover .droplist{
     padding: 10px;
     display:block;
+    border: 1px solid #e2e2e2;
+    border-radius: 3px;
 }
 .header .right-pic:hover .droplist li a {
     padding: 5px 15px;
@@ -123,17 +136,18 @@ a:hover{
 }
 
 .header .right-pic img{
-    border-radius: 999px;
+    border-radius: 3px;
     box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 0.7), 0px 0px 3px 2px rgba(225,59,47,0.75);
 }
 
 .content{
-    margin-top: 60px;
+   clear: both;
     padding: 0 5px;
     max-width: 960px;
     min-height: 470px;
     height: 100%;
     overflow: hidden;
+    margin: 0 auto;
 }
 .content-full{
     margin-top: 60px; 
@@ -157,6 +171,7 @@ a:hover{
 .content .content-header h1{
     float: left;
     font-weight: 300;
+    margin: 0 auto;
 
 }
 .content .content-header h1 span{
@@ -470,6 +485,7 @@ a:hover{
     border-radius: 3px;
 }
 .note-editor input[type="text"]{
+    font-size: 15px;
     width: 100%;
     outline: none;
     padding: 10px;
@@ -492,30 +508,33 @@ a:hover{
     transition: border .15s linear,padding-bottom .15s linear;
 }
 
-.note-editor textarea{
+.note-editor .textareas{
+    font-size: 15px;
     width: 100%;
     outline: none;
     resize:none;
     min-height: 400px;
-    height: auto;
     padding: 10px 20px;
-    margin: 10px 0;
+    margin: 10px 1px;
     border: none;
     border-left: 1px solid #bfbfbf;
     background-color: transparent;
-    -webkit-transition: border .15s linear,padding-bottom .15s linear;
-    -m-transition: border .15s linear,padding-bottom .15s linear;
-    -o-transition: border .15s linear,padding-bottom .15s linear;
-    transition: border .15s linear,padding-bottom .15s linear;
+    line-height: 2em;
+    height:100%; 
+    overflow-y:visible;
+    -webkit-transition: border .15s linear;
+    -m-transition: border .15s linear;
+    -o-transition: border .15s linear;
+    transition: border .15s linear;
 }
-.note-editor textarea:focus{
+.note-editor .textareas:focus{
     outline: none;
     border-left: 2px solid #e13b2f;
-    padding-left: 19px;
-    -webkit-transition: border .15s linea,padding-bottom .15s linear;
-    -m-transition: border .15s linear,padding-bottom .15s linear;
-    -o-transition: border .15s linear,padding-bottom .15s linear;
-    transition: border .15s linear,padding-bottom .15s linear;
+    margin-left: 0px;
+    -webkit-transition: border .15s linear;
+    -m-transition: border .15s linear;
+    -o-transition: border .15s linear;
+    transition: border .15s linear;
 }
 
 .note-editor select{
@@ -584,7 +603,7 @@ a:hover{
 }
 .note-list .one-note li .title{
     font-size: 22px;
-    font-weight: 300;
+    font-weight: 100;
     float: left;
 }
 
@@ -638,30 +657,33 @@ a:hover{
 
 /* Article */
 .article{
-    width: 90%;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 .article .article-header{
     padding-bottom: 5px;
-    border-bottom: 1px solid #eee;
+    /*border-bottom: 1px solid #eee;*/
+    padding: 10px 20px;
+    background-color: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 3px;
+
 }
 .article .article-header .title{
-    font-size: 30px;
-    width: 100%;
-}
-.article .article-header .subtitle:before{
-    padding-right: 5px;
-    content:"——";
+    font-size: 2em;
+    font-weight: 100;
+    float: left;
 }
 .article .article-header .subtitle{
-    font-size: 20px;
-    margin: 0;
+    margin: 15px 0 0 10px;
+    font-size: 16px;
     color:#777;
-    text-align: right;
-    width: 100%;
+    float: left;
 }
 .article .article-header .information{
+    clear: both;
     color:#999;
+    padding-top: 5px;
+    font-size: 15px;
 }
 .article .article-header .information .action{
     color:#999;
@@ -669,13 +691,20 @@ a:hover{
 }
 
 .article .article-content{
-    margin: 30px 0;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 3px;
 }
 .article .article-author{
-    border-top: 1px solid #eee;
+
     margin: 20px 0;
-    padding-top: 20px;
+    padding: 10px 20px;
     overflow: hidden;
+    background-color: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 3px;
 }
 .article .article-author img{
     float: left;

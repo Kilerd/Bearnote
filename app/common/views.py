@@ -11,6 +11,7 @@ common_module = Blueprint('common_module',__name__)
 
 @common_module.route('/',methods=['GET'])
 def index_function():
+
     this_domain = common.get_domain()
     if this_domain in COMMONCONSTANTS.BASE_DOMAIN:
         return render_template('common/index.html')

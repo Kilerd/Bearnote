@@ -108,6 +108,8 @@ def one_note_function(noteid):
                 flash(u"你想查看的笔记为私有笔记，无权限查看。")
                 return redirect(url_for('note_module.note_wall_function'))
 
+        this_note.content.replace("&lt;","<")
+        this_note.content.replace("&gt;",">")
         return render_template('/note/one_note.html',this_note=this_note)
 
 

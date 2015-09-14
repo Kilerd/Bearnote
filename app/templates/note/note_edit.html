@@ -1,14 +1,20 @@
 {% extends 'base.html' %}
 
-{% block title %}新笔记 - 小熊笔记{% endblock %}
+{% block title %}修改笔记 - 小熊笔记{% endblock %}
+
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-style.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/simplemde.min.css') }}" />
+<script src="{{ url_for('static', filename='js/simplemde.min.js') }}"></script>
+{% endblock %}
 
 {% block content %}
 <div class="content">
     <div class="content-header">
-        <h1>笔记笔记<span>{{ this_note.title }}</span></h1>
+        <h1>修改笔记<span> 《{{ this_note.title }}》</span></h1>
     </div>
     <div class="note-editor">
-        <form method="POST" class="note-editor">
+        <form method="POST">
         {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     {% for message in messages %}
@@ -27,7 +33,7 @@
                 {{ note_edit_form.subtitle(style="text-align:right;",placeholder="副标题") }}
             </div>
             <div class="row">
-                {{ note_edit_form.content(placeholder="笔记正文",required='required') }}
+                {{ note_edit_form.content(placeholder="笔记正文",id="note") }}
             </div>
             <div class="row">
                 <div class="col-l-6">
@@ -50,4 +56,16 @@
 
     </div>
 </div>
+{% endblock %}
+
+{% block jsruner %}
+
+<script>
+var simplemde = new SimpleMDE({
+    element: document.getElementById("note"),
+    spellChecker:false,
+    tabsize:4,
+});
+
+</script>
 {% endblock %}
