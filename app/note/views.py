@@ -28,6 +28,7 @@ def note_new_function():
             public_status = '0'
             public_cate = None
 
+        print note_new_form.content.data
         Note(
             noteid=getnextseq(),
             title=note_new_form.title.data,

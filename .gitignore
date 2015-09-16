@@ -20,6 +20,7 @@ sdist/
 var/
 *.egg-info/
 .installed.cfg
+fabfile.py
 *.egg
 
 # PyInstaller

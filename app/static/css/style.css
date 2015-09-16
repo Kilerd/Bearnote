@@ -46,16 +46,16 @@ a:hover{
     float: left;
     background-image: url("../images/logo.png");
     background-repeat: no-repeat;
-    height: 45px;
-    width: 236px;
+    height: 35px;
+    width: 180px;
     display: block;
-    margin: 6px 0 0 0;
+    margin: 13px 0 0 0;
 }
 .header .nav{
     float: left;
     overflow: hidden;
     font-size: 15px;
-    margin: 15px 0 0 15px;
+    margin: 15px 0 0 1px;
 }
 .header .nav li{
     float: left;
@@ -193,7 +193,7 @@ a:hover{
 .banner .banner-pic img{
     float: right;
     width: auto;
-    max-height: auto;
+    max-width: 100%;
 }
 .banner .banner-dsp{
     margin-top: 30px;
@@ -221,7 +221,7 @@ a:hover{
     font-weight: 300;
 }
 .banner-log p{
-    margin: 30px 0;
+    line-height: 2.5em;
 }
 .banner-log .banner-login{
     padding: 10px 38px;
@@ -937,3 +937,25 @@ a:hover{
     margin-left:100%;
 }
 
+
+@media (max-width: 768px) {
+    .nav{
+        
+    }
+
+    .col-l-1, .col-l-2, .col-l-3, .col-l-4, .col-l-5, .col-l-6, .col-l-7, .col-l-8, .col-l-9, .col-l-10, .col-l-11, .col-l-12{
+        width: 100%;
+    }
+
+    .banner .banner-pic img{
+        margin: 0 auto;
+        float: none;
+        width: auto;
+        max-width: 100%;
+    }
+    .banner .banner-dsp{
+        margin-top: 30px;
+        text-align: center !important;
+        border-color: transparent !important;
+    }
+}
