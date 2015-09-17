@@ -22,11 +22,6 @@ def index_function():
         else:
             return "Blog Not Found",404
 
-@common_module.route('/pricing',methods=['GET'])
-@require_base_domain
-def pricing_function():
-    return 'Pricing Page'
-
 @common_module.route('/feature',methods=['GET'])
 @require_base_domain
 def feature_function():

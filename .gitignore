@@ -21,6 +21,7 @@ var/
 *.egg-info/
 .installed.cfg
 fabfile.py
+test_fun.py
 *.egg
 
 # PyInstaller
