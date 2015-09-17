@@ -22,7 +22,6 @@ var/
 .installed.cfg
 fabfile.py
 test_fun.py
-config.py
 *.egg
 
 # PyInstaller

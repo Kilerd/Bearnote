@@ -22,23 +22,11 @@ MAIL_PASSWORD = 'pass4bearnote'
 
 
 # Mongodb Setting / MongoEngine
-try:
-    os.environ['MODE']
-except:
-
-    MONGODB_HOST = '127.0.0.1'
-    MONGODB_PORT = 27017
-    MONGODB_DB = 'bearnote'
-    #MONGODB_USERNAME = 'bearnote'
-    #MONGODB_PASSWORD = '8tz6g0k300XTnCPLjz3z'
-    
-else:
-    MONGODB_DB = os.environ['MONGODB_INSTANCE_NAME']
-    MONGODB_HOST = os.environ['MONGODB_PORT_27017_TCP_ADDR']
-    MONGODB_PORT = os.environ['MONGODB_PORT_27017_TCP_PORT']
-    MONGODB_USERNAME = os.environ['MONGODB_USERNAME']
-    MONGODB_PASSWORD = os.environ['MONGODB_PASSWORD']
-
+MONGODB_DB = os.environ.get('MONGODB_DB','bearnote')
+MONGODB_HOST = os.environ.get('MONGODB_HOST','127.0.0.1')
+MONGODB_PORT = os.environ.get('MONGODB_PORT',27017)
+MONGODB_USERNAME = os.environ.get('MONGODB_USERNAME','')
+MONGODB_PASSWORD = os.environ.get('MONGODB_PASSWORD','')
 
 # Unkown What it is.
 THREADS_PER_PAGE = 8
