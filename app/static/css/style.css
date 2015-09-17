@@ -55,7 +55,7 @@ a:hover{
     float: left;
     overflow: hidden;
     font-size: 15px;
-    margin: 15px 0 0 1px;
+    margin: 15px 0 0 10px;
 }
 .header .nav li{
     float: left;
@@ -666,15 +666,17 @@ a:hover{
     background-color: #fff;
     border: 1px solid #e2e2e2;
     border-radius: 3px;
+    overflow: hidden;
 
 }
 .article .article-header .title{
     font-size: 2em;
     font-weight: 100;
     float: left;
+    margin-right: 10px;
 }
 .article .article-header .subtitle{
-    margin: 15px 0 0 10px;
+    margin: 15px 0 0 0;
     font-size: 16px;
     color:#777;
     float: left;

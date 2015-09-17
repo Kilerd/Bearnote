@@ -25,14 +25,14 @@ def index_function():
 @common_module.route('/feature',methods=['GET'])
 @require_base_domain
 def feature_function():
-    return 'feature Page'
+    return render_template('common/feature.html')
 
 @common_module.route('/about',methods=['GET'])
 @require_base_domain
 def about_function():
-    return 'About Page'
+    return render_template('common/about.html')
 
 @common_module.route('/tos',methods=['GET'])
 @require_base_domain
 def tos_function():
-    return 'ToS Page'
+    return render_template('common/tos.html')

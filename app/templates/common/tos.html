@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}用户协议 - 小熊笔记{% endblock %}
+
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/typo.css') }}" />
+<script src="{{ url_for('static', filename='js/commonmark.min.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="article">
+        <div class="article-header">
+            <div class="title">用户协议</div>
+            <div class="subtitle">用户协议 Terms of Service</div>
+        </div>
+        <div class="article-content typo" id="article-content">## 概述<br />一、为了保持持续地为使用者提供优质的服务，并为争议提供依据，执行本“用户协议”<br />二、当注册 小熊笔记 时，必须同意该“用户协议”；当使用 小熊笔记 提供的任何服务，皆视为同意本“用户协议”。<br />三、用户使用 小熊笔记 提供服务的同时，也必须履行“用户协议”中规定的相关义务。<br />四、当用户与 小熊笔记 发生争议时，依照本“用户协议”解决。<br />五、 小熊笔记 默示保留对本“用户协议”的最终解释权。<br />六、当本“用户协议”修改时， 小熊笔记 会邮件通知所有用户并接受反馈，当7日内无异议则新用户协议生效，否则保留原用户协议。<br />## 用户权利<br />一、自用户注册起，享有 小熊笔记 中所有非付费功能。<br />二、用户付费后，在其正常使用期限内， 小熊笔记 保证服务的有效性、一致性。<br />三、用户在正常使用 小熊笔记 服务时，享有数据隐私和安全的权利。<br />## 用户义务<br />一、用户在使用 小熊笔记 提供服务或产品的过程中，不得实施违反中国法律的行为或发布违反中国法律的内容。<br />## 禁止用途<br />小熊笔记 及其所提供的服务仅用户合法用途。禁止任何违背中国宪法或普通法的对任何形式的信息、数据、资料进行传播、散布或存储的行为（包括但不仅限于受著作权、商标权、商业机密或其他知识产权法保护的信息资料）。小熊笔记 提供的服务不能以任何形式用于促进帮助违反上述法律。<br /> - 您必须同意，下列任何一项行为都构成禁止行为且会导致帐户被立即暂停或取消使用，没有任何资金偿还并不排除 小熊笔记 会征收费用，以及产生无预先通知地追究民事责任赔偿行为的可能性。<br /> - 发布淫秽色情等相关内容<br /> - 发布任何形式的带有欺诈，欺骗性质的内容，包含但不仅限于仿牌、钓鱼等性质的内容<br /> - 发布反动、与事实不符的政论等相关内容<br /> - 发布违反中华人民共和国社会主义道德的相关内容<br /> - 发布危害中华人民共和国国家安全与政治稳定的相关内容<br /> - 提供破解后的程序、破解补丁、破解方法<br /> - 提供含版权的图片、模板、音乐、视频、图书等<br /> - 提供含版权的图片、模板、音乐、视频、图书等的BT种子<br /> - 提供诱导、介绍他人犯罪方法的内容（包括传播自杀情绪等）<br /> - 散播木马或病毒<br /> - 发布关于架设私服以及与私服有关的内容<br /> - 发布架设外挂以及与外挂有关的内容<br /> - 发布架设博彩和赌博等一切相关的内容<br /> - 进行一切黑客活动，如在对其他站点 DDoS 等<br />## 服务期限<br />一、用户完成支付之日起，至用户申请退款、欠费、不续费、遗忘续费而被注销之日止，为 小熊笔记 对用户的服务期限。<br />二、在所有付费用户的服务期限内， 小熊笔记 不会终止提供正常服务。<br />三、若 小熊笔记 遭遇不可抗力因素，被迫中止服务时，会归还所有用户数据。<br />## 违约责任<br />当用户违反“用户义务”或“禁止用途”中任一一点， 小熊笔记 有权直接删除用户隐私与数据，并不提供任何形式赔偿。<br />## 其他<br />本“用户协议”最后修改于 2015-09-17</div>
+    </div>
+</div>
+{% endblock %}
+
+{% block jsruner %}
+
+<script>
+
+function html_decode(str)  
+{  
+  if (str.length == 0) return "";  
+  str = str.replace(/&lt;/g, "<");  
+  str = str.replace(/&gt;/g, ">");  
+  str = str.replace(/&nbsp;/g, " ");  
+  str = str.replace(/&#39;/g, "\'");  
+  str = str.replace(/&quot;/g, "\"");  
+  str = str.replace(/<br>/g, "\n");  
+  return str;  
+}
+var article_content = document.getElementById("article-content");
+var reader = new commonmark.Parser({sourcepos: true,safe:true});
+var writer = new commonmark.HtmlRenderer({sourcepos: true,safe:true});
+writer.softbreak = "<br />";
+var parsed = reader.parse(html_decode(article_content.innerHTML)); // parsed is a 'Node' tree
+
+var result = writer.render(parsed);
+article_content.innerHTML = result;
+
+
+</script>
+{% endblock %}

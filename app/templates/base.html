@@ -15,9 +15,10 @@
 </head>
 <body>
 <div class="header">
-    <a href="/" class="logo"></a>
+    <!--<a href="/" class="logo"></a>-->
     {% if 'user' in session %}
     <ul class="nav">
+        <li><a href="{{ url_for('common_module.index_function') }}">首页</a></li>
         <li><a href="{{ url_for('note_module.mynote_function') }}">我的笔记</a></li>
         <li><a href="{{ url_for('note_module.note_wall_function') }}">笔记墙</a></li>
 
@@ -33,6 +34,7 @@
     </div>
     {% else %}
     <ul class="nav">
+        <li><a href="{{ url_for('common_module.index_function') }}">首页</a></li>
         <li><a href="{{ url_for('note_module.note_wall_function') }}">笔记墙</a></li>
 
     </ul>
@@ -46,7 +48,7 @@
 <div class="footer">
     <p style="font-weight: 300;"><a href="{{ url_for('common_module.index_function') }}">首页</a><a href="{{ url_for('common_module.feature_function') }}">功能</a><a href="{{ url_for('common_module.tos_function') }}">用户协议</a><a href="{{ url_for('common_module.about_function') }}">关于我们</a></p>
     <p>只为更轻松地记笔记.</p>
-    <p>Copyright BearNote <a href="" >0.0.1</a> 2015-2016.</p>
+    <p>Copyright BearNote 2015-2016.</p>
 
 </div>
 </body>
