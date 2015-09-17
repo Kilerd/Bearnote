@@ -36,14 +36,8 @@
                 {{ note_edit_form.content(placeholder="笔记正文",id="note") }}
             </div>
             <div class="row">
-                <div class="col-l-6">
-                    {{ note_edit_form.public.label }}
-                    {{ note_edit_form.public() }} <a href="{{ url_for('sign_module.setting_function',setcate="publicsetting") }}">设置分类</a>
-                </div>
-                <div class="col-l-6">
-                    {{ note_edit_form.blog.label }}
-                    {{ note_edit_form.blog() }} <a href="#">设置分类</a>
-                </div>
+                {{ note_edit_form.public.label }}
+                {{ note_edit_form.public() }} <a href="{{ url_for('sign_module.setting_function',setcate="publicsetting") }}">设置分类</a>
             </div>
             <div class="row">
             {{ note_edit_form.tag(placeholder="标签 , 用半角 , 分割") }}

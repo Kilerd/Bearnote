@@ -9,5 +9,4 @@ class NoteForm(Form):
     subtitle = StringField(u"副标题")
     content = TextAreaField(u"正文",validators=[])
     public = SelectField(u'公开状态',choices=[])
-    blog = SelectField(u'推送至博客',choices=[('aim', 'AIM'), ('msn', 'MSN')])
     tag = StringField()

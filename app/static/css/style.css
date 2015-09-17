@@ -276,6 +276,7 @@ a:hover{
 }
 .postform h2{
     font-weight: 300;
+    line-height: 1em;
     font-size: 30px;
     padding: 10px 0;
     border-bottom: 1px dashed rgba(225,59,47,0.25);
@@ -959,5 +960,14 @@ a:hover{
         margin-top: 30px;
         text-align: center !important;
         border-color: transparent !important;
+    }
+    .col-offset-1, .col-offset-2, .col-offset-3, .col-offset-4, .col-offset-6, .col-offset-7, .col-offset-8, .col-offset-9, .col-offset-10, .col-offset-11, .col-offset-12{
+        margin-left: 0px;
+    }
+    .postform{
+        padding: 30px 10px;
+    }
+    .note-editor{
+        padding: 10px;
     }
 }
