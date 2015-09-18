@@ -1,15 +1,15 @@
 @font-face {
 	font-family: 'noteeditor';
-	src:url('fonts/noteeditor.eot?-ba2xz4');
-	src:url('fonts/noteeditor.eot?#iefix-ba2xz4') format('embedded-opentype'),
-		url('fonts/noteeditor.ttf?-ba2xz4') format('truetype'),
-		url('fonts/noteeditor.woff?-ba2xz4') format('woff'),
-		url('fonts/noteeditor.svg?-ba2xz4#noteeditor') format('svg');
+	src:url('fonts/noteeditor.eot?jenkgs');
+	src:url('fonts/noteeditor.eot?#iefixjenkgs') format('embedded-opentype'),
+		url('fonts/noteeditor.ttf?jenkgs') format('truetype'),
+		url('fonts/noteeditor.woff?jenkgs') format('woff'),
+		url('fonts/noteeditor.svg?jenkgs#noteeditor') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
-.icon {
+.fa {
 	font-family: 'noteeditor';
 	speak: none;
 	font-style: normal;
@@ -23,45 +23,48 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.icon-ne-image:before {
+.fa-picture-o:before {
 	content: "\e600";
 }
-.icon-ne-quotes:before {
+.fa-quote-left:before {
 	content: "\e601";
 }
-.icon-ne-enlarge:before {
+.fa-arrows-alt:before {
 	content: "\e602";
 }
-.icon-ne-list-numbered:before {
+.fa-list-ol:before {
 	content: "\e603";
 }
-.icon-ne-list:before {
+.fa-list-ul:before {
 	content: "\e604";
 }
-.icon-ne-link:before {
+.fa-link:before {
 	content: "\e605";
 }
-.icon-ne-preview:before {
+.fa-eye:before {
 	content: "\e606";
 }
-.icon-ne-help:before {
+.fa-question-circle:before {
 	content: "\e607";
 }
-.icon-ne-heading:before {
+.fa-header:before {
 	content: "\e608";
 }
-.icon-ne-bold:before {
+.fa-bold:before {
 	content: "\e609";
 }
-.icon-ne-italic:before {
+.fa-italic:before {
 	content: "\e60a";
 }
-.icon-ne-strikethrough:before {
+.fa-strikethrough:before {
 	content: "\e60b";
 }
-.icon-ne-page-break:before {
+.fa-minus:before {
 	content: "\e60d";
 }
-.icon-ne-code:before {
+.fa-code:before {
 	content: "\e60c";
+}
+.fa-columns:before {
+	content: "\e60e";
 }
