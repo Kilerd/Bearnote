@@ -28,7 +28,6 @@ def note_new_function():
             public_status = '0'
             public_cate = None
 
-        print note_new_form.content.data
         Note(
             noteid=getnextseq(),
             title=note_new_form.title.data,
@@ -99,7 +98,6 @@ def one_note_function(noteid):
         this_note = Note.objects(noteid=noteid).first()
         this_note.belong.email_md5 = common.md5_encrypt(this_note.belong.email)
 
-        print type(this_note.public_status)
         if this_note.public_status == NOTECONSTANTS.PRIVATE:
             
             if 'user' in session:
