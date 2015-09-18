@@ -17,6 +17,7 @@ sign_module = Blueprint('sign_module',__name__)
 @require_base_domain
 @require_login
 def me_function():
+    return redirect(url_for('note_module.mynote_function'))
     #mail_send(subject = 'login',recipients = ['544372225@qq.com'],text_body = 'welcome back')
     return render_template('users/me.html')
 
