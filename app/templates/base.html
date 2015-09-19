@@ -16,7 +16,7 @@
 <body>
 <div class="header">
     <!--<a href="/" class="logo"></a>-->
-    <div style="max-width:1500px;">
+    <div style="max-width:960px;margin:0 auto;">
         {% if 'user' in session %}
         <ul class="nav">
             <li><a href="{{ url_for('common_module.index_function') }}">首页</a></li>
@@ -25,13 +25,15 @@
 
         </ul>
         <div class="right-pic">
-            <a><img src="https://cdn.v2ex.com/gravatar/{{ session['user']['email_md5'] }}?s=48&d=retro"></a>
-            <ul class="droplist">
-                <li><a href="{{ url_for('note_module.mynote_function') }}">笔记</a></li>
-                <li><a href="{{ url_for('sign_module.setting_function',setcate='account') }}">设置</a></li>
-                <hr />
-                <li><a href="{{ url_for('sign_module.logout_function') }}">登出</a></li>
-            </ul>
+            <div class="img">
+                <img src="https://cdn.v2ex.com/gravatar/{{ session['user']['email_md5'] }}?s=38&d=retro">
+                <ul class="droplist">
+                    <li><a href="{{ url_for('note_module.mynote_function') }}">笔记</a></li>
+                    <li><a href="{{ url_for('sign_module.setting_function',setcate='account') }}">设置</a></li>
+                    <hr />
+                    <li><a href="{{ url_for('sign_module.logout_function') }}">登出</a></li>
+                </ul>
+            </div>
         </div>
         {% else %}
         <ul class="nav">

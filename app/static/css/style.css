@@ -15,12 +15,12 @@
 }
 
 body{
-    background-color: #F9F9F9;
-    margin: 0 auto;
+    background-color: #f6f6f6;
+    margin: 0;
 }
 
 html{
-    margin: 0 auto;
+    margin: 0;
 }
 a{
     color: #000;
@@ -32,11 +32,11 @@ a:hover{
 }
 
 .header{
-    margin: 0 auto;
-    height: 60px;
+    margin: 0;
+    height: 50px;
     width: 100%;
     background-color: rgba(255,255,255,0.85);
-    padding: 0 5px;
+
     /*position: fixed;
     top:0;
     z-index:999;*/
@@ -66,7 +66,7 @@ a:hover{
     display: block;
     text-decoration: none;
     color: rgba(0,0,0,1);
-    padding: 20px 7px 18px 7px;
+    padding: 15px 7px 13px 7px;
 }
 .header .nav li a:hover{
     color: rgba(0,0,0,0.75);
@@ -77,10 +77,8 @@ a:hover{
 }
 
 .header .right-nav{
-    padding-top: 12px;
-
     float: right;
-    height: 60px;
+    height: 50px;
     overflow: hidden;
 
 }
@@ -114,25 +112,27 @@ a:hover{
 .header .right-pic .droplist{
     font-size: 15px;
     background-color: #fff;
-    display:none;
-    position:absolute;
-    right: 0;
-    top:43px;
+    display: none;
+    width: 100px;
+    margin-left: -57px;
+    padding: 10px;
+    position: absolute;
+    top: 30px;
     list-style: none;
     text-align: center;
-}
-
-.header .right-pic:hover .droplist{
-    padding: 10px;
-    display:block;
     border: 1px solid #e2e2e2;
     border-radius: 3px;
 }
-.header .right-pic:hover .droplist li a {
+
+.header .right-pic:hover .droplist{
+    display:block;
+
+}
+.header .right-pic .droplist li a {
     padding: 5px 15px;
     display:block;
 }
-.header .right-pic:hover .droplist hr {
+.header .right-pic .droplist hr {
     border: 0;
     height: 1px;
     padding: 0;
@@ -140,13 +140,13 @@ a:hover{
     border-bottom: 1px dashed rgba(0,0,0,0.25);
 }
 
-.header .right-pic img{
+.header .right-pic .img img{
     border-radius: 3px;
     box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 0.7), 0px 0px 3px 2px rgba(225,59,47,0.75);
 }
 
 .content{
-   clear: both;
+    clear: both;
     padding: 0 5px;
     max-width: 960px;
     min-height: 470px;
