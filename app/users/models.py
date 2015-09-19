@@ -14,7 +14,7 @@ class User(db.DynamicDocument):
 
 class Blog(db.DynamicDocument):
     name = db.StringField(max_length=20,required=True)
-    description = db.StringField(max_length=80,required=True)
+    descriptions = db.StringField(max_length=80,required=True)
     keyword = db.StringField()
     domain = db.ListField(required=True)
     belong = db.ReferenceField(User)

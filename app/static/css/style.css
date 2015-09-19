@@ -55,20 +55,25 @@ a:hover{
     float: left;
     overflow: hidden;
     font-size: 15px;
-    margin: 15px 0 0 10px;
+    margin: 0 0 0 10px;
 }
 .header .nav li{
     float: left;
     list-style: none;
+    margin: 0px 1px;
 }
 .header .nav li a{
     display: block;
     text-decoration: none;
     color: rgba(0,0,0,1);
-    padding: 5px 7px;
+    padding: 20px 7px 18px 7px;
 }
 .header .nav li a:hover{
-    color: rgba(0,0,0,0.5);
+    color: rgba(0,0,0,0.75);
+    border-bottom: 2px solid #e13b2f;
+}
+.header .nav li .ative{
+    border-bottom: 2px solid #e13b2f;
 }
 
 .header .right-nav{
@@ -149,12 +154,7 @@ a:hover{
     overflow: hidden;
     margin: 0 auto;
 }
-.content-full{
-    margin-top: 60px; 
-    width: 100%;
-    min-height: 70%;
-    height: 100%;
-}
+
 
 
 .content .content-header{
@@ -620,7 +620,7 @@ a:hover{
     color: #999;
     font-weight: 300;
     font-size: 14px;
-    margin: 35px 0 0 0;
+    margin: 35px 0 5px 0;
 }
 .note-list .one-note li .inf .public{
     font-size: 0.7em;

@@ -405,7 +405,7 @@ def setting_function(setcate):
             this_user_blog = Blog.objects(belong = User.objects(email=session['user']['email']).first()).first()
             if this_user_blog != None:
                 blogform.name.data = this_user_blog.name
-                blogform.description.data = this_user_blog.description
+                blogform.descriptions.data = this_user_blog.descriptions
                 blogform.key.data = this_user_blog.keyword
                 blogform.domain.data = ','.join(this_user_blog.domain)
         elif request.method == 'POST':
@@ -420,13 +420,13 @@ def setting_function(setcate):
                     if Blog.objects(belong = User.objects(email=session['user']['email']).first()).count() == 1:
                         this_user_blog = Blog.objects(belong = User.objects(email=session['user']['email']).first()).first()
                         this_user_blog.name = blogform.name.data
-                        this_user_blog.description = blogform.description.data
+                        this_user_blog.descriptions = blogform.descriptions.data
                         this_user_blog.keyword = blogform.key.data
                         this_user_blog.domain = blogform.domain.data.lower().split(',')
                         this_user_blog.save()
                     else:
                         Blog(name = blogform.name.data,
-                            description = blogform.description.data,
+                            descriptions = blogform.descriptions.data,
                             keyword = blogform.key.data,
                             domain = all_domain,
                             belong = User.objects(email=session['user']['email']).first()

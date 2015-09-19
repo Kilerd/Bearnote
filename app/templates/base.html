@@ -16,32 +16,34 @@
 <body>
 <div class="header">
     <!--<a href="/" class="logo"></a>-->
-    {% if 'user' in session %}
-    <ul class="nav">
-        <li><a href="{{ url_for('common_module.index_function') }}">首页</a></li>
-        <li><a href="{{ url_for('note_module.mynote_function') }}">我的笔记</a></li>
-        <li><a href="{{ url_for('note_module.note_wall_function') }}">笔记墙</a></li>
+    <div style="max-width:1500px;">
+        {% if 'user' in session %}
+        <ul class="nav">
+            <li><a href="{{ url_for('common_module.index_function') }}">首页</a></li>
+            <li><a href="{{ url_for('note_module.mynote_function') }}">我的笔记</a></li>
+            <li><a href="{{ url_for('note_module.note_wall_function') }}">笔记墙</a></li>
 
-    </ul>
-    <div class="right-pic">
-        <a><img src="https://cdn.v2ex.com/gravatar/{{ session['user']['email_md5'] }}?s=48&d=retro"></a>
-        <ul class="droplist">
-            <li><a href="{{ url_for('note_module.mynote_function') }}">笔记</a></li>
-            <li><a href="{{ url_for('sign_module.setting_function',setcate='account') }}">设置</a></li>
-            <hr />
-            <li><a href="{{ url_for('sign_module.logout_function') }}">登出</a></li>
         </ul>
-    </div>
-    {% else %}
-    <ul class="nav">
-        <li><a href="{{ url_for('common_module.index_function') }}">首页</a></li>
-        <li><a href="{{ url_for('note_module.note_wall_function') }}">笔记墙</a></li>
+        <div class="right-pic">
+            <a><img src="https://cdn.v2ex.com/gravatar/{{ session['user']['email_md5'] }}?s=48&d=retro"></a>
+            <ul class="droplist">
+                <li><a href="{{ url_for('note_module.mynote_function') }}">笔记</a></li>
+                <li><a href="{{ url_for('sign_module.setting_function',setcate='account') }}">设置</a></li>
+                <hr />
+                <li><a href="{{ url_for('sign_module.logout_function') }}">登出</a></li>
+            </ul>
+        </div>
+        {% else %}
+        <ul class="nav">
+            <li><a href="{{ url_for('common_module.index_function') }}">首页</a></li>
+            <li><a href="{{ url_for('note_module.note_wall_function') }}">笔记墙</a></li>
 
-    </ul>
-    <div class="right-nav">
-        <a href="{{ url_for('sign_module.login_function') }}">登录</a>
+        </ul>
+        <div class="right-nav">
+            <a href="{{ url_for('sign_module.login_function') }}">登录</a>
+        </div>
+        {% endif %}
     </div>
-    {% endif %}
 </div>
 {% block content %}
 {% endblock %}
