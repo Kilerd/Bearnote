@@ -47,7 +47,7 @@ def login_function():
                 this_user = User.objects(
                     email=login.email.data,
                     ).first()
-                
+                session.permanent = True
                 session['user'] = {
                     "username" : this_user.username,
                     "email" : this_user.email,
@@ -97,7 +97,10 @@ def register_function():
                         _username = register.username.data.lower()
                         ).save()
                     # Register Email
-                    # mail_send(subject = 'login',recipients = [login.email.data],text_body = 'welcome back')
+                    mail_send(subject = '恭喜你，小熊笔记账号注册成功！',
+                        recipients = [register.email.data.lower()],
+                        html_body = render_template('mail/user_register.html',
+                            user={"name":register.username.data,"email":register.email.data.lower()}))
 
                     flash(u"注册成功，请登录吧，亲")
                     return redirect(url_for('sign_module.login_function'))
@@ -147,6 +150,11 @@ def forgetpassword_function():
                         'time': int(time.time())
                     }
                     this_user.save()
+                    mail_send(subject = '你好，小熊笔记发来重置密码的密钥串',
+                        recipients = [this_user.email],
+                        html_body = render_template('mail/user_forgetpassword.html',
+                            user={"name":this_user.username,"fstring":forgetstring}))
+
                     flash(u"已发送密码重置邮件，请前往邮箱查收。邮件一小时内有效")
                     return redirect(url_for('sign_module.forgetpassword_function'))
 
@@ -161,12 +169,22 @@ def forgetpassword_function():
                         }
                         this_user.save()
                         # send mail
+                        mail_send(subject = '你好，小熊笔记发来重置密码的密钥串',
+                            recipients = [this_user.email],
+                            html_body = render_template('mail/user_forgetpassword.html',
+                                user={"name":this_user.username,"fstring":forgetstring}))
+
                         flash(u"原密码重置邮件已失效，已重新生成并发送密码重置邮件，请前往邮箱查收")
                         return redirect(url_for('sign_module.forgetpassword_function'))
                     elif (now_time - int(this_user.forget['time']) < 3600) and (now_time - int(this_user.forget['time']) > 60):
                         #send mail
                         this_user.forget['time'] = now_time
                         this_user.save()
+                        mail_send(subject = '你好，小熊笔记发来重置密码的密钥串',
+                            recipients = [this_user.email],
+                            html_body = render_template('mail/user_forgetpassword.html',
+                                user={"name":this_user.username,"fstring":this_user.forget.string}))
+
                         flash(u"密码重置邮件已重新发送")
                         return redirect(url_for('sign_module.forgetpassword_function'))
                     elif now_time - int(this_user.forget['time']) < 60:
@@ -187,7 +205,8 @@ def forgetpassword_function():
 @require_base_domain
 @require_not_login
 def resetpassword_function():
-    resetform = ResetPswForm()
+    forgetstring = request.args.get('forgetstring', '')
+    resetform = ResetPswForm(forgetstring=forgetstring)
     reset_check = UserCheck()
     if request.method == 'POST':
         if resetform.validate_on_submit():

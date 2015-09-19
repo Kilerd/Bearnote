@@ -19,6 +19,7 @@ MAIL_USE_TLS = False
 MAIL_USE_SSL = True
 MAIL_USERNAME = 'notice@bearnote.com'
 MAIL_PASSWORD = 'pass4bearnote'
+MAIL_DEBUG = False
 
 
 # Mongodb Setting / MongoEngine

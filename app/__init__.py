@@ -2,7 +2,7 @@
 import os
 import sys
 
-from flask import Flask, render_template
+from flask import Flask, render_template,session
 from flask.ext.mongoengine import MongoEngine
 from flask.ext.mail import Mail
 
@@ -11,7 +11,6 @@ app.config.from_object('config')
 
 db = MongoEngine(app)
 mail = Mail(app)
-
 ########################
 # Configure Secret Key #
 ########################
