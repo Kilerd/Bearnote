@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}新笔记 - 小熊笔记{% endblock %}
+{% block title %}{{ this_note.title }} - 小熊笔记{% endblock %}
 
 {% block header %}
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/typo.css') }}" />

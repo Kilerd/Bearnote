@@ -25,7 +25,9 @@
             <div class="subtitle">{{ one_note.subtitle }}</div>
             {% endif %}
             <div class="inf">
-                {{ one_note.time.strftime('%Y-%m-%d') }} {{ one_note.belong.username }}
+                
+                {{ one_note.time.strftime('%Y-%m-%d') }}
+                <a href="" class="public">{{ one_note.belong.username }}/{{ one_note.public_cate.name }}</a>
             </div>
             </li>
         
