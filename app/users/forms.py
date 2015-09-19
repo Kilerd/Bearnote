@@ -40,7 +40,7 @@ class ResetPswForm(Form):
 # Form For Setting
 
 class SettingAccountForm(Form):
-    description = StringField(u'个人介绍',validators=[Length(0,160)])
+    descriptions = StringField(u'个人介绍',validators=[Length(0,160)])
 
 class SettingResetPasswordForm(Form):
     beforepassword = PasswordField(u'原密码',validators=[DataRequired(),Length(6,18),InputRequired()])

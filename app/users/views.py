@@ -249,11 +249,11 @@ def setting_redirect_function():
 @require_login
 def setting_function(setcate):
     def account():
-        description_form = SettingAccountForm(description = session['user']['description'])
+        description_form = SettingAccountForm(descriptions = session['user']['description'])
         if request.method == 'POST':
             if description_form.validate_on_submit():
                 this_user = User.objects(email=session['user']['email']).first()
-                this_user.description = description_form.description.data
+                this_user.description = description_form.descriptions.data
                 this_user.save()
                 flash(u"个人介绍修改成功。")
                 session['user']['description'] = description_form.description.data

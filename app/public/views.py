@@ -5,10 +5,10 @@ public_module = Blueprint('public_module',__name__)
 
 
 @public_module.route('/member/<string:username>',methods=['GET'])
-def member_page_function(username):
+def member_page_function(username = "admin"):
     if User.objects(_username = username.lower()).count() == 1:
         this_user = User.objects(_username=username.lower()).first()
 
         return this_user.username
     else:
-        return 'Member not found',404
+        return 'Member not found'
