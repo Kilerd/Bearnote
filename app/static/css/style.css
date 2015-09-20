@@ -15,7 +15,7 @@
 }
 
 body{
-    background-color: #f6f6f6;
+    background-color: #fff;
     margin: 0;
 }
 
@@ -113,15 +113,15 @@ a:hover{
     font-size: 15px;
     background-color: #fff;
     display: none;
-    width: 100px;
-    margin-left: -57px;
+    width: 80px;
+    margin-left: -37px;
     padding: 10px;
     position: absolute;
-    top: 30px;
+    top: 31px;
     list-style: none;
     text-align: center;
     border: 1px solid #e2e2e2;
-    border-radius: 3px;
+    border-radius: 2px;
 }
 
 .header .right-pic:hover .droplist{
@@ -129,7 +129,7 @@ a:hover{
 
 }
 .header .right-pic .droplist li a {
-    padding: 5px 15px;
+    padding: 5px 5px;
     display:block;
 }
 .header .right-pic .droplist hr {
@@ -159,24 +159,22 @@ a:hover{
 
 .content .content-header{
     display: block;
-    width: 100%;
-    margin: 30px 0;
-    padding: 20px;
-    background-color: #fff;
+    margin: 10px 10px;
+    padding: 20px 0;
     /*box-shadow:1px 1px 1px 0 rgba(0,0,0,0.25);*/
-    border: 1px solid #e2e2e2;
-    border-radius: 3px;
+    border-bottom: 1px solid #eee;
     overflow: hidden;
 }
 .content .content-header h1{
     float: left;
     font-weight: 300;
+    font-size: 25px;
     margin: 0 auto;
 
 }
 .content .content-header h1 span{
     margin-left: 15px;
-    font-size: 0.5em;
+    font-size: 0.65em;
     font-weight: 300;
 }
 
@@ -594,24 +592,22 @@ a:hover{
     margin-bottom: 30px;
 }
 .note-list .one-note li{
-    margin: 5px 0;
-    padding: 10px 20px 5px 20px;
-    background-color: #fff;
-    /*box-shadow:1px 1px 1px 0 rgba(0,0,0,0.25);*/
-    border: 1px solid #e2e2e2;
-    border-radius: 3px;
+    margin: 5px 10px;
+    padding: 10px 0;
+    border-bottom: 1px dashed #ddd;
     list-style: none;
 }
 .note-list .one-note li .title{
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 100;
     float: left;
+    margin-right: 10px;
 }
 
 .note-list .one-note li .subtitle{
     color: #999;
-    font-size: 15px;
-    margin: 8px 0 0 10px;
+    font-size: 14px;
+    margin: 4px 0 0 0;
     font-weight: 300;
     float: left;
 }
@@ -619,32 +615,32 @@ a:hover{
     clear: both;
     color: #999;
     font-weight: 300;
-    font-size: 14px;
-    margin: 35px 0 5px 0;
+    font-size: 13px;
+    margin: 26px 0 5px 0;
+    height: 17px;
 }
 .note-list .one-note li .inf .public{
     font-size: 0.7em;
     color:#fff;
-    background-color: #2e6da4;
+    background-color: rgba(47,107,164,0.85);
     padding: 2px 5px;
     margin: 5px;
     border-radius: 3px;
 }
-.note-list .one-note li .inf .blog{
-    font-size: 11px;
-    color:#fff;
-    background-color: rgba(225,59,47,0.7);
-    padding: 5px;
-    margin: 5px;
-    border-radius: 3px;
-}
 .note-list .one-note li .inf .action{
-    font-size: 14px;
+    font-size: 12px;
+
     display: none;
 }
 
 .note-list .one-note li:hover .inf .action{
     display: inline;
+}
+.note-list .one-note li .contents{
+    clear: both;
+    line-height: 1.5em;
+    font-weight: 400;
+    padding:10px 0 10px 0;
 }
 
 /* Page Info */
@@ -661,24 +657,23 @@ a:hover{
     margin-top: 30px;
 }
 .article .article-header{
+    margin: 0 10px;
     padding-bottom: 5px;
     /*border-bottom: 1px solid #eee;*/
-    padding: 10px 20px;
-    background-color: #fff;
-    border: 1px solid #e2e2e2;
-    border-radius: 3px;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
     overflow: hidden;
 
 }
 .article .article-header .title{
-    font-size: 2em;
+    font-size: 25px;
     font-weight: 100;
     float: left;
     margin-right: 10px;
 }
 .article .article-header .subtitle{
-    margin: 15px 0 0 0;
-    font-size: 16px;
+    margin: 7px 0 0 0;
+    font-size: 17px;
     color:#777;
     float: left;
 }
@@ -686,7 +681,7 @@ a:hover{
     clear: both;
     color:#999;
     padding-top: 5px;
-    font-size: 15px;
+    font-size: 14px;
 }
 .article .article-header .information .action{
     color:#999;
@@ -694,20 +689,15 @@ a:hover{
 }
 
 .article .article-content{
-    margin: 20px 0;
     padding: 20px;
-    background-color: #fff;
-    border: 1px solid #e2e2e2;
     border-radius: 3px;
 }
 .article .article-author{
 
-    margin: 20px 0;
-    padding: 10px 20px;
+    margin: 10px;
+    padding: 10px;
     overflow: hidden;
-    background-color: #fff;
-    border: 1px solid #e2e2e2;
-    border-radius: 3px;
+    border-top: 1px solid #eee;
 }
 .article .article-author img{
     float: left;

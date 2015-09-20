@@ -24,11 +24,16 @@
             {% if one_note.subtitle %}
             <div class="subtitle">{{ one_note.subtitle }}</div>
             {% endif %}
-            <div class="inf">{{ one_note.time.strftime('%Y-%m-%d') }}
-            {% if one_note.public_status %}
-            <span class="public">{{ one_note.public_cate.name }}</span>
-            {% endif %}
-            <span class="action" style="float:right;"><a href="{{ url_for('note_module.note_edit_function',noteid=one_note.noteid) }}">修改</a> <a href="{{ url_for('note_module.note_delete_function',noteid=one_note.noteid) }}">删除</a></span></div>
+            <div class="inf">
+                {{ one_note.time.strftime('%Y-%m-%d') }}
+                {% if one_note.public_status %}
+                <span class="public">{{ one_note.public_cate.name }}</span>
+                {% endif %}
+                <span class="action"><a href="{{ url_for('note_module.note_edit_function',noteid=one_note.noteid) }}">修改</a> <a href="{{ url_for('note_module.note_delete_function',noteid=one_note.noteid) }}">删除</a></span>
+            </div>
+            <div class="contents">
+                {{ one_note.content[:160] }}...
+            </div>
             </li>
         
             {% endfor %}
