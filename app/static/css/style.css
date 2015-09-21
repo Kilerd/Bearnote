@@ -77,15 +77,17 @@ a:hover{
 }
 
 .header .right-nav{
+    margin: 8px 3px 0 0;
     float: right;
     height: 50px;
     overflow: hidden;
 
 }
 .header .right-nav a{
+    display: block;
     font-size: 15px;
-    line-height: 2.5em;
-    padding: 10px 20px !important;
+    line-height: 1em;
+    padding: 10px 20px;
     color: #000;
     text-decoration: none;
     border-radius: 3px;
