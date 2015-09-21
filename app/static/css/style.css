@@ -66,11 +66,11 @@ a:hover{
     display: block;
     text-decoration: none;
     color: rgba(0,0,0,1);
-    padding: 15px 7px 13px 7px;
+    padding: 15px 10px 13px 10px;
 }
 .header .nav li a:hover{
     color: rgba(0,0,0,0.75);
-    border-bottom: 2px solid #e13b2f;
+    border-top: 2px solid #e13b2f;
 }
 .header .nav li .ative{
     border-bottom: 2px solid #e13b2f;
@@ -113,8 +113,8 @@ a:hover{
     font-size: 15px;
     background-color: #fff;
     display: none;
-    width: 80px;
-    margin-left: -37px;
+    width: 90px;
+    margin-left: -45px;
     padding: 10px;
     position: absolute;
     top: 31px;
@@ -129,7 +129,7 @@ a:hover{
 
 }
 .header .right-pic .droplist li a {
-    padding: 5px 5px;
+    padding: 5px 0;
     display:block;
 }
 .header .right-pic .droplist hr {
@@ -616,7 +616,7 @@ a:hover{
     color: #999;
     font-weight: 300;
     font-size: 13px;
-    margin: 26px 0 5px 0;
+    margin: 30px 0 5px 0;
     height: 17px;
 }
 .note-list .one-note li .inf .public{
