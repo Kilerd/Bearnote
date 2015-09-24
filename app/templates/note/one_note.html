@@ -37,6 +37,7 @@
                 {% endif %}
             </div>
         </div>
+
         <div class="comment-list">
           <h3>评论列表</h3>
           {% for one_comment in all_comment %}
@@ -49,6 +50,7 @@
                 </div>
           {% endfor %}
         </div>
+        {% if 'user' in session %}
         <div class="comment-post">
             <h3>提交一条新评论 <span>{{ session['user']['username'] }}</span></h3>
             <form method="POST">
@@ -57,6 +59,9 @@
                 <button class="button">提交</button>
             </form>
         </div>
+        {% else %}
+
+        {% endif %}
         {% endif %}
     </div>
 </div>
