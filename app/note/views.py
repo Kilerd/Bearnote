@@ -3,10 +3,10 @@ from flask import Blueprint, render_template,request,redirect,flash,url_for,sess
 from app.note.models import *
 from app.users.decorators import require_login
 from app.users.models import User
-from app.note.forms import NoteForm
+from app.note.forms import NoteForm, CommentForm
 from app.note import constants as NOTECONSTANTS
 from app.note.lib import getnextseq
-from app.lib.common import CommonClass
+from app.lib import common
 from app.common.decorators import require_base_domain
 
 note_module = Blueprint('note_module',__name__)
@@ -88,28 +88,41 @@ def note_wall_function():
 
 
 
-@note_module.route("/note/<int:noteid>",methods=['GET'])
+@note_module.route("/note/<int:noteid>",methods=['GET','POST'])
 def one_note_function(noteid):
     if Note.objects(noteid=noteid).count() == 0:
         flash(u"找不到这篇文章，不要乱来了。")
         return redirect(url_for('note_module.note_wall_function'))
     else:
-        common = CommonClass()
         this_note = Note.objects(noteid=noteid).first()
         this_note.belong.email_md5 = common.md5_encrypt(this_note.belong.email)
-
+        comment = CommentForm()
+        if request.method == 'POST':
+            if this_note.public_status == NOTECONSTANTS.PRIVATE:
+                flash(u"该笔记为私有笔记，无法评论。")
+                return redirect(url_for('note_module.note_wall_function'))
+            if comment.validate_on_submit():
+                Comment(content = comment.content.data,
+                    noteid = noteid,
+                    belong = User.objects(email = session['user']['email']).first()).save()
+                return redirect(url_for('note_module.one_note_function',noteid=noteid))
+        
         if this_note.public_status == NOTECONSTANTS.PRIVATE:
             
             if 'user' in session:
                 if this_note.belong.email != session['user']['email']:
+                    flash(u"无权限查看他人的私有笔记。")
                     return redirect(url_for('note_module.mynote_function'))
             else:
                 flash(u"你想查看的笔记为私有笔记，无权限查看。")
                 return redirect(url_for('note_module.note_wall_function'))
 
-        this_note.content.replace("&lt;","<")
-        this_note.content.replace("&gt;",">")
-        return render_template('/note/one_note.html',this_note=this_note)
+        all_comment = Comment.objects(noteid = noteid)
+        all_comment_ = []
+        for one_comment in all_comment:
+            one_comment.belong.email_md5 = common.md5_encrypt(one_comment.belong.email)
+            all_comment_.append(one_comment)
+        return render_template('/note/one_note.html',this_note=this_note, comment=comment, all_comment=all_comment_)
 
 
 @note_module.route("/note/edit/<int:noteid>",methods=['GET','POST'])

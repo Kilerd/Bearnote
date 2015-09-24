@@ -27,6 +27,7 @@
         <div class="article-content typo" id="article-content">{{ this_note.content }}</div>
         {% if this_note.public_status == 1 %}
         <div class="article-author">
+            <h3>作者信息</h3>
             <img src="https://cdn.v2ex.com/gravatar/{{ this_note.belong.email_md5 }}?s=64&d=retro" class="article-author-gravator">
             <div class="article-author-information">
                 <div class="article-author-author">{{ this_note.belong.username }}</div>
@@ -35,6 +36,26 @@
                 <div class="article-author-description">{{ this_note.belong.description }}</div>
                 {% endif %}
             </div>
+        </div>
+        <div class="comment-list">
+          <h3>评论列表</h3>
+          {% for one_comment in all_comment %}
+              <div class="one-comment">
+                <div class="one-comment-img"><img src="https://cdn.v2ex.com/gravatar/{{one_comment.belong.email_md5}}?s=42&d=retro"></div>
+                <div class="one-comment-content">
+                  {{one_comment.content}}
+                  <div class="one-comment-content-inf">{{one_comment.belong.username}} / {{one_comment.belong.email}} / {{ one_comment.time.strftime('%Y-%m-%d') }}</div>
+                 </div>
+                </div>
+          {% endfor %}
+        </div>
+        <div class="comment-post">
+            <h3>提交一条新评论 <span>{{ session['user']['username'] }}</span></h3>
+            <form method="POST">
+                {{ comment.csrf_token }}
+                {{ comment.content(class="input comment",placeholder="评论内容") }}
+                <button class="button">提交</button>
+            </form>
         </div>
         {% endif %}
     </div>

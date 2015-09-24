@@ -5,7 +5,7 @@ from app.users.forms import *
 from app.users.decorators import require_login,require_not_login
 from app.users.lib import UserCheck
 from app.lib.mail import mail_send
-from app.lib.common import CommonClass
+from app.lib import common
 from app.note.models import NoteCate,Note
 from app.note import constants as NOTECONSTANTS
 from app.common.decorators import *
@@ -28,7 +28,6 @@ def me_function():
 def login_function():
     login = LoginForm()
     login_check = UserCheck()
-    user_md5 = CommonClass()
     if request.method=='POST':
     #POST
         if login.validate_on_submit():
@@ -51,7 +50,7 @@ def login_function():
                 session['user'] = {
                     "username" : this_user.username,
                     "email" : this_user.email,
-                    "email_md5" : user_md5.md5_encrypt(login.email.data),
+                    "email_md5" : common.md5_encrypt(login.email.data),
                     "status" : this_user.status,
                     "role" : this_user.role,
                     "description" : this_user.description

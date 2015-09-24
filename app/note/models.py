@@ -42,3 +42,9 @@ class Mood(db.DynamicDocument):
     belong = db.StringField(required=True)
 
 
+
+class Comment(db.DynamicDocument):
+    content = db.StringField(required=True)
+    noteid = db.IntField(required=True)
+    time = db.DateTimeField(default=datetime.now(),required=True)
+    belong = db.ReferenceField(User)

@@ -1,10 +1,10 @@
 import hashlib
 from flask import request
-class CommonClass:
-    def md5_encrypt(self,string):
-        md5 = hashlib.md5()
-        md5.update(str(string))
-        return md5.hexdigest()
+
+def md5_encrypt(string):
+    md5 = hashlib.md5()
+    md5.update(str(string))
+    return md5.hexdigest()
 
 
 

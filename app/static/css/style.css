@@ -706,6 +706,11 @@ a:hover{
     border-radius: 5px;
     border: 2px solid #fff;
 }
+.article .article-author h3{
+    font-weight: 400;
+    margin: 10px 0;
+    padding: 0;
+}
 .article .article-author .article-author-information{
     float: left;
     margin-left: 10px;
@@ -717,7 +722,67 @@ a:hover{
     font-size: 15px;
 }
 
+.article .comment-list{
+    margin: 10px;
+    padding: 10px;
+    overflow: hidden;
+    border-top: 1px solid #eee;
+}
+.article .comment-list h3{
+    font-weight: 400;
+    padding: 0;
+    margin: 10px 0;
+}
+.article .comment-list .one-comment{
+    clear: both;
+    margin: 10px;
+    padding: 5px;
+    border-bottom: 1px solid #f9f9f9;
+}
+.article .comment-list .one-comment .one-comment-img{
+    margin-top: 3px;
+    width: 42px;
+    float: left;
+}
+.article .comment-list .one-comment .one-comment-img img{
+    border-radius: 3px;
+}
+.article .comment-list .one-comment .one-comment-content{
+    margin-left: 47px;
+}
 
+.article .comment-list .one-comment .one-comment-content .one-comment-content-inf{
+    color: #777;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 5px 0;
+}
+
+.article .comment-list .one-comment .one-comment-inf img{
+}
+
+
+
+
+.article .comment-post{
+    margin: 10px;
+    padding: 10px;
+    overflow: hidden;
+    border-top: 1px solid #eee;
+}
+.article .comment-post h3{
+    font-weight: 400;
+    padding: 0;
+    margin: 10px 0;
+}
+.article .comment-post h3 span{
+    font-size: 15px;
+    color: #777;
+}
+.article .comment-post .comment{
+    resize: none;
+    height: 70px;
+}
 
 /* slider */
 .slider{

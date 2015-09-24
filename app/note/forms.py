@@ -10,3 +10,6 @@ class NoteForm(Form):
     content = TextAreaField(u"正文",validators=[])
     public = SelectField(u'公开状态',choices=[])
     tag = StringField()
+
+class CommentForm(Form):
+    content = TextAreaField(u"内容",validators=[DataRequired(),InputRequired()])
