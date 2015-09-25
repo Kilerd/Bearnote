@@ -60,7 +60,9 @@
             </form>
         </div>
         {% else %}
-
+        <div class="row banner-log">
+        <p>登陆后方可评论<br /><a class="banner-login" href="{{ url_for('sign_module.login_function',next=request.url) }}">登录</a> | <a class="banner-register" href="{{ url_for('sign_module.register_function',next=request.url) }}">注册</a></p>
+    </div>
         {% endif %}
         {% endif %}
     </div>
