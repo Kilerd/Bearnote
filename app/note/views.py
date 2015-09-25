@@ -101,10 +101,13 @@ def one_note_function(noteid):
             if this_note.public_status == NOTECONSTANTS.PRIVATE:
                 flash(u"该笔记为私有笔记，无法评论。")
                 return redirect(url_for('note_module.note_wall_function'))
-            if comment.validate_on_submit():
+            if comment.validate_on_submit() and 'user' in session:
                 Comment(content = comment.content.data,
                     noteid = noteid,
                     belong = User.objects(email = session['user']['email']).first()).save()
+                return redirect(url_for('note_module.one_note_function',noteid=noteid))
+            else:
+                flash(u"非法操作")
                 return redirect(url_for('note_module.one_note_function',noteid=noteid))
         
         if this_note.public_status == NOTECONSTANTS.PRIVATE:
