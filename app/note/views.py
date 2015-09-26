@@ -5,6 +5,7 @@ from app.users.decorators import require_login
 from app.users.models import User
 from app.note.forms import NoteForm, CommentForm
 from app.note import constants as NOTECONSTANTS
+from app.users import constants as USERCONSTANTS
 from app.note.lib import getnextseq
 from app.lib import common
 from app.common.decorators import require_base_domain
@@ -110,7 +111,7 @@ def one_note_function(noteid):
                 flash(u"非法操作")
                 return redirect(url_for('note_module.one_note_function',noteid=noteid))
         
-        if this_note.public_status == NOTECONSTANTS.PRIVATE:
+        if this_note.public_status == NOTECONSTANTS.PRIVATE and session['user']['role'] == USERCONSTANTS.USER:
             
             if 'user' in session:
                 if this_note.belong.email != session['user']['email']:
