@@ -49,11 +49,13 @@ from app.users.views import sign_module
 from app.common.views import common_module
 from app.note.views import note_module
 from app.public.views import public_module
+from app.admin.views import admin_module
 
 app.register_blueprint(sign_module)
 app.register_blueprint(common_module)
 app.register_blueprint(note_module)
 app.register_blueprint(public_module)
+app.register_blueprint(admin_module,url_prefix="/admin")
 
 
 # Later on you'll import the other blueprints the same way:
