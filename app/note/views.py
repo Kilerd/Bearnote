@@ -103,7 +103,6 @@ def one_note_function(noteid):
         markdown = mistune.Markdown(renderer=renderer)
 
         this_note.content = markdown(this_note.content)
-        print this_note.content
         this_note.belong.email_md5 = common.md5_encrypt(this_note.belong.email)
         comment = CommentForm()
         if request.method == 'POST':
