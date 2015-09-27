@@ -4,7 +4,6 @@
 
 {% block header %}
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/typo.css') }}" />
-<script src="{{ url_for('static', filename='js/commonmark.min.js') }}"></script>
 {% endblock %}
 
 {% block content %}
@@ -24,7 +23,7 @@
                 {% endif %}
             </div>
         </div>
-        <div class="article-content typo" id="article-content">{{ this_note.content }}</div>
+        <div class="article-content typo" id="article-content">{{ this_note.content|safe }}</div>
         {% if this_note.public_status == 1 %}
         <div class="article-author">
             <h3>作者信息</h3>
@@ -44,7 +43,7 @@
               <div class="one-comment">
                 <div class="one-comment-img"><img src="https://cdn.v2ex.com/gravatar/{{one_comment.belong.email_md5}}?s=42&d=retro"></div>
                 <div class="one-comment-content">
-                  {{one_comment.content}}
+                  {{one_comment.content|e}}
                   <div class="one-comment-content-inf">{{one_comment.belong.username}} / {{one_comment.belong.email}} / {{ one_comment.time.strftime('%Y-%m-%d') }}</div>
                  </div>
                 </div>
@@ -67,32 +66,4 @@
         {% endif %}
     </div>
 </div>
-{% endblock %}
-
-{% block jsruner %}
-
-<script>
-
-function html_decode(str)  
-{  
-  if (str.length == 0) return "";  
-  str = str.replace(/&lt;/g, "<");  
-  str = str.replace(/&gt;/g, ">");  
-  str = str.replace(/&nbsp;/g, " ");  
-  str = str.replace(/&#39;/g, "\'");  
-  str = str.replace(/&quot;/g, "\"");  
-  str = str.replace(/<br>/g, "\n");  
-  return str;  
-}
-var article_content = document.getElementById("article-content");
-var reader = new commonmark.Parser({safe:true});
-var writer = new commonmark.HtmlRenderer({safe:true});
-writer.softbreak = "<br />";
-var parsed = reader.parse(html_decode(article_content.innerHTML)); // parsed is a 'Node' tree
-
-var result = writer.render(parsed);
-article_content.innerHTML = result;
-
-
-</script>
 {% endblock %}

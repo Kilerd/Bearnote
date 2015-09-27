@@ -32,6 +32,7 @@
                 {{ note_new_form.subtitle(style="text-align:right;",placeholder="副标题") }}
             </div>
             <div class="row">
+                <p>我们会过滤掉非代码块中的HTML代码，请使用MarkDown书写规范编写代码</p>
                 {{ note_new_form.content(placeholder="笔记正文",id="note") }}
             </div>
             <div class="row">
@@ -57,6 +58,7 @@
 <script>
 
 var simplemde = new SimpleMDE({
+    autoDownloadFontAwesome:false,
     element: document.getElementById("note"),
     spellChecker:false,
     tabsize:4,

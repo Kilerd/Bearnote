@@ -10,6 +10,8 @@ from app.note.lib import getnextseq
 from app.lib import common
 from app.common.decorators import require_base_domain
 
+import mistune
+
 note_module = Blueprint('note_module',__name__)
 
 
@@ -96,6 +98,12 @@ def one_note_function(noteid):
         return redirect(url_for('note_module.note_wall_function'))
     else:
         this_note = Note.objects(noteid=noteid).first()
+        renderer = mistune.Renderer(escape=True, hard_wrap=True)
+        # use this renderer instance
+        markdown = mistune.Markdown(renderer=renderer)
+
+        this_note.content = markdown(this_note.content)
+        print this_note.content
         this_note.belong.email_md5 = common.md5_encrypt(this_note.belong.email)
         comment = CommentForm()
         if request.method == 'POST':
