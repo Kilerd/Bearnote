@@ -132,14 +132,28 @@
 
 /* 代码片断 */
 .typo pre, .typo code, .typo pre tt {
-  font-family: Courier, 'Courier New', monospace;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace
+}
+.typo code{
+  background: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: 0 3px;
+  margin: 0 3px;
+  border-radius: 3px;
+}
+.typo pre code{
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 .typo pre {
   background: #f8f8f8;
   border: 1px solid #ddd;
-  padding: 1em 1.5em;
+  padding: 0.5em 1em;
   display: block;
+  border-radius: 3px;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
