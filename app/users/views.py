@@ -255,7 +255,7 @@ def setting_function(setcate):
                 this_user.description = description_form.descriptions.data
                 this_user.save()
                 flash(u"个人介绍修改成功。")
-                session['user']['description'] = description_form.description.data
+                session['user']['description'] = description_form.descriptions.data
                 return redirect(url_for('sign_module.setting_function',setcate="account"))
         return render_template('users/setting_account.html',description_form = description_form)
 

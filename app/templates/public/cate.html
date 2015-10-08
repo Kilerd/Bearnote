@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}{{ this_blog.name }}{{ this_blog.name }} - 小熊笔记{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+<div class="content">
+    
+    <div class="blog-header">
+        <h1>{{ this_blog.name }}{% if this_blog.descriptions %}<span class="blog-description">{{ this_blog.descriptions }}</span>{% endif %}</h1>
+    </div>
+
+    <ul class="blog-nav">
+        {% for one_cate in all_cate %}
+        <li><a href="{{ url_for('public_module.member_cate_function',username=this_user.username,cate=one_cate.abbname) }}">{{ one_cate.name }} / {{ one_cate.abbname }}</a>
+        {% endfor %}
+    </ul>
+
+    <div class="blog-list">
+        <h2 class="blog-cate">分类 {{ this_cate.name }}</h2>
+        {% for one_note in note %}
+            <div class="blog-list-one">
+            <div class="title"><a href="{{url_for('note_module.one_note_function',noteid=one_note.noteid)}}">{{ one_note.title }}</a></div>
+            {% if one_note.subtitle %}
+            <div class="subtitle">{{ one_note.subtitle }}</div>
+            {% endif %}
+            <div class="inf">
+                
+                {{ one_note.time.strftime('%Y-%m-%d') }}
+                <a href="{{ url_for('public_module.member_cate_function',username=this_user.username,cate=one_note.public_cate.abbname) }}" class="public">{{ one_note.public_cate.name }}</a>
+            </div>
+            <div class="contents">
+                {{ one_note.content[:160] }}...
+            </div>
+            </div>
+        {% endfor %}
+        <div class="blog-page">
+            {% if not page_info.now_page == 1 %}<a href="{{ url_for('note_module.mynote_function',page = page_info.now_page-1) }}">上一页</a> {% endif %}共 {{ page_info.page_count }} 页 , 当前第 {{ page_info.now_page }} 页{% if not page_info.now_page == page_info.page_count %} <a href="{{ url_for('note_module.mynote_function',page = page_info.now_page+1) }}">下一页</a>{% endif %}
+        </div>
+    </div>
+    <div class="blog-slide">
+        {{ this_user.username }}
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+

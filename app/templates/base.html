@@ -29,6 +29,7 @@
             <div class="img">
                 <img src="https://cdn.v2ex.com/gravatar/{{ session['user']['email_md5'] }}?s=38&d=retro">
                 <ul class="droplist">
+                    <li><a href="{{ url_for('public_module.member_page_function',username=session['user']['username']) }}">主页</a></li>
                     <li><a href="{{ url_for('note_module.mynote_function') }}">笔记</a></li>
                     <li><a href="{{ url_for('sign_module.setting_function',setcate='account') }}">设置</a></li>
                     <hr />
@@ -50,13 +51,14 @@
 </div>
 {% block content %}
 {% endblock %}
+{% block footer %}
 <div class="footer">
     <p style="font-weight: 300;"><a href="{{ url_for('common_module.index_function') }}">首页</a><a href="{{ url_for('common_module.feature_function') }}">功能</a><a href="{{ url_for('common_module.tos_function') }}">用户协议</a><a href="{{ url_for('common_module.about_function') }}">关于我们</a></p>
     <p>只为更轻松地记笔记.</p>
     <p>Copyright BearNote 2015-2016.</p>
 
 </div>
-</body>
-{% block jsruner %}
 {% endblock %}
+</body>
+{% block jsruner %}{% endblock %}
 </html>

@@ -184,7 +184,7 @@
 
 /* 保证块/段落之间的空白隔行 */
 .typo p, .typo pre, .typo ul, .typo ol, .typo dl, .typo form, .typo hr, .typo table, .typo blockquote {
-  margin-bottom: 1.2em
+  margin: 0 0 0.5em 0;
 }
 .typo p{
   line-height: 2em;
@@ -198,8 +198,8 @@
 
 /* 标题应该更贴紧内容，并与其他块区分，margin 值要相应做优化 */
 .typo h1, .typo h2, .typo h3, .typo h4, .typo h5, .typo h6{
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+  margin-top: 1em;
+  margin-bottom: 0.25em;
   line-height: 1.35;
 }
 
@@ -232,6 +232,10 @@
 .typo ol{
   list-style: decimal;
   margin-left: 1.9em;
+}
+.typo ul li, .typo ol li{
+  margin-top: 7px;
+  line-height: 1.5em;
 }
 
 .typo li ul, .typo li ol{
