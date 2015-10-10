@@ -23,11 +23,6 @@ def index_function():
         else:
             return "Blog Not Found",404
 
-@common_module.route('/feature',methods=['GET'])
-@require_base_domain
-def feature_function():
-    return render_template('common/feature.html')
-
 @common_module.route('/about',methods=['GET'])
 @require_base_domain
 def about_function():

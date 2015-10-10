@@ -27,7 +27,7 @@ a{
     text-decoration: none;
 }
 a:hover{
-    color: #e13b2f;
+    color: #ff5d34;
     text-decoration: underline;
 }
 
@@ -70,10 +70,10 @@ a:hover{
 }
 .header .nav li a:hover{
     color: rgba(0,0,0,0.75);
-    border-bottom: 2px solid #e13b2f;
+    border-bottom: 2px solid #ff5d34;
 }
 .header .nav li .ative{
-    border-bottom: 2px solid #e13b2f;
+    border-bottom: 2px solid #ff5d34;
 }
 
 .header .right-nav{
@@ -99,7 +99,7 @@ a:hover{
 }
 .header .right-nav a:hover{
     color: #fff;
-    background-color: #e13b2f;
+    background-color: #ff5d34;
     -webkit-transition: color .25s linear, background-color .25s linear .1s;
     -m-transition: color .25s linear, background-color .25s linear .1s;
     -o-transition: color .25s linear, background-color .25s linear .1s;
@@ -183,63 +183,90 @@ a:hover{
 
 
 
-
 .banner{
-    padding: 30px 0;
+    color: #fff;
+    padding: 30px 10px;
     text-align: center;
+    background-color: #467b96;
 }
-.banner .banner-pic{
-    padding: 0 20px;
+.banner h2.description{
+    margin: 50px 0;
 }
-.banner .banner-pic img{
-    float: right;
-    width: auto;
-    max-width: 100%;
-}
-.banner .banner-dsp{
-    margin-top: 30px;
-    padding: 0 10px;
-    text-align: left !important;
-    border-left: 1px solid #aaaaaa !important;
-}
-.banner .banner-dsp h1{
-    font-size: 40px;
-    font-weight: 300;
-}
-.banner .banner-dsp h2{
-    font-size: 21px;
-    margin-top: 30px;
-    font-weight: 300;
-}
-.banner .banner-dsp p{
-    font-size: 16px;
-    margin-top: 5px;
-    font-weight: 300;
+.banner p{
+    margin: 45px 0 15px 0;
+    font-size: 1.25em;
 }
 
-.banner-log{
+.banner .banner-login{
+    padding: 10px 38px;
+    background-color: rgba(255,93,52,0.85);
+    border-radius: 3px;
+    text-decoration: none;
+    color: #fff;
+    margin: 50px 10px;
+}
+.banner .banner-register{
+    padding: 10px 38px;
+    background-color: rgba(96,142,165,0.85);
+    border-radius: 3px;
+    text-decoration: none;
+    color: #fff;
+    margin: 50px 10px;
+}
+.banner .banner-login:hover{
+    background-color: rgba(255,93,52,1);
+}
+.banner .banner-register:hover{
+    background-color: rgba(96,142,165,1);
+}
+
+
+
+.feature{
+    margin-top: 30px !important;
     text-align: center;
-    font-weight: 300;
 }
-.banner-log p{
-    line-height: 2.5em;
+.feature .feature_each{
+    padding: 0 10px;
 }
-.banner-log .banner-login{
-    padding: 10px 38px;
-    background-color: #e13b2f;
-    border-radius: 3px;
-    text-decoration: none;
-    color: #fff;
-    font-weight: 700;
+
+.feature .feature_each::hover{
+    background-color: #000;
+    transform: rotate(360deg);
 }
-.banner-log .banner-register{
-    padding: 10px 38px;
-    background-color: #e13b2f;
-    border-radius: 3px;
-    text-decoration: none;
-    color: #fff;
-    font-weight: 700;
+
+.feature .feature_each i{
+    font-size: 5em;
+    color: #467b96;
+    -webkit-transition: color .20s linear;
+    -m-transition: color .20s linear;
+    -o-transition: color .20s linear;
+    transition: color .20s linear;
 }
+.feature .feature_each h3{
+    color: #467b96;
+    -webkit-transition: color .20s linear;
+    -m-transition: color .20s linear;
+    -o-transition: color .20s linear;
+    transition: color .20s linear;
+
+}
+.feature .feature_each:hover i,.feature .feature_each:hover h3{
+    color: rgba(255,93,52,0.85);
+    -webkit-transition: color .20s linear;
+    -m-transition: color .20s linear;
+    -o-transition: color .20s linear;
+    transition: color .20s linear;
+}
+
+.content .daily-note{
+    text-align: center;
+    margin: 30px 0;
+    padding: 30px 10px;
+    background-color: #f2f2f2;
+}
+
+
 
 .footer{
     width: 100%;
@@ -257,7 +284,7 @@ a:hover{
     text-decoration: none;
 }
 .footer a:hover{
-    color: #e13b2f;
+    color: #ff5d34;
     text-decoration: underline;
 }
 
@@ -502,7 +529,7 @@ a:hover{
 }
 .note-editor input[type="text"]:focus{
     outline: none;
-    border-bottom: 2px solid #e13b2f;
+    border-bottom: 2px solid #ff5d34;
     padding-bottom: 9px;
     -webkit-transition: border .15s linea,padding-bottom .15s linear;
     -m-transition: border .15s linear,padding-bottom .15s linear;
@@ -531,7 +558,7 @@ a:hover{
 }
 .note-editor .textareas:focus{
     outline: none;
-    border-left: 2px solid #e13b2f;
+    border-left: 2px solid #ff5d34;
     margin-left: 0px;
     -webkit-transition: border .15s linear;
     -m-transition: border .15s linear;
@@ -556,7 +583,7 @@ a:hover{
 }
 .note-editor select:focus{
     padding: 10px;
-    border: 1px solid #e13b2f;
+    border: 1px solid #ff5d34;
     -webkit-transition: border .15s linea,padding .15s linear;
     -m-transition: border .15s linear,padding .15s linear;
     -o-transition: border .15s linear,padding .15s linear;
@@ -782,7 +809,7 @@ a:hover{
 }
 .article .comment-post .comment{
     resize: none;
-    height: 70px;
+    height: 118px;
 }
 
 /* slider */
@@ -837,10 +864,11 @@ a:hover{
 
 .input{
     outline: none;
-    width: 100%;
+    display: block;
+    width: 97%;
     font-size: 15px;
     padding: 8px 15px;
-    margin: 5px 0;
+    margin: 5px 5px;
     border: 1px solid #bfbfbf;
     border-radius: 1px;
     background-color: rgba(255,255,255,0.25);
@@ -877,7 +905,7 @@ a:hover{
 .button{
     border: 0;
     font-size: 15px;
-    margin: 5px 0;
+    margin: 5px 5px;
     padding: 5px 20px !important;
     color: #000;
     text-decoration: none;
@@ -890,7 +918,7 @@ a:hover{
 }
 .button:hover{
     color: #fff;
-    background-color: #e13b2f;
+    background-color: #ff5d34;
     -webkit-transition: color .15s linear, background-color .15s linear .1s;
     -m-transition: color .15s linear, background-color .15s linear .1s;
     -o-transition: color .15s linear, background-color .15s linear .1s;
@@ -1056,3 +1084,65 @@ a:hover{
         display: none;
     }
 }
+
+
+
+
+
+/* Font */
+
+@font-face {
+    font-family: 'common';
+    src:url('fonts/common.eot?nf7lhb');
+    src:url('fonts/common.eot?nf7lhb#iefix') format('embedded-opentype'),
+        url('fonts/common.ttf?nf7lhb') format('truetype'),
+        url('fonts/common.woff?nf7lhb') format('woff'),
+        url('fonts/common.svg?nf7lhb#common') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+i {
+    font-family: 'common';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0 4px;
+    font-size: 0.85em;
+}
+
+.icon-markdown:before {
+    content: "\e808";
+}
+.icon-home:before {
+    content: "\e800";
+}
+.icon-pencil:before {
+    content: "\e801";
+}
+.icon-books:before {
+    content: "\e802";
+}
+.icon-cog:before {
+    content: "\e803";
+}
+.icon-bin:before {
+    content: "\e804";
+}
+.icon-earth:before {
+    content: "\e805";
+}
+.icon-eye:before {
+    content: "\e806";
+}
+.icon-exit:before {
+    content: "\e807";
+}
+

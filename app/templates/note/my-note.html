@@ -4,7 +4,7 @@
 {% block content %}
 <div class="content">
     <div class="content-header">
-        <h1>我的笔记<span><a href="{{ url_for('note_module.note_new_function') }}">撰写 新笔记</a></span></h1>
+        <h1><i class="icon-books"></i>我的笔记<span><a href="{{ url_for('note_module.note_new_function') }}"><i class="icon-pencil"></i>撰写 新笔记</a></span></h1>
     </div>
     <div class="note-list">
         {% with messages = get_flashed_messages() %}
@@ -29,7 +29,7 @@
                 {% if one_note.public_status %}
                 <span class="public">{{ one_note.public_cate.name }}</span>
                 {% endif %}
-                <span class="action"><a href="{{ url_for('note_module.note_edit_function',noteid=one_note.noteid) }}">修改</a> <a href="{{ url_for('note_module.note_delete_function',noteid=one_note.noteid) }}">删除</a></span>
+                <span class="action"><a href="{{ url_for('note_module.note_edit_function',noteid=one_note.noteid) }}"><i class="icon-pencil"></i>修改</a> <a href="{{ url_for('note_module.note_delete_function',noteid=one_note.noteid) }}"><i class="icon-bin"></i>删除</a></span>
             </div>
             <div class="contents">
                 {{ one_note.content[:160] }}...

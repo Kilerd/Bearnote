@@ -18,7 +18,7 @@
                 {{ this_note.time.strftime('%Y-%m-%d') }}
                 {% if 'user' in session %}
                 {% if this_note.belong.email == session.user.email %}
-                <span class="action"><a href="{{ url_for('note_module.note_edit_function',noteid=this_note.noteid) }}">修改</a> <a href="{{ url_for('note_module.note_delete_function',noteid=this_note.noteid) }}">删除</a></span>
+                <span class="action"><a href="{{ url_for('note_module.note_edit_function',noteid=this_note.noteid) }}"><i class="icon-pencil"></i>修改</a> <a href="{{ url_for('note_module.note_delete_function',noteid=this_note.noteid) }}"><i class="icon-bin"></i>删除</a></span>
                 {% endif %}
                 {% endif %}
             </div>
@@ -38,31 +38,44 @@
         </div>
 
         <div class="comment-list">
-          <h3>评论列表</h3>
+            <h3>评论列表</h3>
           {% for one_comment in all_comment %}
               <div class="one-comment">
-                <div class="one-comment-img"><img src="https://cdn.v2ex.com/gravatar/{{one_comment.belong.email_md5}}?s=42&d=retro"></div>
+                <div class="one-comment-img"><img src="https://cdn.v2ex.com/gravatar/{{one_comment.email_md5}}?s=42&d=retro"></div>
                 <div class="one-comment-content">
                   {{one_comment.content|e}}
-                  <div class="one-comment-content-inf">{{one_comment.belong.username}} / {{one_comment.belong.email}} / {{ one_comment.time.strftime('%Y-%m-%d') }}</div>
+                  <div class="one-comment-content-inf">{{one_comment.name}} / {{one_comment.email}} / {{one_comment.domain}} / {{ one_comment.time.strftime('%Y-%m-%d') }}</div>
                  </div>
                 </div>
           {% endfor %}
         </div>
-        {% if 'user' in session %}
-        <div class="comment-post">
-            <h3>提交一条新评论 <span>{{ session['user']['username'] }}</span></h3>
+        <div class="row comment-post">
+            <h3>提交一条新评论</h3>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="message">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
             <form method="POST">
+            <div class="col-l-4">
                 {{ comment.csrf_token }}
-                {{ comment.content(class="input comment",placeholder="评论内容") }}
-                <button class="button">提交</button>
+                {{ comment.name(class="input",placeholder="姓名",required='required') }}
+                {{ comment.email(class="input",placeholder="邮箱",required='required') }}
+                {{ comment.domain(class="input",placeholder="个人主页") }}
+            </div>
+            <div class="col-l-8">
+                
+                {{ comment.content(class="input comment",placeholder="评论内容",required='required') }}
+                
+                
+            </div>
+            <button class="button">提交</button>
             </form>
         </div>
-        {% else %}
-        <div class="row banner-log">
-        <p>登陆后方可评论<br /><a class="banner-login" href="{{ url_for('sign_module.login_function',next=request.url) }}">登录</a> | <a class="banner-register" href="{{ url_for('sign_module.register_function',next=request.url) }}">注册</a></p>
-    </div>
-        {% endif %}
         {% endif %}
     </div>
 </div>

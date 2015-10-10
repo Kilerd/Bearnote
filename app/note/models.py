@@ -44,7 +44,9 @@ class Mood(db.DynamicDocument):
 
 
 class Comment(db.DynamicDocument):
+    name = db.StringField(max_length=60,required=True)
+    email = db.StringField(max_length=120,required=True)
+    domain = db.StringField()
     content = db.StringField(required=True)
     noteid = db.IntField(required=True)
     time = db.DateTimeField(default=datetime.now(),required=True)
-    belong = db.ReferenceField(User)

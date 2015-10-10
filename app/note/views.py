@@ -93,6 +93,7 @@ def note_wall_function():
 
 @note_module.route("/note/<int:noteid>",methods=['GET','POST'])
 def one_note_function(noteid):
+
     if Note.objects(noteid=noteid).count() == 0:
         flash(u"找不到这篇文章，不要乱来了。")
         return redirect(url_for('note_module.note_wall_function'))
@@ -104,20 +105,8 @@ def one_note_function(noteid):
 
         this_note.content = markdown(this_note.content)
         this_note.belong.email_md5 = common.md5_encrypt(this_note.belong.email)
-        comment = CommentForm()
-        if request.method == 'POST':
-            if this_note.public_status == NOTECONSTANTS.PRIVATE:
-                flash(u"该笔记为私有笔记，无法评论。")
-                return redirect(url_for('note_module.note_wall_function'))
-            if comment.validate_on_submit() and 'user' in session:
-                Comment(content = comment.content.data,
-                    noteid = noteid,
-                    belong = User.objects(email = session['user']['email']).first()).save()
-                return redirect(url_for('note_module.one_note_function',noteid=noteid))
-            else:
-                flash(u"非法操作")
-                return redirect(url_for('note_module.one_note_function',noteid=noteid))
         
+        # 笔记权限判断
         if this_note.public_status == NOTECONSTANTS.PRIVATE and session['user']['role'] == USERCONSTANTS.USER:
             
             if 'user' in session:
@@ -128,11 +117,43 @@ def one_note_function(noteid):
                 flash(u"你想查看的笔记为私有笔记，无权限查看。")
                 return redirect(url_for('note_module.note_wall_function'))
 
+
+        # 评论功能
+        # 需要添加进session 保存最后一次评论的个人信息
+        comment = CommentForm()
+
+        # POST 页面
+        if request.method == 'POST':
+
+            # 私有笔记 权限判断
+            if this_note.public_status == NOTECONSTANTS.PRIVATE:
+                flash(u"该笔记为私有笔记，无法评论。")
+                return redirect(url_for('note_module.note_wall_function'))
+            
+
+            if comment.validate_on_submit():
+                Comment(name = comment.name.data,
+                    email = comment.email.data.lower(),
+                    domain = comment.domain.data,
+                    content = comment.content.data,
+                    noteid = noteid,).save()
+
+                return redirect(url_for('note_module.one_note_function',noteid=noteid))
+            else:
+                flash(u"内容填写不完整")
+                return redirect(url_for('note_module.one_note_function',noteid=noteid))
+        
+
+        # 读取当前笔记的所有评论
         all_comment = Comment.objects(noteid = noteid)
+        
+        # 评论Email添加MD5 用于头像显示
         all_comment_ = []
         for one_comment in all_comment:
-            one_comment.belong.email_md5 = common.md5_encrypt(one_comment.belong.email)
+            one_comment.email_md5 = common.md5_encrypt(one_comment.email)
             all_comment_.append(one_comment)
+
+
         return render_template('/note/one_note.html',this_note=this_note, comment=comment, all_comment=all_comment_)
 
 

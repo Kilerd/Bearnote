@@ -1,30 +1,36 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="banner">
+        <h2 class="description">只为更轻松地记录笔记</h2>
+        <p>或许某一刻，你想告诉世界你的一些想法</p>
+        <p><a class="banner-login" href="{{ url_for('sign_module.login_function') }}">登录</a><a class="banner-register" href="{{ url_for('sign_module.register_function') }}">注册</a></p>
+</div>
 <div class="content">
-    <div class="row banner">
-        <div class="col-l-6">
-            <div class="banner-pic">
-                <img style="max-width:100%;" src="{{ url_for('static', filename='images/beargirl.png') }}" class="beargirl">
-            </div>
-        </div>
-        <div class="col-l-6">
-            <div class="banner-dsp">
-                <h1>小熊笔记</h1>
-                <p>嗯,只为更轻松地记录笔记.</p>
+    <div class="row feature">
+        <div class="col-l-4 feature_each">
+            <i class="icon-eye"></i>
+            <h3>笔记权限设置</h3>
+            <p>小熊笔记设置了私有笔记和公开笔记两种形式，并且可以自由转换，不受任何限制。</p>
+            <p>公开笔记中我们提供了分类设置，让笔记更工整，更容易查找。</p>
 
-                <h2>知识</h2>
-                <p>知识的乐趣，在于可以记录，用于以后的细细品味</p>
-                <h2>心情</h2>
-                <p>心情不容许别人知道，但是却宽容自己可以回忆</p>
-                <h2>博客</h2>
-                <p>或许有一刻，你想让别人知道你在做什么</p>
-                <p>或许有一刻，你想告诉世界你的一些想法</p>
-            </div>
+        </div>
+        <div class="col-l-4 feature_each">
+            <i class="icon-markdown"></i>
+            <h3>MarkDown 支持</h3>
+            <p>我们的编辑方式采用了MarkDown编辑方式，让笔记更多样化，表现更直接。</p>
+            <p>当然，为了保护部分不会使用MarkDown的使用者，我们提供了类似富文本编辑框的工具栏来使MarkDown更容易上手，使用起来更方便。</p>
+        </div>
+        <div class="col-l-4 feature_each">
+            <i class="icon-earth"></i>
+            <h3>自定义域名</h3>
+            <p>我们提供了绑定自有域名的功能，让你的笔记可以独立出来，形如博客。</p>
+            <p>当然，为了保证多样性，我们后续会提供自定义CSS功能的支持。</p>
         </div>
     </div>
-    <div class="row banner-log">
-        <p>心动不如行动赶快加入我们吧。 <br /><a class="banner-login" href="{{ url_for('sign_module.login_function') }}">登录</a> or <a class="banner-register" href="{{ url_for('sign_module.register_function') }}">注册</a></p>
+    <div class="row daily-note">
+        为了给遗憾找个借口，我们从一开始就把一些人放在了等待怀念的位置。by 郑执
     </div>
+    
 </div>
 {% endblock %}

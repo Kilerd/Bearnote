@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask_wtf import Form
-from wtforms.fields.html5 import EmailField
+from wtforms.fields.html5 import EmailField,URLField
 from wtforms import StringField,PasswordField,BooleanField,TextAreaField,SelectField
 from wtforms.validators import DataRequired,Email,EqualTo,Length,InputRequired
 
@@ -12,4 +12,7 @@ class NoteForm(Form):
     tag = StringField()
 
 class CommentForm(Form):
+    name = StringField(u"名称",validators=[DataRequired(),InputRequired()])
+    email = EmailField(u"邮箱",validators=[DataRequired(),InputRequired()])
+    domain = URLField(u"个人主页")
     content = TextAreaField(u"内容",validators=[DataRequired(),InputRequired()])
