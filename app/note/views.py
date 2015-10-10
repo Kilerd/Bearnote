@@ -71,10 +71,14 @@ def mynote_function():
 @note_module.route('/note/',methods=['GET'])
 @require_base_domain
 def note_wall_function():
+
+    # 分页设置
     note_count = Note.objects(public_status=NOTECONSTANTS.PUBLIC).count()
     page_count = note_count / NOTECONSTANTS.PER_PAGE_COUNT + 1 if note_count % NOTECONSTANTS.PER_PAGE_COUNT else note_count / NOTECONSTANTS.PER_PAGE_COUNT
     if note_count == 0:
         page_count += 1
+    
+    # 读取当前分页
     now_page = request.args.get('page',1)
     try:
         now_page = int(now_page)
@@ -84,7 +88,14 @@ def note_wall_function():
         now_page = now_page
     else:
         return redirect(url_for('note_module.note_wall_function',page=page_count))
+
     now_page_note = Note.objects(public_status=NOTECONSTANTS.PUBLIC).skip(NOTECONSTANTS.PER_PAGE_COUNT*(now_page-1)).limit(NOTECONSTANTS.PER_PAGE_COUNT)
+    
+    # 读取当前分页笔记的评论
+    for one_note in now_page_note:
+        one_note.comment_num = Comment.objects(noteid = one_note.noteid).count()
+
+    
     return render_template('note/note_wall.html',notes = now_page_note,page_info = {'page_count':page_count,'now_page':now_page})
 
 
