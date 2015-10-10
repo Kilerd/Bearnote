@@ -27,7 +27,7 @@
         </ul>
         <div class="right-pic">
             <div class="img">
-                <img src="https://cdn.v2ex.com/gravatar/{{ session['user']['email_md5'] }}?s=38&d=retro">
+                <img src="https://cdn.css.net/avatar/{{ session['user']['email_md5'] }}?s=38&d=retro">
                 <ul class="droplist">
                     <li><a href="{{ url_for('public_module.member_page_function',username=session['user']['username']) }}"><i class="icon-home"></i>主页</a></li>
                     <li><a href="{{ url_for('note_module.mynote_function') }}"><i class="icon-books"></i>笔记</a></li>

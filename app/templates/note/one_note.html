@@ -27,7 +27,7 @@
         {% if this_note.public_status == 1 %}
         <div class="article-author">
             <h3>作者信息</h3>
-            <img src="https://cdn.v2ex.com/gravatar/{{ this_note.belong.email_md5 }}?s=64&d=retro" class="article-author-gravator">
+            <img src="https://cdn.css.net/avatar/{{ this_note.belong.email_md5 }}?s=64&d=retro" class="article-author-gravator">
             <div class="article-author-information">
                 <div class="article-author-author">{{ this_note.belong.username }}</div>
                 <div class="article-author-email">{{ this_note.belong.email }}</div>
@@ -41,7 +41,7 @@
             <h3>评论列表</h3>
           {% for one_comment in all_comment %}
               <div class="one-comment">
-                <div class="one-comment-img"><img src="https://cdn.v2ex.com/gravatar/{{one_comment.email_md5}}?s=42&d=retro"></div>
+                <div class="one-comment-img"><img src="https://cdn.css.net/avatar/{{one_comment.email_md5}}?s=42&d=retro"></div>
                 <div class="one-comment-content">
                   {{one_comment.content|e}}
                   <div class="one-comment-content-inf">{% if one_comment.domain %}<a href="{{one_comment.domain}}" target="_blank">{{one_comment.name}}</a>{% else %}{{one_comment.name}}{% endif %} / {{ one_comment.time.strftime('%Y-%m-%d') }}</div>
