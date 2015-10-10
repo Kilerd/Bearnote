@@ -4,7 +4,11 @@
 <div class="banner">
         <h2 class="description">只为更轻松地记录笔记</h2>
         <p>或许某一刻，你想告诉世界你的一些想法</p>
+        {% if 'user' in session %}
+        <p><a class="banner-login" href="{{ url_for('note_module.note_new_function') }}">编写笔记</a><a class="banner-register" href="#">查看评论</a></p>
+        {% else %}
         <p><a class="banner-login" href="{{ url_for('sign_module.login_function') }}">登录</a><a class="banner-register" href="{{ url_for('sign_module.register_function') }}">注册</a></p>
+        {% endif %}
 </div>
 <div class="content">
     <div class="row feature">

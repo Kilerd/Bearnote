@@ -198,20 +198,20 @@ a:hover{
 }
 
 .banner .banner-login{
-    padding: 10px 38px;
+    padding: 10px 30px;
     background-color: rgba(255,93,52,0.85);
     border-radius: 3px;
     text-decoration: none;
     color: #fff;
-    margin: 50px 10px;
+    margin: 50px 10px 50px 0;
 }
 .banner .banner-register{
-    padding: 10px 38px;
+    padding: 10px 30px;
     background-color: rgba(96,142,165,0.85);
     border-radius: 3px;
     text-decoration: none;
     color: #fff;
-    margin: 50px 10px;
+    margin: 50px 0 50px 10px;
 }
 .banner .banner-login:hover{
     background-color: rgba(255,93,52,1);
@@ -696,7 +696,7 @@ a:hover{
     margin: 0 10px;
     padding-bottom: 5px;
     /*border-bottom: 1px solid #eee;*/
-    padding: 10px;
+    padding: 10px 0;
     border-bottom: 1px solid #eee;
     overflow: hidden;
 
@@ -725,12 +725,26 @@ a:hover{
 }
 
 .article .article-content{
-    padding: 20px;
+    padding: 20px 10px;
     border-radius: 3px;
 }
+.article .article-content .article-content-tag{
+    margin-top: 30px;
+}
+
+.article .article-content .article-content-tag span{
+    font-size: 0.9em;
+    display: inline;
+    color:#fff;
+    background-color: rgba(47,107,164,0.85);
+    padding: 3px 8px 3px 3px;
+    margin: 0 5px;
+    border-radius: 3px;
+}
+
 .article .article-author{
 
-    margin: 10px;
+    margin: 10px 0;
     padding: 10px;
     overflow: hidden;
     border-top: 1px solid #eee;
@@ -757,7 +771,7 @@ a:hover{
 }
 
 .article .comment-list{
-    margin: 10px;
+    margin: 10px 0;
     padding: 10px;
     overflow: hidden;
     border-top: 1px solid #eee;
@@ -769,7 +783,7 @@ a:hover{
 }
 .article .comment-list .one-comment{
     clear: both;
-    margin: 10px;
+    margin: 10px 5px;
     padding: 5px;
     border-bottom: 1px solid #f9f9f9;
 }
@@ -799,7 +813,7 @@ a:hover{
 
 
 .article .comment-post{
-    margin: 10px;
+    margin: 10px 0;
     padding: 10px;
     overflow: hidden;
     border-top: 1px solid #eee;
@@ -1152,5 +1166,6 @@ i {
 .icon-exit:before {
     content: "\e807";
 }
-
-
+.icon-price-tags:before {
+    content: "\e80a";
+}

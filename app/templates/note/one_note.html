@@ -23,7 +23,9 @@
                 {% endif %}
             </div>
         </div>
-        <div class="article-content typo" id="article-content">{{ this_note.content|safe }}</div>
+        <div class="article-content typo" id="article-content">{{ this_note.content|safe }}
+        <div class="article-content-tag">{% for one_tag in this_note.tag %}<span><i class="icon-price-tags"></i>{{ one_tag }}</span>{% endfor %}</div>
+        </div>
         {% if this_note.public_status == 1 %}
         <div class="article-author">
             <h3>作者信息</h3>

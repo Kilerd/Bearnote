@@ -95,7 +95,7 @@ def note_wall_function():
     for one_note in now_page_note:
         one_note.comment_num = Comment.objects(noteid = one_note.noteid).count()
 
-    
+
     return render_template('note/note_wall.html',notes = now_page_note,page_info = {'page_count':page_count,'now_page':now_page})
 
 
@@ -159,13 +159,11 @@ def one_note_function(noteid):
         all_comment = Comment.objects(noteid = noteid)
         
         # 评论Email添加MD5 用于头像显示
-        all_comment_ = []
         for one_comment in all_comment:
             one_comment.email_md5 = common.md5_encrypt(one_comment.email)
-            all_comment_.append(one_comment)
 
 
-        return render_template('/note/one_note.html',this_note=this_note, comment=comment, all_comment=all_comment_)
+        return render_template('/note/one_note.html',this_note=this_note, comment=comment, all_comment=all_comment)
 
 
 @note_module.route("/note/edit/<int:noteid>",methods=['GET','POST'])
