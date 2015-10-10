@@ -44,7 +44,7 @@
                 <div class="one-comment-img"><img src="https://cdn.v2ex.com/gravatar/{{one_comment.email_md5}}?s=42&d=retro"></div>
                 <div class="one-comment-content">
                   {{one_comment.content|e}}
-                  <div class="one-comment-content-inf">{{one_comment.name}} / {{one_comment.email}} / {{one_comment.domain}} / {{ one_comment.time.strftime('%Y-%m-%d') }}</div>
+                  <div class="one-comment-content-inf">{% if one_comment.domain %}<a href="{{one_comment.domain}}" target="_blank">{{one_comment.name}}</a>{% else %}{{one_comment.name}}{% endif %} / {{ one_comment.time.strftime('%Y-%m-%d') }}</div>
                  </div>
                 </div>
           {% endfor %}
