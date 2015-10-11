@@ -2,18 +2,22 @@
 import os
 import sys
 
-from flask import Flask, render_template,session
+from flask import Flask, render_template
 from flask.ext.mongoengine import MongoEngine
 from flask.ext.mail import Mail
 
+
 app = Flask(__name__)
 app.config.from_object('config')
+
 
 db = MongoEngine(app)
 mail = Mail(app)
 ########################
 # Configure Secret Key #
 ########################
+
+
 def install_secret_key(app, filename='secret_key'):
     """Configure the SECRET_KEY from a file
     in the instance directory.
@@ -37,29 +41,29 @@ def install_secret_key(app, filename='secret_key'):
 if not app.config['DEBUG']:
     install_secret_key(app)
 
+
 @app.errorhandler(404)
 def not_found(error):
     return render_template('404.html'), 404
 
 
-
-
-
+# 模块加载
 from app.users.views import sign_module
 from app.common.views import common_module
 from app.note.views import note_module
 from app.public.views import public_module
 from app.admin.views import admin_module
 
+
 app.register_blueprint(sign_module)
 app.register_blueprint(common_module)
 app.register_blueprint(note_module)
 app.register_blueprint(public_module)
-app.register_blueprint(admin_module,url_prefix="/admin")
+app.register_blueprint(admin_module, url_prefix="/admin")
 
 
 # Later on you'll import the other blueprints the same way:
-#from app.comments.views import mod as commentsModule
-#from app.posts.views import mod as postsModule
-#app.register_blueprint(commentsModule)
-#app.register_blueprint(postsModule)
+# from app.comments.views import mod as commentsModule
+# from app.posts.views import mod as postsModule
+# app.register_blueprint(commentsModule)
+# app.register_blueprint(postsModule)

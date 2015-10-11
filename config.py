@@ -12,7 +12,7 @@ CSRF_ENABLED = True
 SECRET_KEY = '123456'
 
 
-# Flask-Mail SMTP Setting
+# Flask-Mail SMTP Setting··
 MAIL_SERVER = 'smtp.exmail.qq.com'
 MAIL_PORT = 465
 MAIL_USE_TLS = False
@@ -23,11 +23,11 @@ MAIL_DEBUG = False
 
 
 # Mongodb Setting / MongoEngine
-MONGODB_DB = os.environ.get('MONGODB_DB','bearnote')
-MONGODB_HOST = os.environ.get('MONGODB_HOST','127.0.0.1')
-MONGODB_PORT = os.environ.get('MONGODB_PORT',27017)
-MONGODB_USERNAME = os.environ.get('MONGODB_USERNAME','')
-MONGODB_PASSWORD = os.environ.get('MONGODB_PASSWORD','')
+MONGODB_DB = os.environ.get('MONGODB_DB', 'bearnote')
+MONGODB_HOST = os.environ.get('MONGODB_HOST', '127.0.0.1')
+MONGODB_PORT = os.environ.get('MONGODB_PORT', 27017)
+MONGODB_USERNAME = os.environ.get('MONGODB_USERNAME', '')
+MONGODB_PASSWORD = os.environ.get('MONGODB_PASSWORD', '')
 
 # Unkown What it is.
 THREADS_PER_PAGE = 8
@@ -35,4 +35,3 @@ THREADS_PER_PAGE = 8
 # CSRF
 CSRF_ENABLED = True
 CSRF_SESSION_KEY = "123456"
-

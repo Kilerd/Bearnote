@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 from app.note.models import NoteID
+
+
 def getnextseq():
     if NoteID.objects(name="noteid").count() == 0:
-        NoteID(name="noteid",seq=0).save()
+        NoteID(name="noteid", seq=0).save()
 
     now_seq = NoteID.objects(name="noteid").first()
     next_seq = now_seq.seq + 1
