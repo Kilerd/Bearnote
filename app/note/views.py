@@ -25,8 +25,7 @@ def note_new_function():
     # 初始化 笔记表单的公开分类
     note_new_form = NoteForm()
     note_new_form.public.choices = [('0', u"私有笔记,不公开")]
-    for c in NoteCate.objects(belong=User.objects(
-            email=session['user']['email']).first()):
+    for c in NoteCate.objects(belong=User.objects(email=session['user']['email']).first()):
 
         note_new_form.public.choices.append((c.abbname, c.name))
 
@@ -62,8 +61,7 @@ def note_new_function():
         else:
             flash(u"内容填写不完整")
             return redirect(url_for('note_module.note_new_function'))
-        return render_template('note/note_new.html',
-                               note_new_form=note_new_form)
+    return render_template('note/note_new.html', note_new_form=note_new_form)
 
 
 # 我的笔记 页面函数
