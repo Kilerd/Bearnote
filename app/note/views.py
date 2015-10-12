@@ -325,3 +325,27 @@ def note_delete_function(noteid):
 
     flash(u"笔记删除成功")
     return redirect(url_for('note_module.mynote_function'))
+
+
+@note_module.route('/comment', methods=['GET'])
+@require_login
+def comment_function():
+    all_note = Note.objects(belong=User.objects(email=session['user']['email']).first())
+    all_comment = []
+    for one_note in all_note:
+            for one_comment in Comment.objects(noteid=one_note.noteid):
+                print one_comment
+                all_comment.insert(0, one_comment)
+
+    return render_template('note/comment.html', all_comment=all_comment)
+
+
+@note_module.route('/comment/delete', methods=['GET'])
+@require_login
+def comment_delete_function():
+    _id = request.args.get('_id', None)
+    if _id is not None:
+        this_comment = Comment.objects(_id=_id).first()
+        Comment.remove(this_comment)
+
+    return "1"

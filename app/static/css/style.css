@@ -946,6 +946,39 @@ a:hover{
 }
 
 
+
+
+
+/* Comment */
+
+.comment-list{
+    margin: 5px;
+}
+.comment-list .one-comment{
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #eee;
+    
+}
+
+.comment-list .one-comment .one-comemnt-inf, .comment-list .one-comment .one-comemnt-inf a{
+    color:#555;
+    font-size: 0.9em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Grid */
 
 .row{

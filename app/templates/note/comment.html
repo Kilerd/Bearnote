@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}收到的评论 - 小熊笔记{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="content-header">
+        <h1><i class="icon-books"></i>收到的评论</h1>
+    </div>
+    <div class="comment-list">
+        {% for one_comment in all_comment %}
+        <div class="one-comment">
+            <div class="one-comemnt-inf">{{ one_comment.name }} / <a href="mailto:{{ one_comment.email }}">{{ one_comment.email }}</a> / {{ one_comment.time.strftime('%Y-%m-%d') }} / <a href="{{ one_comment.domain }}" target="_blank">{{ one_comment.domain }}</a> / <a href="{{ url_for('note_module.comment_delete_function',_id=one_comment._id) }}" target="_blank"><i class="icon-bin"></i>删除</a></div>
+            <div class="one-comment-content">{{ one_comment.content }}</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
