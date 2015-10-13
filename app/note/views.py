@@ -334,7 +334,6 @@ def comment_function():
     all_comment = []
     for one_note in all_note:
             for one_comment in Comment.objects(noteid=one_note.noteid):
-                print one_comment
                 all_comment.insert(0, one_comment)
 
     return render_template('note/comment.html', all_comment=all_comment)
