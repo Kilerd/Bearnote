@@ -1,4 +1,4 @@
-#bearnote
+#Bearnote
 
 the online note built by Flask and Mongodb.
 
