@@ -13,12 +13,12 @@ SECRET_KEY = '123456'
 
 
 # Flask-Mail SMTP Setting··
-MAIL_SERVER = 'smtp.exmail.qq.com'
+MAIL_SERVER = ''
 MAIL_PORT = 465
 MAIL_USE_TLS = False
 MAIL_USE_SSL = True
-MAIL_USERNAME = 'notice@bearnote.com'
-MAIL_PASSWORD = 'pass4bearnote'
+MAIL_USERNAME = ''
+MAIL_PASSWORD = ''
 MAIL_DEBUG = False
 
 

@@ -99,8 +99,10 @@ def register_function():
                         _username=register.username.data.lower()
                         ).save()
                     # Register Email
-                    mail_send(subject='恭喜你，小熊笔记账号注册成功！', recipients=[register.email.data.lower()], html_body=render_template('mail/user_register.html', user={"name": register.username.data, "email": register.email.data.lower()}))
-
+                    try:
+                        mail_send(subject='恭喜你，小熊笔记账号注册成功！', recipients=[register.email.data.lower()], html_body=render_template('mail/user_register.html', user={"name": register.username.data, "email": register.email.data.lower()}))
+                    except:
+                        flash(u"邮件发送失败")
                     flash(u"注册成功，请登录吧，亲")
                     return redirect(url_for('sign_module.login_function'))
                 else:
@@ -149,8 +151,10 @@ def forgetpassword_function():
                         'time': int(time.time())
                     }
                     this_user.save()
-                    mail_send(subject='你好，小熊笔记发来重置密码的密钥串', recipients=[this_user.email], html_body=render_template('mail/user_forgetpassword.html', user={"name": this_user.username, "fstring": forgetstring}))
-
+                    try:
+                        mail_send(subject='你好，小熊笔记发来重置密码的密钥串', recipients=[this_user.email], html_body=render_template('mail/user_forgetpassword.html', user={"name": this_user.username, "fstring": forgetstring}))
+                    except:
+                        flash(u"邮件发送失败")
                     flash(u"已发送密码重置邮件，请前往邮箱查收。邮件一小时内有效")
                     return redirect(url_for('sign_module.forgetpassword_function'))
 
@@ -164,8 +168,10 @@ def forgetpassword_function():
                         }
                         this_user.save()
                         # send mail
-                        mail_send(subject='你好，小熊笔记发来重置密码的密钥串', recipients=[this_user.email], html_body=render_template('mail/user_forgetpassword.html', user={"name": this_user.username, "fstring": forgetstring}))
-
+                        try:
+                            mail_send(subject='你好，小熊笔记发来重置密码的密钥串', recipients=[this_user.email], html_body=render_template('mail/user_forgetpassword.html', user={"name": this_user.username, "fstring": forgetstring}))
+                        except:
+                            flash(u"邮件发送失败")
                         flash(u"原密码重置邮件已失效，已重新生成并发送密码重置邮件，请前往邮箱查收")
                         return redirect(url_for('sign_module.forgetpassword_function'))
                     elif (now_time - int(this_user.forget['time']) < 3600) and (now_time - int(this_user.forget['time']) > 60):
@@ -173,8 +179,10 @@ def forgetpassword_function():
                         # send mail
                         this_user.forget['time'] = now_time
                         this_user.save()
-                        mail_send(subject='你好，小熊笔记发来重置密码的密钥串', recipients=[this_user.email], html_body=render_template('mail/user_forgetpassword.html', user={"name": this_user.username, "fstring": this_user.forget.string}))
-
+                        try:
+                            mail_send(subject='你好，小熊笔记发来重置密码的密钥串', recipients=[this_user.email], html_body=render_template('mail/user_forgetpassword.html', user={"name": this_user.username, "fstring": this_user.forget.string}))
+                        except:
+                            flash(u"邮件发送失败")
                         flash(u"密码重置邮件已重新发送")
                         return redirect(url_for('sign_module.forgetpassword_function'))
                     elif now_time - int(this_user.forget['time']) < 60:
